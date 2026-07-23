@@ -3,13 +3,16 @@ extends Node2D
 var icondown = preload("res://assets/gae/down.svg")
 var iconup = preload("res://assets/gae/up.svg")
 var down : bool = true
+var current_patient : Patient = Patient.new()
 
 var barthingy : float = 0
+var bprelease : bool = false
+const bpbuffer : float = 13.0 * 0.925925926
 
 func _ready() -> void:
 	$Button.text = ""
-	
-	$joe/eye/eye.frame = patient.eyecondition
+	current_patient.newpatient()
+	$joe/eye/eye.frame = current_patient.eyecondition
 	
 
 func _process(delta: float) -> void:
@@ -24,10 +27,35 @@ func _process(delta: float) -> void:
 func armstuff():
 	if $joe/goonerarm.visible:
 		$joe/goonerarm/bar.value = barthingy
-		barthingy -= 0.1
-		if Input.is_action_just_pressed("mousepress"):
-			barthingy += 5
-		barthingy = clamp(barthingy,0,patient.bloodpressure)
+		barthingy -= 0.1 if !bprelease else 0.5
+		$joe/goonerarm/bar/hitevents.visible = bprelease
+		if !bprelease:
+			if Input.is_action_just_pressed("mousepress"):
+				barthingy += 5
+			if barthingy >= float(current_patient.bloodpressure) - 4.9:
+				bprelease = true
+				for i in range(3):
+					var val = remap(barthingy, 0.0, 100.0, 108.0, 0.0)
+					var timing = $joe/goonerarm/bar/hitevents.get_child(i)
+					timing.show()
+					timing.position.y = (i + 1) * randf_range(13.0, 20.0) + val * (1/0.925925926)
+					timing.position.y = clamp(timing.position.y, val * (1/0.925925926), 108.0 - bpbuffer)
+		else:
+			if Input.is_action_just_pressed("mousepress"):
+				for timing in $joe/goonerarm/bar/hitevents.get_children():
+					var val = remap(barthingy, 0.0, 100.0, 108.0, 0.0)
+					if val >= timing.position.y and val <= timing.position.y + bpbuffer:
+						timing.hide()
+			if barthingy <= 0.0:
+				for i in range(3):
+					if $joe/goonerarm/bar/hitevents.get_child(i).visible:
+						break
+					if i == 2:
+						# give player the info or something function?
+						pass
+				bprelease = false
+		barthingy = clamp(barthingy,0,current_patient.bloodpressure)
+		
 
 
 func _input(event):

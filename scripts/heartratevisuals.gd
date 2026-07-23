@@ -1,18 +1,22 @@
 extends Line2D
 
-var heartrate : int = randi_range(5, 35) * [1, -1].pick_random()
+var heartrate : int
 var graph : Curve = Curve.new()
 var pointnum : int = 0
 var delay : bool = false
 
 func _ready() -> void:
 	randomize()
+	var curpatient = get_tree().current_scene.current_patient
+	await curpatient.setup_finished
+	curpatient = get_tree().current_scene.current_patient
+	heartrate = curpatient.heartrate
 	graph.min_domain = -88.5
 	graph.max_domain = 88.5
 	graph.min_value = -250.0
 	graph.max_value = 250.0
 	var space = (graph.get_domain_range() - 15.06 * 3) / 4
-	var amt = randi_range(1, 3)
+	var amt = curpatient.heartcondition + 1
 	for i in range(amt):
 		space += randi_range(-21, 75) / amt
 		var startx = (i + 1) * space + graph.min_domain
@@ -23,7 +27,7 @@ func _ready() -> void:
 		
 
 func _process(delta: float) -> void:
-	pointnum += 5
+	pointnum += int(300 * delta)
 	if pointnum > graph.get_domain_range():
 		pointnum = 1
 		delay = !delay
