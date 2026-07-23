@@ -5,6 +5,7 @@ signal setup_finished()
 
 enum EYES {NORMAL, PINK, GOONER}
 var eyecondition : EYES = EYES.NORMAL #normal, pink, gooner eye
+var eye_color : Color = Color.BROWN
 var bloodpressure : int = 50 #50 = normal, range from 0 - 100
 var temprature : int = 50 # 50 is normal, like 90 degree temp. 100 is very hot
 var whatstethohears : int = 0 #breathing,wheezing, crackling
@@ -51,6 +52,7 @@ func newpatient():
 	
 	# Healthy defaults
 	eyecondition = EYES.NORMAL
+	eye_color = Color(randf(), randf(), randf())
 	bloodpressure = randi_range(45,55)
 	temprature = randi_range(45,55)
 	whatstethohears = 0

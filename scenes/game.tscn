@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://dgidjcry0rssj"]
+[gd_scene load_steps=62 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://tpubdbijbfxt" path="res://assets/gae/doctorwall.png" id="2_rysoc"]
@@ -18,12 +18,13 @@
 [ext_resource type="Texture2D" uid="uid://5sdapybwd3iu" path="res://assets/gae/deskthermo.svg" id="7_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://ivi5qdosx5q1" path="res://assets/gae/popsiclestick2.svg" id="8_gee14"]
 [ext_resource type="Texture2D" uid="uid://bfrhukrddsjrl" path="res://assets/gae/light2.svg" id="9_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://xcuyc3emwmcs" path="res://assets/eyes/eyeoutline.svg" id="9_js0lu"]
 [ext_resource type="Texture2D" uid="uid://cqy57xk6skabt" path="res://assets/gae/armthingy.svg" id="9_pl11u"]
 [ext_resource type="Script" uid="uid://d25n3w0qd7lqu" path="res://scripts/heartratevisuals.gd" id="10_1kice"]
 [ext_resource type="PackedScene" uid="uid://dhmkbnlc4vam3" path="res://scenes/thermometer.tscn" id="11_5newe"]
-[ext_resource type="Script" uid="uid://bhxem1rw6v0sq" path="res://scripts/gotomouse.gd" id="11_37s47"]
+[ext_resource type="Script" path="res://scripts/gotomouse.gd" id="11_37s47"]
 [ext_resource type="Texture2D" uid="uid://dhkjqwwrymium" path="res://assets/gae/stethoscopefp.svg" id="13_bt5mj"]
-[ext_resource type="Script" uid="uid://w0lg3ng4f1vi" path="res://scripts/rope.gd" id="14_e1j6l"]
+[ext_resource type="Script" path="res://scripts/rope.gd" id="14_e1j6l"]
 [ext_resource type="Shader" uid="uid://dhtvw87fa1uj2" path="res://shaders/pixel.gdshader" id="16_ca42v"]
 [ext_resource type="Texture2D" uid="uid://c0bn8qqtuxgkv" path="res://assets/gae/down.svg" id="17_264po"]
 [ext_resource type="Shader" uid="uid://umiibq47crqo" path="res://shaders/fog.gdshader" id="17_ssvqc"]
@@ -65,6 +66,12 @@ animations = [{
 "name": &"idk",
 "speed": 5.0
 }]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_js0lu"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxtfn"]
+bg_color = Color(0.94902, 1, 0, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_37s47"]
 height = 44.0098
@@ -205,15 +212,60 @@ texture = ExtResource("2_yqjtg")
 
 [node name="eye" type="Sprite2D" parent="joe"]
 visible = false
-position = Vector2(-23.5, -135.747)
+position = Vector2(-18.5, -134)
 rotation = -0.196604
 scale = Vector2(0.133257, 0.132531)
 texture = ExtResource("3_kvuet")
 
 [node name="eye" type="AnimatedSprite2D" parent="joe/eye"]
+visible = false
 sprite_frames = SubResource("SpriteFrames_ca42v")
 animation = &"crackhead"
 frame_progress = 0.742543
+
+[node name="eyeclipmask" type="Sprite2D" parent="joe/eye"]
+clip_children = 1
+texture = ExtResource("3_kvuet")
+
+[node name="defaultpupil" type="Sprite2D" parent="joe/eye/eyeclipmask"]
+texture = ExtResource("5_ir15t")
+
+[node name="eyeoutline" type="Sprite2D" parent="joe/eye/eyeclipmask"]
+z_index = 1
+texture = ExtResource("9_js0lu")
+
+[node name="eyegame" type="CanvasLayer" parent="joe/eye/eyeclipmask"]
+visible = false
+
+[node name="fullbar" type="ColorRect" parent="joe/eye/eyeclipmask/eyegame"]
+offset_left = 265.0
+offset_top = 581.0
+offset_right = 911.0
+offset_bottom = 642.0
+color = Color(0, 0, 0, 1)
+
+[node name="patienteye" type="Sprite2D" parent="joe/eye/eyeclipmask/eyegame"]
+position = Vector2(265, 610)
+scale = Vector2(1.23864, 1.23864)
+texture = ExtResource("5_ir15t")
+
+[node name="playerbar" type="ColorRect" parent="joe/eye/eyeclipmask/eyegame"]
+offset_left = 596.0
+offset_top = 581.0
+offset_right = 611.0
+offset_bottom = 642.0
+color = Color(1, 1, 0, 1)
+
+[node name="minigameprogress" type="ProgressBar" parent="joe/eye/eyeclipmask/eyegame"]
+offset_left = 1074.0
+offset_top = 46.0
+offset_right = 1112.0
+offset_bottom = 527.0
+theme_override_styles/background = SubResource("StyleBoxFlat_js0lu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gxtfn")
+value = 25.0
+fill_mode = 3
+show_percentage = false
 
 [node name="Sprite2D" type="Sprite2D" parent="joe/eye"]
 position = Vector2(142.223, -215.813)

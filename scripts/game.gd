@@ -11,10 +11,22 @@ var barthingy : float = 0
 var bprelease : bool = false
 const bpbuffer : float = 13.0 * 0.925925926
 
+const eyebuffer : float = 40.3 / 646.0
+@onready var uieye: Sprite2D = $joe/eye/eyeclipmask/eyegame/patienteye
+@onready var eyegamebar: ColorRect = $joe/eye/eyeclipmask/eyegame/fullbar
+@onready var pupil: Sprite2D = $joe/eye/eyeclipmask/defaultpupil
+var playereyebarvel : float = 0.0
+const uieyebuffer : float = 23.0
+var eye_target_x : float
+var eye_exam_complete : bool = false
+
 func _ready() -> void:
 	$Button.text = ""
 	current_patient.newpatient()
 	$joe/eye/eye.frame = current_patient.eyecondition
+	$joe/eye/eyeclipmask/defaultpupil.self_modulate = current_patient.eye_color
+	$joe/eye/eyeclipmask/eyegame/patienteye.self_modulate = current_patient.eye_color
+	eye_target_x = randf_range(eyegamebar.position.x + uieyebuffer, 646.0 + eyegamebar.position.x - uieyebuffer)
 	
 
 func _process(delta: float) -> void:
@@ -36,6 +48,7 @@ func _process(delta: float) -> void:
 		$sounds/crackle.volume_db = -80
 	
 	armstuff()
+	eyestuff(delta)
 	
 	
 
@@ -72,6 +85,31 @@ func armstuff():
 		barthingy = clamp(barthingy,0,current_patient.bloodpressure)
 		
 
+func eyestuff(delta : float):
+	if $joe/eye.visible and !eye_exam_complete:
+		$joe/eye/eyeclipmask/eyegame.show()
+		uieye.position.x = lerp(uieye.position.x, eye_target_x, delta)
+		pupil.position.x = remap(uieye.position.x, eyegamebar.position.x + uieyebuffer, 646.0 + eyegamebar.position.x - uieyebuffer, -82.77, 87.94)
+		if abs(uieye.position.x - eye_target_x) <= 50.0:
+			eye_target_x = randf_range(eyegamebar.position.x + uieyebuffer, 646.0 + eyegamebar.position.x - uieyebuffer)
+		if Input.is_action_pressed("left"):
+			playereyebarvel -= 0.35
+		elif Input.is_action_pressed("right"):
+			playereyebarvel += 0.35
+		$joe/eye/eyeclipmask/eyegame/playerbar.position.x += playereyebarvel
+		$joe/eye/eyeclipmask/eyegame/playerbar.position.x = clamp($joe/eye/eyeclipmask/eyegame/playerbar.position.x, eyegamebar.position.x + uieyebuffer / 3, 646.0 + eyegamebar.position.x - uieyebuffer / 2)
+		playereyebarvel *= 0.97
+		if abs(uieye.position.x - $joe/eye/eyeclipmask/eyegame/playerbar.position.x) <= 25.0:
+			$joe/eye/eyeclipmask/eyegame/minigameprogress.value += 0.4
+		else:
+			$joe/eye/eyeclipmask/eyegame/minigameprogress.value -= 0.1
+		if $joe/eye/eyeclipmask/eyegame/minigameprogress.value >= 99.0:
+			$joe/eye/eyeclipmask.hide()
+			$joe/eye/eyeclipmask/eyegame.hide()
+			$joe/eye/eye.show()
+			eye_exam_complete = true
+		elif $joe/eye/eyeclipmask/eyegame/minigameprogress.value <= 0.0:
+			resetcam()
 
 func _input(event):
 	if event.is_action_pressed("esc"):
