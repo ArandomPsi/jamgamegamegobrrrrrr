@@ -8,15 +8,27 @@ var barthingy : float = 0
 
 func _ready() -> void:
 	$Button.text = ""
+	
+	$joe/eye/eye.frame = patient.eyecondition
+	
 
 func _process(delta: float) -> void:
+	
+	#camera movement
 	$Camera2D.offset = lerp($Camera2D.offset,(get_global_mouse_position() - $Camera2D.position)/15,0.1)
+	
+	armstuff()
+	
+	
+
+func armstuff():
 	if $joe/goonerarm.visible:
 		$joe/goonerarm/bar.value = barthingy
 		barthingy -= 0.1
 		if Input.is_action_just_pressed("mousepress"):
 			barthingy += 5
-		barthingy = clamp(barthingy,0,100)
+		barthingy = clamp(barthingy,0,patient.bloodpressure)
+
 
 func _input(event):
 	if event.is_action_pressed("esc"):
@@ -58,6 +70,7 @@ func resetcam():
 	$gotomouse/thermometer.visible = false
 	$gotomouse/stethoscope.visible = false
 	$joe/goonerarm.visible = false
+	$deskstuff/popsicle.visible = false
 	
 
 
@@ -94,3 +107,9 @@ func _on_goonerarm_pressed() -> void:
 	campostween(Vector2(240,350))
 	camzoomtween(5)
 	$joe/goonerarm.visible = true
+
+
+func _on_popsicle_pressed() -> void:
+	campostween(Vector2(460,150))
+	camzoomtween(4.5)
+	$gotomouse/popsicle.visible = true

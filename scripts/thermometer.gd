@@ -10,7 +10,7 @@ func goup(val:float = 100):
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	goup(40)
+	goup(patient.temprature)
 	
 
 

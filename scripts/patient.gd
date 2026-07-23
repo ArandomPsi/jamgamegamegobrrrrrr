@@ -9,6 +9,8 @@ var saliavacolor : int = 0 #clear, green, white
 #Yo logan this is for the screen thingy
 var heartcondition : int = 0 #normal (double beat), irregular (single beat)
 
+func _ready() -> void:
+	newpatient()
 
 
 func newpatient():

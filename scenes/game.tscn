@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dgidjcry0rssj"]
+[gd_scene load_steps=47 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://tpubdbijbfxt" path="res://assets/gae/doctorwall.png" id="2_rysoc"]
@@ -9,10 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://dmg0s3bao8opt" path="res://assets/eyes/Red Eye.svg" id="4_trtic"]
 [ext_resource type="Texture2D" uid="uid://df6h2mfasgwb5" path="res://assets/eyes/Pupil.svg" id="5_ir15t"]
 [ext_resource type="Texture2D" uid="uid://bebtfiolglgkh" path="res://assets/gae/armtable.svg" id="5_iywne"]
+[ext_resource type="Texture2D" uid="uid://cw111tlvtqfxl" path="res://assets/eyes/normaleye.svg" id="5_qnb83"]
 [ext_resource type="Script" uid="uid://602s41v2gepx" path="res://scripts/ui/goonerarm.gd" id="5_vtaks"]
 [ext_resource type="Texture2D" uid="uid://3b33g120qs3x" path="res://assets/gae/stethoscope.svg" id="6_p57ef"]
 [ext_resource type="Texture2D" uid="uid://b1ebn6ertlytg" path="res://assets/gae/light-3.svg" id="6_trtic"]
 [ext_resource type="Texture2D" uid="uid://ymqevg0e642b" path="res://assets/gae/flashlighthing.svg" id="7_ir15t"]
+[ext_resource type="Texture2D" uid="uid://c0ypqdx6h2qbf" path="res://assets/eyes/goonereye.svg" id="7_sww3w"]
 [ext_resource type="Texture2D" uid="uid://5sdapybwd3iu" path="res://assets/gae/deskthermo.svg" id="7_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://ivi5qdosx5q1" path="res://assets/gae/popsiclestick2.svg" id="8_gee14"]
 [ext_resource type="Texture2D" uid="uid://bfrhukrddsjrl" path="res://assets/gae/light2.svg" id="9_0tnpc"]
@@ -25,6 +27,7 @@
 [ext_resource type="Shader" uid="uid://dhtvw87fa1uj2" path="res://shaders/pixel.gdshader" id="16_ca42v"]
 [ext_resource type="Texture2D" uid="uid://c0bn8qqtuxgkv" path="res://assets/gae/down.svg" id="17_264po"]
 [ext_resource type="Shader" uid="uid://umiibq47crqo" path="res://shaders/fog.gdshader" id="17_ssvqc"]
+[ext_resource type="Texture2D" uid="uid://bxeu27eyp2gr3" path="res://assets/gae/popsiclestick.svg" id="18_sww3w"]
 
 [sub_resource type="Gradient" id="Gradient_rysoc"]
 offsets = PackedFloat32Array(1)
@@ -37,7 +40,13 @@ gradient = SubResource("Gradient_rysoc")
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("5_qnb83")
+}, {
+"duration": 1.0,
 "texture": ExtResource("4_trtic")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_sww3w")
 }],
 "loop": true,
 "name": &"crackhead",
@@ -70,6 +79,10 @@ gradient = SubResource("Gradient_e1j6l")
 fill_from = Vector2(0.5, 0)
 fill_to = Vector2(0.5, 1)
 metadata/_snap_enabled = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sww3w"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
 
 [sub_resource type="Gradient" id="Gradient_lbhrr"]
 offsets = PackedFloat32Array(1)
@@ -228,6 +241,17 @@ scale = Vector2(0.5, 0.5)
 visible = false
 scale = Vector2(2, 2)
 texture = ExtResource("13_bt5mj")
+
+[node name="popsicle" type="Sprite2D" parent="gotomouse"]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("18_sww3w")
+
+[node name="goon" type="GPUParticles2D" parent="gotomouse/popsicle"]
+position = Vector2(0, 56)
+amount = 20
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_sww3w")
 
 [node name="deskstuff" type="Node2D" parent="."]
 position = Vector2(-6.10352e-05, 0)
@@ -489,5 +513,6 @@ texture = SubResource("GradientTexture2D_bhx41")
 [connection signal="pressed" from="deskstuff/goonerarm" to="." method="_on_goonerarm_pressed"]
 [connection signal="pressed" from="deskstuff/stetho" to="." method="_on_stetho_pressed"]
 [connection signal="pressed" from="deskstuff/thermo" to="." method="_on_thermo_pressed"]
+[connection signal="pressed" from="deskstuff/popsicle" to="." method="_on_popsicle_pressed"]
 [connection signal="pressed" from="deskstuff/light" to="." method="_on_light_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
