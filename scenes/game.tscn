@@ -122,8 +122,9 @@ sprite_frames = SubResource("SpriteFrames_ca42v")
 animation = &"crackhead"
 
 [node name="Sprite2D" type="Sprite2D" parent="joe/eye"]
-position = Vector2(74.6101, -106.256)
+position = Vector2(142.223, -215.813)
 rotation = 0.161885
+scale = Vector2(1.98717, 1.98717)
 texture = ExtResource("6_trtic")
 
 [node name="PointLight2D" type="PointLight2D" parent="joe/eye/Sprite2D"]
