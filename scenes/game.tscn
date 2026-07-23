@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dgidjcry0rssj"]
+[gd_scene load_steps=31 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://tpubdbijbfxt" path="res://assets/gae/doctorwall.png" id="2_rysoc"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://5sdapybwd3iu" path="res://assets/gae/deskthermo.svg" id="7_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://ivi5qdosx5q1" path="res://assets/gae/popsiclestick2.svg" id="8_gee14"]
 [ext_resource type="Texture2D" uid="uid://bfrhukrddsjrl" path="res://assets/gae/light2.svg" id="9_0tnpc"]
+[ext_resource type="Script" uid="uid://d25n3w0qd7lqu" path="res://scripts/heartratevisuals.gd" id="10_1kice"]
 [ext_resource type="Shader" uid="uid://dhtvw87fa1uj2" path="res://shaders/pixel.gdshader" id="16_ca42v"]
 [ext_resource type="Texture2D" uid="uid://c0bn8qqtuxgkv" path="res://assets/gae/down.svg" id="17_264po"]
 [ext_resource type="Shader" uid="uid://umiibq47crqo" path="res://shaders/fog.gdshader" id="17_ssvqc"]
@@ -138,6 +139,11 @@ texture = ExtResource("7_ir15t")
 position = Vector2(949, 475)
 scale = Vector2(2, 2)
 texture = ExtResource("3_lnu2h")
+
+[node name="Line2D" type="Line2D" parent="screen"]
+width = 5.0
+default_color = Color(0, 1, 0, 1)
+script = ExtResource("10_1kice")
 
 [node name="deskstuff" type="Node2D" parent="."]
 position = Vector2(-6.10352e-05, 0)
