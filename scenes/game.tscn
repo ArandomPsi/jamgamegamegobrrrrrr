@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dgidjcry0rssj"]
+[gd_scene load_steps=30 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://tpubdbijbfxt" path="res://assets/gae/doctorwall.png" id="2_rysoc"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://ivi5qdosx5q1" path="res://assets/gae/popsiclestick2.svg" id="8_gee14"]
 [ext_resource type="Texture2D" uid="uid://bfrhukrddsjrl" path="res://assets/gae/light2.svg" id="9_0tnpc"]
 [ext_resource type="Shader" uid="uid://dhtvw87fa1uj2" path="res://shaders/pixel.gdshader" id="16_ca42v"]
+[ext_resource type="Texture2D" uid="uid://c0bn8qqtuxgkv" path="res://assets/gae/down.svg" id="17_264po"]
 [ext_resource type="Shader" uid="uid://umiibq47crqo" path="res://shaders/fog.gdshader" id="17_ssvqc"]
 
 [sub_resource type="Gradient" id="Gradient_rysoc"]
@@ -111,8 +112,9 @@ texture = ExtResource("2_yqjtg")
 
 [node name="eye" type="Sprite2D" parent="joe"]
 visible = false
-position = Vector2(-22, -130)
-scale = Vector2(0.22449, 0.22449)
+position = Vector2(-23.5, -135.747)
+rotation = -0.196604
+scale = Vector2(0.133257, 0.132531)
 texture = ExtResource("3_kvuet")
 
 [node name="eye" type="AnimatedSprite2D" parent="joe/eye"]
@@ -120,7 +122,8 @@ sprite_frames = SubResource("SpriteFrames_ca42v")
 animation = &"crackhead"
 
 [node name="Sprite2D" type="Sprite2D" parent="joe/eye"]
-position = Vector2(51.2273, -138.091)
+position = Vector2(74.6101, -106.256)
+rotation = 0.161885
 texture = ExtResource("6_trtic")
 
 [node name="PointLight2D" type="PointLight2D" parent="joe/eye/Sprite2D"]
@@ -340,6 +343,8 @@ offset_bottom = 653.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 57
 text = "down"
+icon = ExtResource("17_264po")
+icon_alignment = 1
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 z_index = 6

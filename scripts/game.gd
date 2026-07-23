@@ -1,6 +1,11 @@
 extends Node2D
 
+var icondown = preload("res://assets/gae/down.svg")
+var iconup = preload("res://assets/gae/up.svg")
 var down : bool = true
+
+func _ready() -> void:
+	$Button.text = ""
 
 func _input(event):
 	if event.is_action_pressed("esc"):
@@ -19,21 +24,29 @@ func cam_tween(up : bool):
 func _on_button_pressed() -> void:
 	cam_tween(not down)
 	down = not down
-	if down: $Button.text = "down"
-	else:$Button.text = "up"
+	if down: downarrow()
+	else:uparrow()
 
 
+func uparrow():
+	$Button.icon = iconup
+
+func downarrow():
+	$Button.icon = icondown
 
 func resetcam():
 	campostween(Vector2(575.0,324))
 	camzoomtween(1)
-	down = false
-	if down: $Button.text = "down"
-	else:$Button.text = "up"
+	down = true
+	if down: downarrow()
+	else:uparrow()
 	
 	
 	#make everything not visible
 	$joe/eye.visible = false
+
+
+
 
 func camzoomtween(val : float):
 	var tween = create_tween()
