@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://dgidjcry0rssj"]
+[gd_scene load_steps=58 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://tpubdbijbfxt" path="res://assets/gae/doctorwall.png" id="2_rysoc"]
@@ -21,13 +21,17 @@
 [ext_resource type="Texture2D" uid="uid://cqy57xk6skabt" path="res://assets/gae/armthingy.svg" id="9_pl11u"]
 [ext_resource type="Script" uid="uid://d25n3w0qd7lqu" path="res://scripts/heartratevisuals.gd" id="10_1kice"]
 [ext_resource type="PackedScene" uid="uid://dhmkbnlc4vam3" path="res://scenes/thermometer.tscn" id="11_5newe"]
-[ext_resource type="Script" path="res://scripts/gotomouse.gd" id="11_37s47"]
+[ext_resource type="Script" uid="uid://bhxem1rw6v0sq" path="res://scripts/gotomouse.gd" id="11_37s47"]
 [ext_resource type="Texture2D" uid="uid://dhkjqwwrymium" path="res://assets/gae/stethoscopefp.svg" id="13_bt5mj"]
-[ext_resource type="Script" path="res://scripts/rope.gd" id="14_e1j6l"]
+[ext_resource type="Script" uid="uid://w0lg3ng4f1vi" path="res://scripts/rope.gd" id="14_e1j6l"]
 [ext_resource type="Shader" uid="uid://dhtvw87fa1uj2" path="res://shaders/pixel.gdshader" id="16_ca42v"]
 [ext_resource type="Texture2D" uid="uid://c0bn8qqtuxgkv" path="res://assets/gae/down.svg" id="17_264po"]
 [ext_resource type="Shader" uid="uid://umiibq47crqo" path="res://shaders/fog.gdshader" id="17_ssvqc"]
 [ext_resource type="Texture2D" uid="uid://bxeu27eyp2gr3" path="res://assets/gae/popsiclestick.svg" id="18_sww3w"]
+[ext_resource type="Texture2D" uid="uid://dxbvoa3uchsb" path="res://assets/gae/splat1-3.svg" id="19_suyxu"]
+[ext_resource type="Texture2D" uid="uid://0lbhrxdxt43h" path="res://assets/eyes/goondrop.svg" id="20_sgl2t"]
+[ext_resource type="Script" uid="uid://dcaiqei0nno5h" path="res://scripts/splats.gd" id="21_qouja"]
+[ext_resource type="AudioStream" uid="uid://chqvmpcwbfpcg" path="res://sounds/normalbreathing.mp3" id="32_wljb1"]
 
 [sub_resource type="Gradient" id="Gradient_rysoc"]
 offsets = PackedFloat32Array(1)
@@ -80,9 +84,49 @@ fill_from = Vector2(0.5, 0)
 fill_to = Vector2(0.5, 1)
 metadata/_snap_enabled = true
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sgl2t"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sww3w"]
 particle_flag_disable_z = true
-gravity = Vector3(0, 98, 0)
+emission_shape = 1
+emission_sphere_radius = 12.85
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.2
+anim_offset_max = 0.6
+
+[sub_resource type="Gradient" id="Gradient_qouja"]
+offsets = PackedFloat32Array(0.665625, 0.984375)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wljb1"]
+gradient = SubResource("Gradient_qouja")
+
+[sub_resource type="Curve" id="Curve_v2yb1"]
+_data = [Vector2(0.0481284, 0), 0.0, 0.0, 0, 0, Vector2(0.34492, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_js0lu"]
+curve = SubResource("Curve_v2yb1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gxtfn"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 1, 1)
+gravity = Vector3(0, 500, 0)
+scale_min = 0.1
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_js0lu")
+color_ramp = SubResource("GradientTexture1D_wljb1")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_suyxu"]
+radius = 28.0
 
 [sub_resource type="Gradient" id="Gradient_lbhrr"]
 offsets = PackedFloat32Array(1)
@@ -193,6 +237,7 @@ rotation = -1.53955
 shape = SubResource("CapsuleShape2D_37s47")
 
 [node name="goonerarm" type="Sprite2D" parent="joe"]
+visible = false
 position = Vector2(-122, -31)
 scale = Vector2(0.507463, 0.526756)
 texture = ExtResource("9_pl11u")
@@ -254,11 +299,12 @@ targetnode = NodePath("../gotomouse/stethoscope")
 [node name="gotomouse" type="Node2D" parent="."]
 script = ExtResource("11_37s47")
 
-[node name="thermometer" parent="gotomouse" instance=ExtResource("11_5newe")]
+[node name="thermometer" parent="gotomouse" node_paths=PackedStringArray("root") instance=ExtResource("11_5newe")]
 visible = false
 offset_right = 48.0
 offset_bottom = 226.0
 scale = Vector2(0.5, 0.5)
+root = NodePath("../..")
 
 [node name="stethoscope" type="Sprite2D" parent="gotomouse"]
 visible = false
@@ -271,10 +317,32 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("18_sww3w")
 
 [node name="goon" type="GPUParticles2D" parent="gotomouse/popsicle"]
-position = Vector2(0, 56)
+material = SubResource("CanvasItemMaterial_sgl2t")
+position = Vector2(2, 70)
+emitting = false
 amount = 20
-lifetime = 2.0
+texture = ExtResource("19_suyxu")
+lifetime = 30.0
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+draw_order = 0
 process_material = SubResource("ParticleProcessMaterial_sww3w")
+
+[node name="splats" type="GPUParticles2D" parent="gotomouse/popsicle/goon"]
+position = Vector2(-2, -10)
+texture = ExtResource("20_sgl2t")
+process_material = SubResource("ParticleProcessMaterial_gxtfn")
+script = ExtResource("21_qouja")
+
+[node name="moutharea" type="Area2D" parent="gotomouse/popsicle"]
+position = Vector2(4, 18)
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gotomouse/popsicle/moutharea"]
+position = Vector2(-6, 6)
+shape = SubResource("CircleShape2D_suyxu")
 
 [node name="deskstuff" type="Node2D" parent="."]
 position = Vector2(-6.10352e-05, 0)
@@ -543,6 +611,13 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 56
 text = "Tests Info Goes Here"
 
+[node name="sounds" type="Node2D" parent="."]
+
+[node name="normalbreathing" type="AudioStreamPlayer2D" parent="sounds"]
+position = Vector2(470, 275)
+stream = ExtResource("32_wljb1")
+
+[connection signal="area_entered" from="gotomouse/popsicle/moutharea" to="." method="_on_moutharea_body_entered"]
 [connection signal="pressed" from="deskstuff/goonerarm" to="." method="_on_goonerarm_pressed"]
 [connection signal="pressed" from="deskstuff/stetho" to="." method="_on_stetho_pressed"]
 [connection signal="pressed" from="deskstuff/thermo" to="." method="_on_thermo_pressed"]

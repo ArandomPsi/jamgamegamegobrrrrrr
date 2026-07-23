@@ -1,5 +1,7 @@
 extends TextureProgressBar
 
+@export var root : Node
+
 func _ready() -> void:
 	value = 0
 
@@ -10,7 +12,7 @@ func goup(val:float = 100):
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	goup(patient.temprature)
+	goup(root.current_patient.temprature)
 	
 
 

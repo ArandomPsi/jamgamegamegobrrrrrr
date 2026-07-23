@@ -4,6 +4,8 @@ var icondown = preload("res://assets/gae/down.svg")
 var iconup = preload("res://assets/gae/up.svg")
 var down : bool = true
 var current_patient : Patient = Patient.new()
+var spitcount : int = 0
+
 
 var barthingy : float = 0
 var bprelease : bool = false
@@ -98,7 +100,7 @@ func resetcam():
 	$gotomouse/thermometer.visible = false
 	$gotomouse/stethoscope.visible = false
 	$joe/goonerarm.visible = false
-	$deskstuff/popsicle.visible = false
+	$gotomouse/popsicle.visible = false
 	
 
 
@@ -138,6 +140,36 @@ func _on_goonerarm_pressed() -> void:
 
 
 func _on_popsicle_pressed() -> void:
+	spitcount = 0
 	campostween(Vector2(460,150))
 	camzoomtween(4.5)
 	$gotomouse/popsicle.visible = true
+
+
+func _on_moutharea_body_entered(body: Node2D) -> void:
+	$gotomouse/popsicle/goon.restart()
+	if spitcount > 5:
+		
+		#set color of mouth
+		match current_patient.saliavacolor:
+			0:
+				$gotomouse/popsicle/goon.modulate = Color("ffffffa0")
+			_:
+				$gotomouse/popsicle/goon.modulate = Color("40ff00a0")
+			2:
+				$gotomouse/popsicle/goon.modulate = Color("ffffff")
+		
+		#make everything emmit
+		$gotomouse/popsicle/goon.emitting = true
+		$gotomouse/popsicle/goon/splats.emitting = true
+		$gotomouse/popsicle/goon.speed_scale = 1.0
+		for i in range(5):
+			await get_tree().process_frame
+		$gotomouse/popsicle/goon.speed_scale = 0.0
+	else:
+		
+		#nah
+		$gotomouse/popsicle/goon.restart()
+		$gotomouse/popsicle/goon.emitting = false
+		$gotomouse/popsicle/goon/splats.emitting = false
+		spitcount += 1
