@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://dgidjcry0rssj"]
+[gd_scene load_steps=29 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://tpubdbijbfxt" path="res://assets/gae/doctorwall.png" id="2_rysoc"]
 [ext_resource type="Texture2D" uid="uid://gqfvlhodyguv" path="res://assets/gae/patient-2.svg" id="2_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://bmulido8v1dci" path="res://assets/eyes/Normal Eye.svg" id="3_kvuet"]
 [ext_resource type="Texture2D" uid="uid://djwabqfnmep" path="res://assets/gae/screen.svg" id="3_lnu2h"]
@@ -10,9 +11,20 @@
 [ext_resource type="Texture2D" uid="uid://bebtfiolglgkh" path="res://assets/gae/armtable.svg" id="5_iywne"]
 [ext_resource type="Script" uid="uid://602s41v2gepx" path="res://scripts/ui/goonerarm.gd" id="5_vtaks"]
 [ext_resource type="Texture2D" uid="uid://3b33g120qs3x" path="res://assets/gae/stethoscope.svg" id="6_p57ef"]
+[ext_resource type="Texture2D" uid="uid://b1ebn6ertlytg" path="res://assets/gae/light-3.svg" id="6_trtic"]
+[ext_resource type="Texture2D" uid="uid://ymqevg0e642b" path="res://assets/gae/flashlighthing.svg" id="7_ir15t"]
 [ext_resource type="Texture2D" uid="uid://5sdapybwd3iu" path="res://assets/gae/deskthermo.svg" id="7_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://ivi5qdosx5q1" path="res://assets/gae/popsiclestick2.svg" id="8_gee14"]
 [ext_resource type="Texture2D" uid="uid://bfrhukrddsjrl" path="res://assets/gae/light2.svg" id="9_0tnpc"]
+[ext_resource type="Shader" uid="uid://dhtvw87fa1uj2" path="res://shaders/pixel.gdshader" id="16_ca42v"]
+[ext_resource type="Shader" uid="uid://umiibq47crqo" path="res://shaders/fog.gdshader" id="17_ssvqc"]
+
+[sub_resource type="Gradient" id="Gradient_rysoc"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.298039, 0.298039, 0.298039, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ssvqc"]
+gradient = SubResource("Gradient_rysoc")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ca42v"]
 animations = [{
@@ -43,11 +55,54 @@ fill_from = Vector2(0.0490654, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iywne"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_264po"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1kice"]
+seamless = true
+noise = SubResource("FastNoiseLite_264po")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5newe"]
+shader = ExtResource("17_ssvqc")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_1kice")
+shader_parameter/smoke_color = Color(0.55, 0.55, 0.55, 1)
+shader_parameter/distortion_speed = 0.229
+shader_parameter/density = 0.603
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rysoc"]
+shader = ExtResource("16_ca42v")
+shader_parameter/exposure = 1.0
+shader_parameter/contrast = 1.25
+shader_parameter/saturation = 1.003
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 4.577
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 16.0
+shader_parameter/dither_strength = 1.0
+shader_parameter/chrom_aberration = 4.0
+shader_parameter/vignette_strength = 1.0
+shader_parameter/grain_strength = 0.2
+shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
+
 [node name="game" type="Node2D"]
 script = ExtResource("1_yqjtg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(575, 324)
+
+[node name="bg" type="Sprite2D" parent="."]
+self_modulate = Color(2, 2, 2, 1)
+position = Vector2(523, 413)
+scale = Vector2(1.9, 1.104)
+texture = ExtResource("2_rysoc")
+
+[node name="Sprite2D" type="Sprite2D" parent="bg"]
+show_behind_parent = true
+position = Vector2(0, 519.779)
+scale = Vector2(32.9934, 17.2431)
+texture = SubResource("GradientTexture2D_ssvqc")
 
 [node name="joe" type="Sprite2D" parent="."]
 position = Vector2(461, 444)
@@ -57,12 +112,23 @@ texture = ExtResource("2_yqjtg")
 [node name="eye" type="Sprite2D" parent="joe"]
 visible = false
 position = Vector2(-22, -130)
-scale = Vector2(0.102041, 0.102041)
+scale = Vector2(0.22449, 0.22449)
 texture = ExtResource("3_kvuet")
 
 [node name="eye" type="AnimatedSprite2D" parent="joe/eye"]
 sprite_frames = SubResource("SpriteFrames_ca42v")
 animation = &"crackhead"
+
+[node name="Sprite2D" type="Sprite2D" parent="joe/eye"]
+position = Vector2(51.2273, -138.091)
+texture = ExtResource("6_trtic")
+
+[node name="PointLight2D" type="PointLight2D" parent="joe/eye/Sprite2D"]
+position = Vector2(-53.4546, 73.5)
+rotation = 1.58039
+scale = Vector2(1.47399, 1.02812)
+color = Color(1, 1, 0.235294, 1)
+texture = ExtResource("7_ir15t")
 
 [node name="screen" type="Sprite2D" parent="."]
 position = Vector2(949, 475)
@@ -106,6 +172,7 @@ position = Vector2(66, 33)
 texture = ExtResource("5_iywne")
 
 [node name="Label" type="Label" parent="deskstuff/goonerarm"]
+z_index = 7
 layout_mode = 0
 offset_left = -24.0
 offset_top = 39.0
@@ -142,6 +209,8 @@ rotation = 0.395347
 texture = ExtResource("6_p57ef")
 
 [node name="Label" type="Label" parent="deskstuff/stetho"]
+z_index = 7
+layout_mode = 0
 offset_left = -24.0
 offset_top = 39.0
 offset_right = 114.0
@@ -177,6 +246,8 @@ rotation = 0.395347
 texture = ExtResource("7_u5sy4")
 
 [node name="Label" type="Label" parent="deskstuff/thermo"]
+z_index = 7
+layout_mode = 0
 offset_left = -24.0
 offset_top = 39.0
 offset_right = 114.0
@@ -212,6 +283,8 @@ rotation = -0.683653
 texture = ExtResource("8_gee14")
 
 [node name="Label" type="Label" parent="deskstuff/popsicle"]
+z_index = 7
+layout_mode = 0
 offset_left = -9.0
 offset_top = 58.3271
 offset_right = 129.0
@@ -247,6 +320,8 @@ rotation = -0.684555
 texture = ExtResource("9_0tnpc")
 
 [node name="Label" type="Label" parent="deskstuff/light"]
+z_index = 7
+layout_mode = 0
 offset_left = -5.0
 offset_top = 49.0
 offset_right = 133.0
@@ -265,6 +340,44 @@ offset_bottom = 653.0
 focus_mode = 0
 theme_override_font_sizes/font_size = 57
 text = "down"
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = 6
+material = SubResource("ShaderMaterial_5newe")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1232.0
+offset_top = -205.0
+offset_right = 2422.0
+offset_bottom = 1521.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 6
+material = SubResource("ShaderMaterial_rysoc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -441.0
+offset_top = -138.0
+offset_right = 1611.0
+offset_bottom = 1500.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.727862, 0.660161, 0.596349, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(502, 90)
+rotation = 1.5708
+scale = Vector2(10.3338, 16.1412)
+energy = 0.5
+texture = ExtResource("7_ir15t")
 
 [connection signal="pressed" from="deskstuff/light" to="." method="_on_light_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
