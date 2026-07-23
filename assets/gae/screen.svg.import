@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmg0s3bao8opt"
-path="res://.godot/imported/Red Eye.svg-923b2c3aa9f4cfd54819d6aae584198f.ctex"
+uid="uid://djwabqfnmep"
+path="res://.godot/imported/screen.svg-13c47a5c4789a94b1e02ec3a9fd5466c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Red Eye.svg"
-dest_files=["res://.godot/imported/Red Eye.svg-923b2c3aa9f4cfd54819d6aae584198f.ctex"]
+source_file="res://assets/gae/screen.svg"
+dest_files=["res://.godot/imported/screen.svg-13c47a5c4789a94b1e02ec3a9fd5466c.ctex"]
 
 [params]
 

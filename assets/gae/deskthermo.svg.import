@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmulido8v1dci"
-path="res://.godot/imported/Normal Eye.svg-3949e0469c2447cf47017ba66e5aa5ad.ctex"
+uid="uid://5sdapybwd3iu"
+path="res://.godot/imported/deskthermo.svg-e1ed8b77d9df750c5f1a960ed74e3ce1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Normal Eye.svg"
-dest_files=["res://.godot/imported/Normal Eye.svg-3949e0469c2447cf47017ba66e5aa5ad.ctex"]
+source_file="res://assets/gae/deskthermo.svg"
+dest_files=["res://.godot/imported/deskthermo.svg-e1ed8b77d9df750c5f1a960ed74e3ce1.ctex"]
 
 [params]
 

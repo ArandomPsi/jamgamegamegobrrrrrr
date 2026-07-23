@@ -1,7 +1,47 @@
-[gd_scene load_steps=3 format=3 uid="uid://8j006vytxy5s"]
+[gd_scene load_steps=18 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
-[ext_resource type="Texture2D" uid="uid://b824nu6xi4v1k" path="res://assets/patient.svg" id="2_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://gqfvlhodyguv" path="res://assets/gae/patient-2.svg" id="2_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://bmulido8v1dci" path="res://assets/eyes/Normal Eye.svg" id="3_kvuet"]
+[ext_resource type="Texture2D" uid="uid://djwabqfnmep" path="res://assets/gae/screen.svg" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://d30hd8otkxl0n" path="res://assets/gae/desk.svg" id="4_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://dmg0s3bao8opt" path="res://assets/eyes/Red Eye.svg" id="4_trtic"]
+[ext_resource type="Texture2D" uid="uid://df6h2mfasgwb5" path="res://assets/eyes/Pupil.svg" id="5_ir15t"]
+[ext_resource type="Texture2D" uid="uid://bebtfiolglgkh" path="res://assets/gae/armtable.svg" id="5_iywne"]
+[ext_resource type="Script" uid="uid://602s41v2gepx" path="res://scripts/ui/goonerarm.gd" id="5_vtaks"]
+[ext_resource type="Texture2D" uid="uid://3b33g120qs3x" path="res://assets/gae/stethoscope.svg" id="6_p57ef"]
+[ext_resource type="Texture2D" uid="uid://5sdapybwd3iu" path="res://assets/gae/deskthermo.svg" id="7_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://ivi5qdosx5q1" path="res://assets/gae/popsiclestick2.svg" id="8_gee14"]
+[ext_resource type="Texture2D" uid="uid://bfrhukrddsjrl" path="res://assets/gae/light2.svg" id="9_0tnpc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ca42v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_trtic")
+}],
+"loop": true,
+"name": &"crackhead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ir15t")
+}],
+"loop": true,
+"name": &"idk",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_lbhrr"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iywne"]
+gradient = SubResource("Gradient_lbhrr")
+fill_from = Vector2(0.0490654, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iywne"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_yqjtg")
@@ -9,31 +49,222 @@ script = ExtResource("1_yqjtg")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(575, 324)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(581, 967)
-scale = Vector2(2.055, 2.055)
-texture = ExtResource("2_lnu2h")
+[node name="joe" type="Sprite2D" parent="."]
+position = Vector2(461, 444)
+scale = Vector2(2, 2)
+texture = ExtResource("2_yqjtg")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = 101.0
-offset_top = 42.0
-offset_right = 576.0
-offset_bottom = 327.0
+[node name="eye" type="Sprite2D" parent="joe"]
+visible = false
+position = Vector2(-22, -130)
+scale = Vector2(0.102041, 0.102041)
+texture = ExtResource("3_kvuet")
 
-[node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = 278.0
-offset_top = 272.0
-offset_right = 379.0
-offset_bottom = 557.0
+[node name="eye" type="AnimatedSprite2D" parent="joe/eye"]
+sprite_frames = SubResource("SpriteFrames_ca42v")
+animation = &"crackhead"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="screen" type="Sprite2D" parent="."]
+position = Vector2(949, 475)
+scale = Vector2(2, 2)
+texture = ExtResource("3_lnu2h")
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="deskstuff" type="Node2D" parent="."]
+position = Vector2(-6.10352e-05, 0)
+
+[node name="desk" type="Sprite2D" parent="deskstuff"]
+position = Vector2(557.5, 882)
+scale = Vector2(3.62662, 2)
+texture = ExtResource("4_lbhrr")
+
+[node name="temporarysolution" type="Sprite2D" parent="deskstuff/desk"]
+position = Vector2(-3.52917, 11.5)
+scale = Vector2(1, 0.75)
+texture = SubResource("GradientTexture2D_iywne")
+
+[node name="goonerarm" type="Button" parent="deskstuff"]
+offset_left = 78.0001
+offset_top = 721.0
+offset_right = 206.0
+offset_bottom = 821.0
+focus_mode = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_iywne")
+script = ExtResource("5_vtaks")
+
+[node name="Sprite2D" type="Sprite2D" parent="deskstuff/goonerarm"]
+position = Vector2(66, 33)
+texture = ExtResource("5_iywne")
+
+[node name="Label" type="Label" parent="deskstuff/goonerarm"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = 39.0
+offset_right = 114.0
+offset_bottom = 86.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Checks blood pressure"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="stetho" type="Button" parent="deskstuff"]
+offset_left = 207.0
+offset_top = 721.0
+offset_right = 335.0
+offset_bottom = 821.0
+focus_mode = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_iywne")
+script = ExtResource("5_vtaks")
+
+[node name="Sprite2D" type="Sprite2D" parent="deskstuff/stetho"]
+position = Vector2(66, 33)
+rotation = 0.395347
+texture = ExtResource("6_p57ef")
+
+[node name="Label" type="Label" parent="deskstuff/stetho"]
+offset_left = -24.0
+offset_top = 39.0
+offset_right = 114.0
+offset_bottom = 86.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Finds breathing patterns"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="thermo" type="Button" parent="deskstuff"]
+offset_left = 321.0
+offset_top = 725.0
+offset_right = 449.0
+offset_bottom = 825.0
+focus_mode = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_iywne")
+script = ExtResource("5_vtaks")
+
+[node name="Sprite2D" type="Sprite2D" parent="deskstuff/thermo"]
+position = Vector2(66, 33)
+rotation = 0.395347
+texture = ExtResource("7_u5sy4")
+
+[node name="Label" type="Label" parent="deskstuff/thermo"]
+offset_left = -24.0
+offset_top = 39.0
+offset_right = 114.0
+offset_bottom = 86.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Checks temprature"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="popsicle" type="Button" parent="deskstuff"]
+offset_left = 423.0
+offset_top = 715.0
+offset_right = 551.0
+offset_bottom = 815.0
+focus_mode = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_iywne")
+script = ExtResource("5_vtaks")
+
+[node name="Sprite2D" type="Sprite2D" parent="deskstuff/popsicle"]
+position = Vector2(63, 39.3271)
+rotation = -0.683653
+texture = ExtResource("8_gee14")
+
+[node name="Label" type="Label" parent="deskstuff/popsicle"]
+offset_left = -9.0
+offset_top = 58.3271
+offset_right = 129.0
+offset_bottom = 105.327
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Salaiva diagnosis "
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="light" type="Button" parent="deskstuff"]
+offset_left = 524.0
+offset_top = 720.0
+offset_right = 652.0
+offset_bottom = 820.0
+focus_mode = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_iywne")
+script = ExtResource("5_vtaks")
+
+[node name="Sprite2D" type="Sprite2D" parent="deskstuff/light"]
+position = Vector2(66, 33)
+rotation = -0.684555
+texture = ExtResource("9_0tnpc")
+
+[node name="Label" type="Label" parent="deskstuff/light"]
+offset_left = -5.0
+offset_top = 49.0
+offset_right = 133.0
+offset_bottom = 96.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Checks eyes"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0.627451)
 offset_top = 567.0
 offset_right = 1153.0
 offset_bottom = 653.0
+focus_mode = 0
 theme_override_font_sizes/font_size = 57
-text = "Look Down"
+text = "down"
 
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="deskstuff/light" to="." method="_on_light_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

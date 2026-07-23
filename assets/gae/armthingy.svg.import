@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://df6h2mfasgwb5"
-path="res://.godot/imported/Pupil.svg-f2715429a382dafe3736791ee9840c24.ctex"
+uid="uid://cqy57xk6skabt"
+path="res://.godot/imported/armthingy.svg-2a40a404d9c772239e453fa5fe487a5c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pupil.svg"
-dest_files=["res://.godot/imported/Pupil.svg-f2715429a382dafe3736791ee9840c24.ctex"]
+source_file="res://assets/gae/armthingy.svg"
+dest_files=["res://.godot/imported/armthingy.svg-2a40a404d9c772239e453fa5fe487a5c.ctex"]
 
 [params]
 
