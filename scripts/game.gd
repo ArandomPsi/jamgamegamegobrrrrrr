@@ -4,8 +4,19 @@ var icondown = preload("res://assets/gae/down.svg")
 var iconup = preload("res://assets/gae/up.svg")
 var down : bool = true
 
+var barthingy : float = 0
+
 func _ready() -> void:
 	$Button.text = ""
+
+func _process(delta: float) -> void:
+	$Camera2D.offset = lerp($Camera2D.offset,(get_global_mouse_position() - $Camera2D.position)/15,0.1)
+	if $joe/goonerarm.visible:
+		$joe/goonerarm/bar.value = barthingy
+		barthingy -= 0.1
+		if Input.is_action_just_pressed("mousepress"):
+			barthingy += 5
+		barthingy = clamp(barthingy,0,100)
 
 func _input(event):
 	if event.is_action_pressed("esc"):
@@ -44,6 +55,10 @@ func resetcam():
 	
 	#make everything not visible
 	$joe/eye.visible = false
+	$gotomouse/thermometer.visible = false
+	$gotomouse/stethoscope.visible = false
+	$joe/goonerarm.visible = false
+	
 
 
 
@@ -61,3 +76,21 @@ func _on_light_pressed() -> void:
 	campostween(Vector2(410,160))
 	camzoomtween(8)
 	$joe/eye.visible = true
+
+
+func _on_thermo_pressed() -> void:
+	campostween(Vector2(460,150))
+	camzoomtween(4)
+	$gotomouse/thermometer.visible = true
+
+
+func _on_stetho_pressed() -> void:
+	campostween(Vector2(576,324))
+	camzoomtween(1.4)
+	$gotomouse/stethoscope.visible = true
+
+
+func _on_goonerarm_pressed() -> void:
+	campostween(Vector2(240,350))
+	camzoomtween(5)
+	$joe/goonerarm.visible = true

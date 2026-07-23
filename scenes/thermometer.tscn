@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhmkbnlc4vam3"]
+
+[ext_resource type="Texture2D" uid="uid://bkue7ciev6kew" path="res://assets/gae/thermometerbar1.svg" id="1_y2dya"]
+[ext_resource type="Texture2D" uid="uid://dnq4vdx0ed0g6" path="res://assets/gae/thermometerbar2.svg" id="2_vxnqj"]
+[ext_resource type="Script" uid="uid://c04qfnregwp12" path="res://scripts/thermometer.gd" id="3_vxnqj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vxnqj"]
+
+[node name="thermometer" type="TextureProgressBar"]
+offset_right = 40.0
+offset_bottom = 40.0
+value = 50.0
+fill_mode = 2
+texture_under = ExtResource("1_y2dya")
+texture_progress = ExtResource("2_vxnqj")
+script = ExtResource("3_vxnqj")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(23, 211)
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_vxnqj")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
