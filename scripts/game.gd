@@ -22,6 +22,19 @@ func _process(delta: float) -> void:
 	#camera movement
 	$Camera2D.offset = lerp($Camera2D.offset,(get_global_mouse_position() - $Camera2D.position)/15,0.1)
 	
+	if $gotomouse/stethoscope.visible:
+		match current_patient.whatstethohears:
+			0:
+				$sounds/normalbreathing.volume_db = 0.0
+			1:
+				$sounds/wheezing.volume_db = 0.0
+			2:
+				$sounds/crackle.volume_db = 0.0
+	else:
+		$sounds/normalbreathing.volume_db = -80
+		$sounds/wheezing.volume_db = -80
+		$sounds/crackle.volume_db = -80
+	
 	armstuff()
 	
 	
