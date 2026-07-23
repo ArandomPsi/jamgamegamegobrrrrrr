@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://ivi5qdosx5q1" path="res://assets/gae/popsiclestick2.svg" id="8_gee14"]
 [ext_resource type="Texture2D" uid="uid://bfrhukrddsjrl" path="res://assets/gae/light2.svg" id="9_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://cqy57xk6skabt" path="res://assets/gae/armthingy.svg" id="9_pl11u"]
-[ext_resource type="Script" path="res://scripts/heartratevisuals.gd" id="10_1kice"]
+[ext_resource type="Script" uid="uid://d25n3w0qd7lqu" path="res://scripts/heartratevisuals.gd" id="10_1kice"]
 [ext_resource type="PackedScene" uid="uid://dhmkbnlc4vam3" path="res://scenes/thermometer.tscn" id="11_5newe"]
 [ext_resource type="Script" uid="uid://bhxem1rw6v0sq" path="res://scripts/gotomouse.gd" id="11_37s47"]
 [ext_resource type="Texture2D" uid="uid://dhkjqwwrymium" path="res://assets/gae/stethoscopefp.svg" id="13_bt5mj"]
@@ -205,7 +205,7 @@ width = 5.0
 default_color = Color(0, 1, 0, 1)
 script = ExtResource("10_1kice")
 
-[node name="Line2D" type="Line2D" parent="." node_paths=PackedStringArray("targetnode")]
+[node name="stethorope" type="Line2D" parent="." node_paths=PackedStringArray("targetnode")]
 position = Vector2(-7, 0)
 width = 15.0
 texture = SubResource("GradientTexture2D_pl11u")
