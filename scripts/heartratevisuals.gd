@@ -20,6 +20,9 @@ func _ready() -> void:
 		graph.clear_points()
 		graph.add_point(Vector2(graph.min_domain, graph.min_value))
 		graph.add_point(Vector2(graph.max_domain, graph.min_value))
+		if not $"../../sounds/flatline".playing:
+			$"../../sounds/flatline".play()
+			print("playflatline")
 		)
 	
 
@@ -65,9 +68,9 @@ func _process(delta: float) -> void:
 		last_spike = -1
 		delay = !delay
 	if flatline:
-		beep.play()
 		delay = false
 		pointnum = graph.get_domain_range()
+		beep.stop()
 	if !delay:
 		var graph_x = pointnum + graph.min_domain
 		

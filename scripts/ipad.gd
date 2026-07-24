@@ -44,12 +44,7 @@ var descs : Dictionary = {
 	"ALLERGIC_CONJUNCTIVITIS": "[b]Allergic Conjunctivitis[/b]\nAn allergic reaction causing inflammation of the eyes.\nSymptoms:\n• Pink eyes\n• Eye irritation\n• Tearing\n• Itching\n• Rashy arms"
 }
 
-
-func _ready() -> void:
-	var root = get_tree().current_scene
-	await root.current_patient.setup_finished
-	await get_tree().process_frame
-	var poss = root.disease_possibilities
+func regenerate(possible_diseases : Array):
 	$RichTextLabel.text = " \n [b]Illnesses[/b]"
-	for p in poss:
+	for p in possible_diseases:
 		$RichTextLabel.text += "\n \n" + descs[p]

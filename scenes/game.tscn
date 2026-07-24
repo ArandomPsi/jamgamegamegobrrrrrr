@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://dgidjcry0rssj"]
+[gd_scene load_steps=106 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://tpubdbijbfxt" path="res://assets/gae/doctorwall.png" id="2_rysoc"]
@@ -50,6 +50,7 @@
 [ext_resource type="AudioStream" uid="uid://b6gxn1th3bfjd" path="res://sounds/sfx/Breathing (Better).mp3" id="44_ms3bu"]
 [ext_resource type="AudioStream" uid="uid://dcdcc5fvpe2pe" path="res://sounds/sfx/Cackled Breathing (Better).mp3" id="45_8qswn"]
 [ext_resource type="Script" uid="uid://x6eua8lq01gp" path="res://scripts/ipad.gd" id="48_7ixpq"]
+[ext_resource type="AudioStream" uid="uid://cr8mg3hkvjbs3" path="res://sounds/flatline.wav" id="48_bk1p3"]
 [ext_resource type="FontFile" uid="uid://bwt7tm5n5knnm" path="res://shaders/AnimeAce-neP.ttf" id="50_3hbvx"]
 [ext_resource type="Script" path="res://scripts/clipboardthingies.gd" id="50_o8ni1"]
 [ext_resource type="Texture2D" uid="uid://wt3cpymndpb2" path="res://assets/gae/checkedbox.png" id="50_pf7vy"]
@@ -1080,6 +1081,10 @@ light_mask = 2
 position = Vector2(956, 297)
 stream = ExtResource("33_v2yb1")
 max_polyphony = 2
+
+[node name="flatline" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("48_bk1p3")
+volume_db = -17.802
 
 [node name="ipad" type="Node2D" parent="."]
 visible = false

@@ -36,29 +36,8 @@ var curenum : int = 0
 
 func _ready() -> void:
 	$Button.text = ""
-	current_patient.newpatient()
-	disease_possibilities.append(current_patient.DISEASE.keys()[current_patient.disease])
-	for i in range(disease_amount - 1):
-		var ops = current_patient.DISEASE.keys().duplicate()
-		for d in disease_possibilities:
-			ops.erase(d)
-		disease_possibilities.append(ops.pick_random())
-	cure_possibilities.append(current_patient.curename)
-	for i in range(3):
-		var ops = current_patient.cures.keys().duplicate()
-		for c in cure_possibilities:
-			ops.erase(c)
-		cure_possibilities.append(ops.pick_random())
-	for i in range(randi_range(0, 5)):
-		disease_possibilities.shuffle()
-		cure_possibilities.shuffle()
-	curenum = cure_possibilities.find(current_patient.curename)
-	for i in range(cure_labels.size()):
-		cure_labels[i].text = cure_possibilities[i]
-	print(disease_possibilities)
-	$joe/eye/eyeclipmask/eye.frame = current_patient.eyecondition
+	newpatient()
 	$otherui/daytimervisual.max_value = $otherui/daytimer.wait_time
-	armssetup()
 	
 
 func _process(delta: float) -> void:
@@ -440,8 +419,31 @@ func newpatient():
 	#other stuff
 #	current_patient = Patient.new()
 	current_patient.newpatient()
+	disease_possibilities.clear()
+	cure_possibilities.clear()
+	disease_possibilities.append(current_patient.DISEASE.keys()[current_patient.disease])
+	for i in range(disease_amount - 1):
+		var ops = current_patient.DISEASE.keys().duplicate()
+		for d in disease_possibilities:
+			ops.erase(d)
+		disease_possibilities.append(ops.pick_random())
+	cure_possibilities.append(current_patient.curename)
+	for i in range(3):
+		var ops = current_patient.cures.keys().duplicate()
+		for c in cure_possibilities:
+			ops.erase(c)
+		cure_possibilities.append(ops.pick_random())
+	for i in range(randi_range(0, 5)):
+		disease_possibilities.shuffle()
+		cure_possibilities.shuffle()
+	curenum = cure_possibilities.find(current_patient.curename)
+	for i in range(cure_labels.size()):
+		cure_labels[i].text = cure_possibilities[i]
 	$joe/eye/eyeclipmask/eye.frame = current_patient.eyecondition
 	armssetup()
+	$ipad.regenerate(disease_possibilities)
+	for lbl in cure_labels:
+		lbl.get_parent().get_node("check").frame = 0
 	#animations
 	var tween = create_tween()
 	tween.tween_property($results,"modulate:a",0.0,0.9)
