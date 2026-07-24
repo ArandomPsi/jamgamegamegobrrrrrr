@@ -73,12 +73,16 @@ var cure_possibilities : Array = []
 ]
 var curenum : int = 0
 
+@onready var daytimethingy  = $otherui/daytimervisual
+
+
 func _ready() -> void:
 	$Button.text = ""
 	newpatient()
 	patient_requirement = scaling[daynum]["quota"]
 	disease_amount = scaling[daynum]["diseaseoptions"]
 	$otherui/daytimervisual.max_value = $otherui/daytimer.wait_time
+	
 	
 
 func _process(delta: float) -> void:
@@ -99,7 +103,17 @@ func _process(delta: float) -> void:
 		$sounds/wheezing.volume_db = -80
 		$sounds/crackle.volume_db = -80
 	
-	$otherui/daytimervisual.value = $otherui/daytimer.wait_time - $otherui/daytimer.time_left
+	var progress = ($otherui/daytimer.wait_time - current_patient.time_left) / $otherui/daytimer.wait_time
+	
+	#$otherui/daytimervisual.value = $otherui/daytimer.wait_time - $otherui/daytimer.time_left
+	
+	current_patient.time_left -= delta
+	
+	if current_patient.time_left < 1:
+		ldoctor()
+	
+	$clock/hand.rotation = progress * TAU + PI/4
+	
 	$otherui/Label.text = "Day " + str(daynum)
 	
 	armstuff()

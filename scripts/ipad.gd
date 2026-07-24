@@ -47,4 +47,4 @@ var descs : Dictionary = {
 func regenerate(possible_diseases : Array):
 	$RichTextLabel.text = " \n [b]Illnesses[/b]"
 	for p in possible_diseases:
-		$RichTextLabel.text += "\n \n" + descs[p]
+		$RichTextLabel.text += "\n ----------------- \n" + descs[p]

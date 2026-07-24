@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://dgidjcry0rssj"]
+[gd_scene load_steps=108 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://tpubdbijbfxt" path="res://assets/gae/doctorwall.png" id="2_rysoc"]
@@ -23,12 +23,12 @@
 [ext_resource type="Script" uid="uid://d25n3w0qd7lqu" path="res://scripts/heartratevisuals.gd" id="10_1kice"]
 [ext_resource type="Texture2D" uid="uid://qbhkcwmec7j4" path="res://assets/eyes/maskoutline.svg" id="10_oaba0"]
 [ext_resource type="PackedScene" uid="uid://dhmkbnlc4vam3" path="res://scenes/thermometer.tscn" id="11_5newe"]
-[ext_resource type="Script" path="res://scripts/gotomouse.gd" id="11_37s47"]
+[ext_resource type="Script" uid="uid://bhxem1rw6v0sq" path="res://scripts/gotomouse.gd" id="11_37s47"]
 [ext_resource type="Texture2D" uid="uid://bmbl16m7t8ch" path="res://assets/eyes/openhand.svg" id="12_gxtfn"]
 [ext_resource type="Texture2D" uid="uid://d2dh7x2pq7dce" path="res://assets/eyes/closed hand.svg" id="12_twgab"]
 [ext_resource type="Texture2D" uid="uid://dhkjqwwrymium" path="res://assets/gae/stethoscopefp.svg" id="13_bt5mj"]
-[ext_resource type="Script" path="res://scripts/shaker.gd" id="14_02fa5"]
-[ext_resource type="Script" path="res://scripts/rope.gd" id="14_e1j6l"]
+[ext_resource type="Script" uid="uid://c475lwnj3dd61" path="res://scripts/shaker.gd" id="14_02fa5"]
+[ext_resource type="Script" uid="uid://w0lg3ng4f1vi" path="res://scripts/rope.gd" id="14_e1j6l"]
 [ext_resource type="Shader" uid="uid://dhtvw87fa1uj2" path="res://shaders/pixel.gdshader" id="16_ca42v"]
 [ext_resource type="Texture2D" uid="uid://c0bn8qqtuxgkv" path="res://assets/gae/down.svg" id="17_264po"]
 [ext_resource type="Texture2D" uid="uid://liswfvrxm566" path="res://assets/gae/normalarm.svg" id="17_h3rex"]
@@ -37,7 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://dxbvoa3uchsb" path="res://assets/gae/splat1-3.svg" id="19_suyxu"]
 [ext_resource type="Texture2D" uid="uid://0lbhrxdxt43h" path="res://assets/eyes/goondrop.svg" id="20_sgl2t"]
 [ext_resource type="Script" uid="uid://dcaiqei0nno5h" path="res://scripts/splats.gd" id="21_qouja"]
-[ext_resource type="Shader" path="res://shaders/perspectiveshader.gdshader" id="33_7025r"]
+[ext_resource type="Shader" uid="uid://uf8noj56jan7" path="res://shaders/perspectiveshader.gdshader" id="33_7025r"]
 [ext_resource type="AudioStream" uid="uid://cov4737f5x6yn" path="res://sounds/heartbeatscreen.wav" id="33_v2yb1"]
 [ext_resource type="Texture2D" uid="uid://cyxqy0vcvxwk2" path="res://assets/gae/ipad.svg" id="34_m4url"]
 [ext_resource type="Texture2D" uid="uid://b8lr2ictbv0fe" path="res://assets/gae/magnifyingglass.svg" id="36_458eo"]
@@ -52,12 +52,14 @@
 [ext_resource type="Script" uid="uid://x6eua8lq01gp" path="res://scripts/ipad.gd" id="48_7ixpq"]
 [ext_resource type="AudioStream" uid="uid://cr8mg3hkvjbs3" path="res://sounds/flatline.wav" id="48_bk1p3"]
 [ext_resource type="FontFile" uid="uid://bwt7tm5n5knnm" path="res://shaders/AnimeAce-neP.ttf" id="50_3hbvx"]
-[ext_resource type="Script" path="res://scripts/clipboardthingies.gd" id="50_o8ni1"]
+[ext_resource type="Script" uid="uid://cj4psvqe6xilr" path="res://scripts/clipboardthingies.gd" id="50_o8ni1"]
 [ext_resource type="Texture2D" uid="uid://wt3cpymndpb2" path="res://assets/gae/checkedbox.png" id="50_pf7vy"]
 [ext_resource type="Texture2D" uid="uid://dnrxmfv2t6f01" path="res://assets/gae/clipboard.png" id="50_rm0al"]
 [ext_resource type="Texture2D" uid="uid://c0e8jdmdejclu" path="res://assets/gae/emptybox.png" id="51_o8ni1"]
 [ext_resource type="Texture2D" uid="uid://bvsf47b0wfta0" path="res://assets/gae/circletimerempty.svg" id="55_ms3bu"]
 [ext_resource type="Texture2D" uid="uid://2bgtd27cejao" path="res://assets/gae/circletimerfull.svg" id="56_7ixpq"]
+[ext_resource type="Texture2D" uid="uid://doxqvg3t24b8h" path="res://assets/gae/clockbase.svg" id="59_yd4ix"]
+[ext_resource type="Texture2D" uid="uid://cqoqh64mu2sr5" path="res://assets/gae/clockhand.svg" id="60_66xif"]
 
 [sub_resource type="Gradient" id="Gradient_rysoc"]
 offsets = PackedFloat32Array(1)
@@ -244,9 +246,9 @@ shader_parameter/density = 0.603
 shader = ExtResource("16_ca42v")
 shader_parameter/exposure = 1.0
 shader_parameter/contrast = 1.25
-shader_parameter/saturation = 1.003
+shader_parameter/saturation = 1.126
 shader_parameter/enable_pixelate = true
-shader_parameter/pixel_factor = 4.12
+shader_parameter/pixel_factor = 4.0
 shader_parameter/enable_posterize = true
 shader_parameter/color_levels = 16.0
 shader_parameter/dither_strength = 1.0
@@ -511,6 +513,7 @@ rotation = 0.816493
 [node name="patienttimeleft" type="Node2D" parent="."]
 
 [node name="Label" type="Label" parent="patienttimeleft"]
+visible = false
 offset_left = 278.0
 offset_top = 29.0
 offset_right = 666.0
@@ -882,10 +885,10 @@ autowrap_mode = 3
 
 [node name="ipad" type="Button" parent="deskstuff"]
 light_mask = 2
-offset_left = 820.0
-offset_top = 734.0
-offset_right = 948.0
-offset_bottom = 847.0
+offset_left = 801.0
+offset_top = 724.0
+offset_right = 929.0
+offset_bottom = 837.0
 focus_mode = 0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_iywne")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_iywne")
@@ -1040,7 +1043,7 @@ color = Color(0.694721, 0.751509, 0.769227, 1)
 [node name="blackstuff" type="Sprite2D" parent="screeneffects/CanvasLayer"]
 modulate = Color(1, 1, 1, 0.447059)
 light_mask = 2
-position = Vector2(571.999, 335)
+position = Vector2(580, 352)
 scale = Vector2(21.6563, 11.7813)
 texture = SubResource("GradientTexture2D_bhx41")
 
@@ -1104,7 +1107,8 @@ texture = ExtResource("40_8ool0")
 [node name="ipad" type="Sprite2D" parent="ipad"]
 light_mask = 2
 use_parent_material = true
-scale = Vector2(4.5, 4.5)
+position = Vector2(-25.375, -34.3167)
+scale = Vector2(4.98333, 4.98333)
 texture = ExtResource("34_m4url")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ipad"]
@@ -1114,8 +1118,8 @@ texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -180.0
-offset_top = -252.0
+offset_left = -216.0
+offset_top = -301.0
 offset_right = 177.0
 offset_bottom = 249.0
 grow_horizontal = 2
@@ -1126,12 +1130,11 @@ theme_override_fonts/mono_font = ExtResource("41_05nbr")
 theme_override_fonts/italics_font = ExtResource("41_05nbr")
 theme_override_fonts/bold_italics_font = ExtResource("41_05nbr")
 theme_override_fonts/bold_font = ExtResource("41_05nbr")
-theme_override_font_sizes/normal_font_size = 35
-theme_override_font_sizes/bold_font_size = 30
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 32
 theme_override_styles/background = SubResource("StyleBoxFlat_05nbr")
 bbcode_enabled = true
-text = "
-[b]Illnesses[/b]
+text = "[b]Illnesses[/b]
 
 [b]Healthy[/b]
 A patient with no detected illness or abnormal symptoms.
@@ -1381,6 +1384,17 @@ scale = Vector2(8.625, 11.375)
 energy = 0.5
 texture = SubResource("GradientTexture2D_0sl42")
 
+[node name="clock" type="Node2D" parent="."]
+position = Vector2(118, 90)
+
+[node name="clock" type="Sprite2D" parent="clock"]
+position = Vector2(-1, 6)
+texture = ExtResource("59_yd4ix")
+
+[node name="hand" type="Sprite2D" parent="clock"]
+texture = ExtResource("60_66xif")
+offset = Vector2(30, 0)
+
 [node name="clipboard" type="Node2D" parent="."]
 visible = false
 position = Vector2(-11, 1180)
@@ -1618,6 +1632,7 @@ vertical_alignment = 1
 layer = 0
 
 [node name="Label" type="Label" parent="otherui"]
+visible = false
 offset_left = 901.0
 offset_top = 10.0
 offset_right = 1136.0
@@ -1626,6 +1641,7 @@ text = "Day X"
 label_settings = SubResource("LabelSettings_bk1p3")
 
 [node name="daytimervisual" type="TextureProgressBar" parent="otherui"]
+visible = false
 modulate = Color(1, 1, 1, 0.494118)
 offset_left = 1043.0
 offset_top = 19.0
@@ -1641,6 +1657,7 @@ wait_time = 300.0
 autostart = true
 
 [node name="stressmeter" type="ProgressBar" parent="otherui"]
+visible = false
 offset_left = 20.0
 offset_top = 16.0
 offset_right = 41.0
@@ -1651,6 +1668,7 @@ fill_mode = 3
 show_percentage = false
 
 [node name="Label2" type="Label" parent="otherui"]
+visible = false
 offset_left = 114.0
 offset_top = 48.0
 offset_right = 278.0
