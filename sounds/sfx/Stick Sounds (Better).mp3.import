@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c38hg5cb5cb2n"
+path="res://.godot/imported/Stick Sounds (Better).mp3-6f1545dc2af817411a4640cf54b56f95.mp3str"
+
+[deps]
+
+source_file="res://sounds/sfx/Stick Sounds (Better).mp3"
+dest_files=["res://.godot/imported/Stick Sounds (Better).mp3-6f1545dc2af817411a4640cf54b56f95.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dt8yh53hoir1c"
+path="res://.godot/imported/Tired Breathing (Better).mp3-792c86f339889facc138a0db7eafeb6e.mp3str"
+
+[deps]
+
+source_file="res://sounds/sfx/Tired Breathing (Better).mp3"
+dest_files=["res://.godot/imported/Tired Breathing (Better).mp3-792c86f339889facc138a0db7eafeb6e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

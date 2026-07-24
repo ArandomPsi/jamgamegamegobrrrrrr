@@ -15,8 +15,9 @@ func _ready() -> void:
 	randomize()
 	var curpatient = get_tree().current_scene.current_patient
 	await curpatient.setup_finished
+	await get_tree().process_frame
 	curpatient = get_tree().current_scene.current_patient
-	heartrate = curpatient.heartrate
+	heartrate = curpatient.heartrate * 1.2
 	graph.min_domain = -88.5
 	graph.max_domain = 88.5
 	graph.min_value = -250.0

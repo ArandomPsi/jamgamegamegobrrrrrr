@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c4n7037i3las1"
+path="res://.godot/imported/Cough (Better).mp3-1f6467fb04ffe70f2ed0b3c151c1db65.mp3str"
+
+[deps]
+
+source_file="res://sounds/sfx/Cough (Better).mp3"
+dest_files=["res://.godot/imported/Cough (Better).mp3-1f6467fb04ffe70f2ed0b3c151c1db65.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

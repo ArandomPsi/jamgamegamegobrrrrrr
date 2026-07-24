@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://dgidjcry0rssj"]
+[gd_scene load_steps=97 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://tpubdbijbfxt" path="res://assets/gae/doctorwall.png" id="2_rysoc"]
@@ -23,12 +23,12 @@
 [ext_resource type="Script" uid="uid://d25n3w0qd7lqu" path="res://scripts/heartratevisuals.gd" id="10_1kice"]
 [ext_resource type="Texture2D" uid="uid://qbhkcwmec7j4" path="res://assets/eyes/maskoutline.svg" id="10_oaba0"]
 [ext_resource type="PackedScene" uid="uid://dhmkbnlc4vam3" path="res://scenes/thermometer.tscn" id="11_5newe"]
-[ext_resource type="Script" path="res://scripts/gotomouse.gd" id="11_37s47"]
+[ext_resource type="Script" uid="uid://bhxem1rw6v0sq" path="res://scripts/gotomouse.gd" id="11_37s47"]
 [ext_resource type="Texture2D" uid="uid://bmbl16m7t8ch" path="res://assets/eyes/openhand.svg" id="12_gxtfn"]
 [ext_resource type="Texture2D" uid="uid://d2dh7x2pq7dce" path="res://assets/eyes/closed hand.svg" id="12_twgab"]
 [ext_resource type="Texture2D" uid="uid://dhkjqwwrymium" path="res://assets/gae/stethoscopefp.svg" id="13_bt5mj"]
-[ext_resource type="Script" path="res://scripts/shaker.gd" id="14_02fa5"]
-[ext_resource type="Script" path="res://scripts/rope.gd" id="14_e1j6l"]
+[ext_resource type="Script" uid="uid://c475lwnj3dd61" path="res://scripts/shaker.gd" id="14_02fa5"]
+[ext_resource type="Script" uid="uid://w0lg3ng4f1vi" path="res://scripts/rope.gd" id="14_e1j6l"]
 [ext_resource type="Shader" uid="uid://dhtvw87fa1uj2" path="res://shaders/pixel.gdshader" id="16_ca42v"]
 [ext_resource type="Texture2D" uid="uid://c0bn8qqtuxgkv" path="res://assets/gae/down.svg" id="17_264po"]
 [ext_resource type="Texture2D" uid="uid://liswfvrxm566" path="res://assets/gae/normalarm.svg" id="17_h3rex"]
@@ -38,7 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://0lbhrxdxt43h" path="res://assets/eyes/goondrop.svg" id="20_sgl2t"]
 [ext_resource type="Script" uid="uid://dcaiqei0nno5h" path="res://scripts/splats.gd" id="21_qouja"]
 [ext_resource type="AudioStream" uid="uid://chqvmpcwbfpcg" path="res://sounds/normalbreathing.mp3" id="32_wljb1"]
-[ext_resource type="Shader" path="res://shaders/perspectiveshader.gdshader" id="33_7025r"]
+[ext_resource type="Shader" uid="uid://uf8noj56jan7" path="res://shaders/perspectiveshader.gdshader" id="33_7025r"]
 [ext_resource type="AudioStream" uid="uid://cov4737f5x6yn" path="res://sounds/heartbeatscreen.wav" id="33_v2yb1"]
 [ext_resource type="Texture2D" uid="uid://cyxqy0vcvxwk2" path="res://assets/gae/ipad.svg" id="34_m4url"]
 [ext_resource type="Texture2D" uid="uid://b8lr2ictbv0fe" path="res://assets/gae/magnifyingglass.svg" id="36_458eo"]
@@ -46,7 +46,14 @@
 [ext_resource type="FontFile" uid="uid://vvjr1d332ty4" path="res://shaders/PixelMillennium-1oBZ.ttf" id="41_0sl42"]
 [ext_resource type="FontFile" uid="uid://bg4vteyrtwwro" path="res://shaders/PixelCaps-LOnE.ttf" id="41_05nbr"]
 [ext_resource type="Texture2D" uid="uid://c68xmi4i1wubw" path="res://assets/clasp1.svg" id="41_pr1ej"]
-[ext_resource type="AudioStream" uid="uid://by4ynbbigngfm" path="res://assets/music/doctorgamemusic.mp3" id="44_0sl42"]
+[ext_resource type="AudioStream" uid="uid://by4ynbbigngfm" path="res://sounds/music/doctorgamemusic.mp3" id="44_0sl42"]
+[ext_resource type="AudioStream" uid="uid://d1rw3yqmt51ca" path="res://sounds/sfx/Wheeze (Better).mp3" id="44_fedci"]
+[ext_resource type="AudioStream" uid="uid://dcdcc5fvpe2pe" path="res://sounds/sfx/Cackled Breathing (Better).mp3" id="45_8qswn"]
+[ext_resource type="FontFile" uid="uid://bwt7tm5n5knnm" path="res://shaders/AnimeAce-neP.ttf" id="50_3hbvx"]
+[ext_resource type="Script" uid="uid://cj4psvqe6xilr" path="res://scripts/clipboardthingies.gd" id="50_o8ni1"]
+[ext_resource type="Texture2D" uid="uid://wt3cpymndpb2" path="res://assets/gae/checkedbox.png" id="50_pf7vy"]
+[ext_resource type="Texture2D" uid="uid://dnrxmfv2t6f01" path="res://assets/gae/clipboard.png" id="50_rm0al"]
+[ext_resource type="Texture2D" uid="uid://c0e8jdmdejclu" path="res://assets/gae/emptybox.png" id="51_o8ni1"]
 
 [sub_resource type="Gradient" id="Gradient_rysoc"]
 offsets = PackedFloat32Array(1)
@@ -193,6 +200,24 @@ shader_parameter/y_rot = 20.526
 shader_parameter/x_rot = 47.368
 shader_parameter/inset = 0.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3hbvx"]
+shader = ExtResource("33_7025r")
+shader_parameter/fov = 40.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 55.543
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[sub_resource type="Gradient" id="Gradient_8qswn"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rm0al"]
+gradient = SubResource("Gradient_8qswn")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_264po"]
 noise_type = 2
 
@@ -213,7 +238,7 @@ shader_parameter/exposure = 1.0
 shader_parameter/contrast = 1.25
 shader_parameter/saturation = 1.003
 shader_parameter/enable_pixelate = true
-shader_parameter/pixel_factor = 4.529
+shader_parameter/pixel_factor = 4.12
 shader_parameter/enable_posterize = true
 shader_parameter/color_levels = 16.0
 shader_parameter/dither_strength = 1.0
@@ -255,6 +280,26 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.6, 0)
 metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pf7vy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o8ni1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3hbvx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pf7vy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("51_o8ni1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_pf7vy")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_yqjtg")
@@ -398,7 +443,7 @@ curve = SubResource("Curve2D_fedci")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="joe/arms/rightarm/Path2D"]
 position = Vector2(-73.9509, -124.809)
-rotation = 0.816495
+rotation = 0.816493
 
 [node name="leftarm" type="Sprite2D" parent="joe/arms"]
 clip_children = 1
@@ -423,7 +468,7 @@ curve = SubResource("Curve2D_fedci")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="joe/arms/leftarm/Path2D"]
 position = Vector2(-73.9509, -124.809)
-rotation = 0.816495
+rotation = 0.816493
 
 [node name="screen" type="Sprite2D" parent="."]
 light_mask = 2
@@ -816,14 +861,60 @@ texture = ExtResource("34_m4url")
 [node name="Label" type="Label" parent="deskstuff/ipad"]
 light_mask = 2
 z_index = 7
+texture_filter = 1
 layout_mode = 0
-offset_left = -3.86169
-offset_top = 66.2074
-offset_right = 134.138
-offset_bottom = 113.207
+offset_left = -7.99993
+offset_top = 51.0
+offset_right = 130.0
+offset_bottom = 102.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_fonts/font = ExtResource("41_0sl42")
+theme_override_font_sizes/font_size = 24
 text = "illness dictionary"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="clipboard" type="Button" parent="deskstuff"]
+light_mask = 2
+offset_left = 958.0
+offset_top = 734.0
+offset_right = 1086.0
+offset_bottom = 847.0
+focus_mode = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_iywne")
+script = ExtResource("5_vtaks")
+
+[node name="Sprite2D" type="Sprite2D" parent="deskstuff/clipboard"]
+light_mask = 2
+material = SubResource("ShaderMaterial_3hbvx")
+position = Vector2(55, 14)
+rotation = -1.55535
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("50_rm0al")
+
+[node name="Label" type="Label" parent="deskstuff/clipboard"]
+light_mask = 2
+z_index = 7
+texture_filter = 1
+layout_mode = 0
+offset_left = -7.99993
+offset_top = 51.0
+offset_right = 130.0
+offset_bottom = 102.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("41_0sl42")
+theme_override_font_sizes/font_size = 24
+text = "diagnosis"
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -848,6 +939,15 @@ scale = Vector2(10.3338, 16.1412)
 energy = 0.5
 range_item_cull_mask = 2
 texture = ExtResource("7_ir15t")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+light_mask = 2
+position = Vector2(963, 304)
+rotation = 1.5708
+scale = Vector2(6.49831, 10.3091)
+energy = 0.5
+range_item_cull_mask = 2
+texture = SubResource("GradientTexture2D_rm0al")
 
 [node name="screeneffects" type="Node2D" parent="."]
 light_mask = 2
@@ -891,19 +991,9 @@ color = Color(0.694721, 0.751509, 0.769227, 1)
 [node name="blackstuff" type="Sprite2D" parent="screeneffects/CanvasLayer"]
 modulate = Color(1, 1, 1, 0.447059)
 light_mask = 2
-position = Vector2(572, 335)
+position = Vector2(571.999, 335)
 scale = Vector2(21.6563, 11.7813)
 texture = SubResource("GradientTexture2D_bhx41")
-
-[node name="Label" type="Label" parent="."]
-light_mask = 2
-offset_left = 265.0
-offset_top = 871.0
-offset_right = 822.0
-offset_bottom = 948.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 56
-text = "Epstien Was here"
 
 [node name="sounds" type="Node2D" parent="."]
 light_mask = 2
@@ -919,8 +1009,7 @@ attenuation = 4.92458
 [node name="wheezing" type="AudioStreamPlayer2D" parent="sounds"]
 light_mask = 2
 position = Vector2(458, 287)
-stream = ExtResource("32_wljb1")
-pitch_scale = 2.0
+stream = ExtResource("44_fedci")
 autoplay = true
 max_distance = 250.0
 attenuation = 4.92458
@@ -928,8 +1017,9 @@ attenuation = 4.92458
 [node name="crackle" type="AudioStreamPlayer2D" parent="sounds"]
 light_mask = 2
 position = Vector2(458, 287)
-stream = ExtResource("32_wljb1")
-pitch_scale = 3.0
+stream = ExtResource("45_8qswn")
+volume_db = -5.0
+pitch_scale = 2.0
 autoplay = true
 max_distance = 250.0
 attenuation = 4.92458
@@ -984,7 +1074,7 @@ theme_override_font_sizes/bold_font_size = 30
 theme_override_styles/background = SubResource("StyleBoxFlat_05nbr")
 bbcode_enabled = true
 text = "
-[b]Epstien Fuck Niggers[/b]
+[b]Illnesses[/b]
 
 [b]Healthy[/b]
 A patient with no detected illness or abnormal symptoms.
@@ -1213,11 +1303,210 @@ scale = Vector2(8.625, 11.375)
 energy = 0.5
 texture = SubResource("GradientTexture2D_0sl42")
 
+[node name="clipboard" type="Node2D" parent="."]
+position = Vector2(-11, 1180)
+rotation = 3.14159
+
+[node name="backfing" type="Sprite2D" parent="clipboard"]
+light_mask = 2
+use_parent_material = true
+position = Vector2(202.934, -424)
+rotation = 0.0898836
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("40_8ool0")
+flip_h = true
+
+[node name="Sprite2D" type="Sprite2D" parent="clipboard"]
+position = Vector2(367.934, -384)
+texture = ExtResource("50_rm0al")
+
+[node name="Label" type="Label" parent="clipboard"]
+offset_left = 256.934
+offset_top = -642.0
+offset_right = 468.934
+offset_bottom = -600.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("50_3hbvx")
+theme_override_font_sizes/font_size = 30
+text = "Diagnosis"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="op1" type="Button" parent="clipboard"]
+offset_left = 219.934
+offset_top = -579.0
+offset_right = 256.934
+offset_bottom = -542.0
+focus_mode = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pf7vy")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_o8ni1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hbvx")
+script = ExtResource("50_o8ni1")
+
+[node name="check" type="AnimatedSprite2D" parent="clipboard/op1"]
+position = Vector2(16, 19)
+scale = Vector2(0.11, 0.11)
+sprite_frames = SubResource("SpriteFrames_pf7vy")
+
+[node name="Label" type="Label" parent="clipboard/op1"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 45.0
+offset_top = 9.0
+offset_right = 297.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("41_0sl42")
+theme_override_font_sizes/font_size = 32
+text = "baby tantrum"
+autowrap_mode = 3
+
+[node name="op2" type="Button" parent="clipboard"]
+offset_left = 219.934
+offset_top = -506.0
+offset_right = 256.934
+offset_bottom = -469.0
+focus_mode = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pf7vy")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_o8ni1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hbvx")
+script = ExtResource("50_o8ni1")
+
+[node name="check" type="AnimatedSprite2D" parent="clipboard/op2"]
+position = Vector2(16, 19)
+scale = Vector2(0.11, 0.11)
+sprite_frames = SubResource("SpriteFrames_pf7vy")
+
+[node name="Label" type="Label" parent="clipboard/op2"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 45.0
+offset_top = 9.0
+offset_right = 297.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("41_0sl42")
+theme_override_font_sizes/font_size = 32
+text = "cardiovascular job"
+autowrap_mode = 3
+
+[node name="op3" type="Button" parent="clipboard"]
+offset_left = 219.934
+offset_top = -430.0
+offset_right = 256.934
+offset_bottom = -393.0
+focus_mode = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pf7vy")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_o8ni1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hbvx")
+script = ExtResource("50_o8ni1")
+
+[node name="check" type="AnimatedSprite2D" parent="clipboard/op3"]
+position = Vector2(16, 19)
+scale = Vector2(0.11, 0.11)
+sprite_frames = SubResource("SpriteFrames_pf7vy")
+
+[node name="Label" type="Label" parent="clipboard/op3"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 45.0
+offset_top = 9.0
+offset_right = 297.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("41_0sl42")
+theme_override_font_sizes/font_size = 32
+text = "anti-bacteria thingy"
+autowrap_mode = 3
+
+[node name="op4" type="Button" parent="clipboard"]
+offset_left = 219.934
+offset_top = -350.0
+offset_right = 256.934
+offset_bottom = -313.0
+focus_mode = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pf7vy")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_o8ni1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_3hbvx")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3hbvx")
+script = ExtResource("50_o8ni1")
+
+[node name="check" type="AnimatedSprite2D" parent="clipboard/op4"]
+position = Vector2(16, 19)
+scale = Vector2(0.11, 0.11)
+sprite_frames = SubResource("SpriteFrames_pf7vy")
+
+[node name="Label" type="Label" parent="clipboard/op4"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 45.0
+offset_top = 9.0
+offset_right = 297.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("41_0sl42")
+theme_override_font_sizes/font_size = 32
+text = "chill pill"
+autowrap_mode = 3
+
+[node name="frontfing" type="Sprite2D" parent="clipboard"]
+light_mask = 2
+use_parent_material = true
+position = Vector2(88.9337, -258)
+rotation = 0.0898836
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("41_pr1ej")
+flip_h = true
+
+[node name="Button" type="Button" parent="clipboard"]
+offset_left = 199.934
+offset_top = -270.0
+offset_right = 340.934
+offset_bottom = -224.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("50_3hbvx")
+text = "Sign:"
+flat = true
+
 [node name="bgmusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("44_0sl42")
-volume_db = -18.558
+volume_db = -25.0
 autoplay = true
 mix_target = 1
+bus = &"breathing"
 
 [connection signal="area_entered" from="gotomouse/popsicle/moutharea" to="." method="_on_moutharea_body_entered"]
 [connection signal="pressed" from="deskstuff/goonerarm" to="." method="_on_goonerarm_pressed"]
@@ -1227,4 +1516,9 @@ mix_target = 1
 [connection signal="pressed" from="deskstuff/light" to="." method="_on_light_pressed"]
 [connection signal="pressed" from="deskstuff/magnifyingglass" to="." method="_on_magnifyingglass_pressed"]
 [connection signal="pressed" from="deskstuff/ipad" to="." method="_on_ipad_pressed"]
+[connection signal="pressed" from="deskstuff/clipboard" to="." method="_on_clipboard_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="clipboard/op1" to="clipboard/op1" method="_on_pressed"]
+[connection signal="pressed" from="clipboard/op2" to="clipboard/op2" method="_on_pressed"]
+[connection signal="pressed" from="clipboard/op3" to="clipboard/op3" method="_on_pressed"]
+[connection signal="pressed" from="clipboard/op4" to="clipboard/op4" method="_on_pressed"]

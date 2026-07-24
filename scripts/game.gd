@@ -36,9 +36,9 @@ func _process(delta: float) -> void:
 			0:
 				$sounds/normalbreathing.volume_db = 0.0
 			1:
-				$sounds/wheezing.volume_db = 0.0
+				$sounds/wheezing.volume_db = 20.0
 			2:
-				$sounds/crackle.volume_db = 0.0
+				$sounds/crackle.volume_db = 10.0
 	else:
 		$sounds/normalbreathing.volume_db = -80
 		$sounds/wheezing.volume_db = -80
@@ -202,8 +202,8 @@ func _on_popsicle_pressed() -> void:
 	$gotomouse/popsicle.visible = true
 
 func _on_magnifyingglass_pressed() -> void:
-	campostween(Vector2(497.0, 310.0))
-	camzoomtween(2.0)
+	campostween(Vector2(275.0, 350.0))
+	camzoomtween(4.0)
 	$gotomouse/magnifyingglass.show()
 	$joe/arms.show()
 
@@ -250,6 +250,15 @@ func byebyeipad():
 	await tween.finished
 	$ipad.visible = false
 
+
+func _on_clipboard_pressed() -> void:
+	campostween(Vector2(1152/2,648/2))
+	camzoomtween(1)
+	$clipboard.visible = true
+	var tween = create_tween()
+	#TODO finish this lowk
+
+
 func armssetup():
 	var val : int = current_patient.ARMS.values()[current_patient.armcondition]
 	match val:
@@ -259,22 +268,22 @@ func armssetup():
 			for arm in $joe/arms.get_children():
 				for i in range(randi_range(1, 3)):
 					var rash = Sprite2D.new()
-					rash.texture = load("res://assets/gae/rashpatch.svg")
+					rash.texture = load("res://assets/gae/rashpatch.png")
 					var point = randf_range(0.0, 1.0)
 					arm.get_child(1).add_child(rash)
 					rash.rotation_degrees = randf_range(0.0, 360.0)
 					var pathf = arm.find_children("*", "PathFollow2D", true, true).front()
 					pathf.progress_ratio = point
 					rash.global_position = pathf.global_position
-					rash.scale = Vector2.ONE * min(point + 0.25, 1) * randf_range(0.35, 1.0)
+					rash.scale = Vector2.ONE * min(point + 0.25, 1) * randf_range(0.35, 0.5)
 					rash.use_parent_material = true
 					rash.light_mask = arm.light_mask
 					rash.z_index = 1
 					rash.modulate = Color(0.1,0.1,0.1)
 					
 		2: # cold
-			$joe/arms/leftarm/actual.modulate = Color("#a401f5")
-			$joe/arms/rightarm/actual.modulate = Color("#a401f5")
+			$joe/arms/leftarm/actual.modulate = Color("5baff5")
+			$joe/arms/rightarm/actual.modulate = Color("5baff5")
 		3: # hot
 			$joe/arms/leftarm/actual.modulate = Color("#c80400")
 			$joe/arms/rightarm/actual.modulate = Color("#c80400")
