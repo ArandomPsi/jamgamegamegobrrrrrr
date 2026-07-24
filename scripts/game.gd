@@ -17,20 +17,22 @@ const eyebuffer : float = 40.3 / 646.0
 @onready var pupil: Sprite2D = $joe/eye/eyeclipmask/defaultpupil
 var playereyebarvel : float = 0.0
 const uieyebuffer : float = 23.0
-var eye_target_x : float
+var eyeopenamount : int = 0
 var eye_exam_complete : bool = false
+
+var t : float
 
 func _ready() -> void:
 	$Button.text = ""
 	current_patient.newpatient()
-	$joe/eye/eye.frame = current_patient.eyecondition
-	$joe/eye/eyeclipmask/defaultpupil.self_modulate = current_patient.eye_color
-	$joe/eye/eyeclipmask/eyegame/patienteye.self_modulate = current_patient.eye_color
-	eye_target_x = randf_range(eyegamebar.position.x + uieyebuffer, 646.0 + eyegamebar.position.x - uieyebuffer)
+	$joe/eye/eyeclipmask/eye.frame = current_patient.eyecondition
+	#$joe/eye/eyeclipmask/defaultpupil.self_modulate = current_patient.eye_color
+	#$joe/eye/eyeclipmask/eyegame/patienteye.self_modulate = current_patient.eye_color
+	#eye_target_x = randf_range(eyegamebar.position.x + uieyebuffer, 646.0 + eyegamebar.position.x - uieyebuffer)
 	
 
 func _process(delta: float) -> void:
-	
+	t += delta
 	#camera movement
 	$Camera2D.offset = lerp($Camera2D.offset,(get_global_mouse_position() - $Camera2D.position)/15,0.1)
 	
@@ -87,29 +89,34 @@ func armstuff():
 
 func eyestuff(delta : float):
 	if $joe/eye.visible and !eye_exam_complete:
-		$joe/eye/eyeclipmask/eyegame.show()
-		uieye.position.x = lerp(uieye.position.x, eye_target_x, delta)
-		pupil.position.x = remap(uieye.position.x, eyegamebar.position.x + uieyebuffer, 646.0 + eyegamebar.position.x - uieyebuffer, -82.77, 87.94)
-		if abs(uieye.position.x - eye_target_x) <= 50.0:
-			eye_target_x = randf_range(eyegamebar.position.x + uieyebuffer, 646.0 + eyegamebar.position.x - uieyebuffer)
-		if Input.is_action_pressed("left"):
-			playereyebarvel -= 0.35
-		elif Input.is_action_pressed("right"):
-			playereyebarvel += 0.35
-		$joe/eye/eyeclipmask/eyegame/playerbar.position.x += playereyebarvel
-		$joe/eye/eyeclipmask/eyegame/playerbar.position.x = clamp($joe/eye/eyeclipmask/eyegame/playerbar.position.x, eyegamebar.position.x + uieyebuffer / 3, 646.0 + eyegamebar.position.x - uieyebuffer / 2)
-		playereyebarvel *= 0.97
-		if abs(uieye.position.x - $joe/eye/eyeclipmask/eyegame/playerbar.position.x) <= 25.0:
-			$joe/eye/eyeclipmask/eyegame/minigameprogress.value += 0.4
-		else:
-			$joe/eye/eyeclipmask/eyegame/minigameprogress.value -= 0.1
-		if $joe/eye/eyeclipmask/eyegame/minigameprogress.value >= 99.0:
-			$joe/eye/eyeclipmask.hide()
-			$joe/eye/eyeclipmask/eyegame.hide()
-			$joe/eye/eye.show()
+		
+		$joe/eye/eyeclipmask.visible = false
+		
+		$joe/eye.texture = preload("res://assets/eyes/closedeye.svg")
+		
+		if Input.is_action_just_pressed("mousepress"):
+			$joe/eye/hand.shake += 10
+			eyeopenamount += 50
+		
+		
+		if eyeopenamount > 200:
 			eye_exam_complete = true
-		elif $joe/eye/eyeclipmask/eyegame/minigameprogress.value <= 0.0:
-			resetcam()
+			$joe/eye/hand.frame = 1
+		
+		
+	else:
+		$joe/eye/eyeclipmask/eye.position = Vector2(sin(t*1.2) * 30,cos(t*1.2)*5)
+		$joe/eye/eyeclipmask.visible = true
+		$joe/eye.texture = preload("res://assets/eyes/normaleye.svg")
+		if eyeopenamount < 10:
+			eye_exam_complete = false
+			$joe/eye/hand.frame = 0
+	
+	eyeopenamount = clamp(eyeopenamount,0,300)
+	eyeopenamount -= 1
+	
+	
+
 
 func _input(event):
 	if event.is_action_pressed("esc"):
@@ -152,6 +159,7 @@ func resetcam():
 	$gotomouse/stethoscope.visible = false
 	$joe/goonerarm.visible = false
 	$gotomouse/popsicle.visible = false
+	byebyeipad()
 	
 
 
@@ -224,3 +232,18 @@ func _on_moutharea_body_entered(body: Node2D) -> void:
 		$gotomouse/popsicle/goon.emitting = false
 		$gotomouse/popsicle/goon/splats.emitting = false
 		spitcount += 1
+
+
+func _on_ipad_pressed() -> void:
+	campostween(Vector2(1152/2,648/2))
+	camzoomtween(1)
+	$ipad.visible = true
+	var tween = create_tween()
+	tween.tween_property($ipad,"position:y",327.0,0.4).set_trans(Tween.TRANS_CUBIC)
+	
+
+func byebyeipad():
+	var tween = create_tween()
+	tween.tween_property($ipad,"position:y",1447.0,0.8).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+	$ipad.visible = false

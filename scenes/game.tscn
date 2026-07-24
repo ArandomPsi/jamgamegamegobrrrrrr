@@ -1,16 +1,17 @@
-[gd_scene load_steps=62 format=3 uid="uid://dgidjcry0rssj"]
+[gd_scene load_steps=75 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://tpubdbijbfxt" path="res://assets/gae/doctorwall.png" id="2_rysoc"]
 [ext_resource type="Texture2D" uid="uid://gqfvlhodyguv" path="res://assets/gae/patient-2.svg" id="2_yqjtg"]
-[ext_resource type="Texture2D" uid="uid://bmulido8v1dci" path="res://assets/eyes/Normal Eye.svg" id="3_kvuet"]
 [ext_resource type="Texture2D" uid="uid://djwabqfnmep" path="res://assets/gae/screen.svg" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://d30hd8otkxl0n" path="res://assets/gae/desk.svg" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://dmg0s3bao8opt" path="res://assets/eyes/Red Eye.svg" id="4_trtic"]
 [ext_resource type="Texture2D" uid="uid://df6h2mfasgwb5" path="res://assets/eyes/Pupil.svg" id="5_ir15t"]
 [ext_resource type="Texture2D" uid="uid://bebtfiolglgkh" path="res://assets/gae/armtable.svg" id="5_iywne"]
+[ext_resource type="Texture2D" uid="uid://dq4qhqvir7nli" path="res://assets/eyes/mask.svg" id="5_js0lu"]
 [ext_resource type="Texture2D" uid="uid://cw111tlvtqfxl" path="res://assets/eyes/normaleye.svg" id="5_qnb83"]
 [ext_resource type="Script" uid="uid://602s41v2gepx" path="res://scripts/ui/goonerarm.gd" id="5_vtaks"]
+[ext_resource type="Texture2D" uid="uid://bi800bxyyuerg" path="res://assets/eyes/eye.svg" id="6_gxtfn"]
 [ext_resource type="Texture2D" uid="uid://3b33g120qs3x" path="res://assets/gae/stethoscope.svg" id="6_p57ef"]
 [ext_resource type="Texture2D" uid="uid://b1ebn6ertlytg" path="res://assets/gae/light-3.svg" id="6_trtic"]
 [ext_resource type="Texture2D" uid="uid://ymqevg0e642b" path="res://assets/gae/flashlighthing.svg" id="7_ir15t"]
@@ -18,13 +19,15 @@
 [ext_resource type="Texture2D" uid="uid://5sdapybwd3iu" path="res://assets/gae/deskthermo.svg" id="7_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://ivi5qdosx5q1" path="res://assets/gae/popsiclestick2.svg" id="8_gee14"]
 [ext_resource type="Texture2D" uid="uid://bfrhukrddsjrl" path="res://assets/gae/light2.svg" id="9_0tnpc"]
-[ext_resource type="Texture2D" uid="uid://xcuyc3emwmcs" path="res://assets/eyes/eyeoutline.svg" id="9_js0lu"]
 [ext_resource type="Texture2D" uid="uid://cqy57xk6skabt" path="res://assets/gae/armthingy.svg" id="9_pl11u"]
 [ext_resource type="Script" uid="uid://d25n3w0qd7lqu" path="res://scripts/heartratevisuals.gd" id="10_1kice"]
 [ext_resource type="PackedScene" uid="uid://dhmkbnlc4vam3" path="res://scenes/thermometer.tscn" id="11_5newe"]
-[ext_resource type="Script" path="res://scripts/gotomouse.gd" id="11_37s47"]
+[ext_resource type="Script" uid="uid://bhxem1rw6v0sq" path="res://scripts/gotomouse.gd" id="11_37s47"]
+[ext_resource type="Texture2D" uid="uid://bmbl16m7t8ch" path="res://assets/eyes/openhand.svg" id="12_gxtfn"]
+[ext_resource type="Texture2D" uid="uid://d2dh7x2pq7dce" path="res://assets/eyes/closed hand.svg" id="12_twgab"]
 [ext_resource type="Texture2D" uid="uid://dhkjqwwrymium" path="res://assets/gae/stethoscopefp.svg" id="13_bt5mj"]
-[ext_resource type="Script" path="res://scripts/rope.gd" id="14_e1j6l"]
+[ext_resource type="Script" uid="uid://c475lwnj3dd61" path="res://scripts/shaker.gd" id="14_02fa5"]
+[ext_resource type="Script" uid="uid://w0lg3ng4f1vi" path="res://scripts/rope.gd" id="14_e1j6l"]
 [ext_resource type="Shader" uid="uid://dhtvw87fa1uj2" path="res://shaders/pixel.gdshader" id="16_ca42v"]
 [ext_resource type="Texture2D" uid="uid://c0bn8qqtuxgkv" path="res://assets/gae/down.svg" id="17_264po"]
 [ext_resource type="Shader" uid="uid://umiibq47crqo" path="res://shaders/fog.gdshader" id="17_ssvqc"]
@@ -33,7 +36,13 @@
 [ext_resource type="Texture2D" uid="uid://0lbhrxdxt43h" path="res://assets/eyes/goondrop.svg" id="20_sgl2t"]
 [ext_resource type="Script" uid="uid://dcaiqei0nno5h" path="res://scripts/splats.gd" id="21_qouja"]
 [ext_resource type="AudioStream" uid="uid://chqvmpcwbfpcg" path="res://sounds/normalbreathing.mp3" id="32_wljb1"]
+[ext_resource type="Shader" uid="uid://uf8noj56jan7" path="res://shaders/perspectiveshader.gdshader" id="33_7025r"]
 [ext_resource type="AudioStream" uid="uid://cov4737f5x6yn" path="res://sounds/heartbeatscreen.wav" id="33_v2yb1"]
+[ext_resource type="Texture2D" uid="uid://cyxqy0vcvxwk2" path="res://assets/gae/ipad.svg" id="34_m4url"]
+[ext_resource type="Texture2D" uid="uid://ch34whkqf0nis" path="res://assets/clasp2.svg" id="40_8ool0"]
+[ext_resource type="FontFile" uid="uid://vvjr1d332ty4" path="res://shaders/PixelMillennium-1oBZ.ttf" id="41_0sl42"]
+[ext_resource type="FontFile" uid="uid://bg4vteyrtwwro" path="res://shaders/PixelCaps-LOnE.ttf" id="41_05nbr"]
+[ext_resource type="Texture2D" uid="uid://c68xmi4i1wubw" path="res://assets/clasp1.svg" id="41_pr1ej"]
 
 [sub_resource type="Gradient" id="Gradient_rysoc"]
 offsets = PackedFloat32Array(1)
@@ -46,7 +55,7 @@ gradient = SubResource("Gradient_rysoc")
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_qnb83")
+"texture": ExtResource("6_gxtfn")
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_trtic")
@@ -67,11 +76,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_js0lu"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxtfn"]
-bg_color = Color(0.94902, 1, 0, 1)
+[sub_resource type="SpriteFrames" id="SpriteFrames_twgab"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_twgab")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_gxtfn")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_37s47"]
 height = 44.0098
@@ -146,6 +163,14 @@ fill_from = Vector2(0.0490654, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iywne"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ool0"]
+shader = ExtResource("33_7025r")
+shader_parameter/fov = 40.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 20.526
+shader_parameter/x_rot = 47.368
+shader_parameter/inset = 0.0
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_264po"]
 noise_type = 2
 
@@ -166,7 +191,7 @@ shader_parameter/exposure = 1.0
 shader_parameter/contrast = 1.25
 shader_parameter/saturation = 1.003
 shader_parameter/enable_pixelate = true
-shader_parameter/pixel_factor = 4.577
+shader_parameter/pixel_factor = 4.529
 shader_parameter/enable_posterize = true
 shader_parameter/color_levels = 16.0
 shader_parameter/dither_strength = 1.0
@@ -185,6 +210,28 @@ gradient = SubResource("Gradient_pl11u")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.1)
+metadata/_snap_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pr1ej"]
+shader = ExtResource("33_7025r")
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 8.10801
+shader_parameter/inset = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05nbr"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_05nbr"]
+offsets = PackedFloat32Array(0, 0.918715)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0sl42"]
+gradient = SubResource("Gradient_05nbr")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.6, 0)
 metadata/_snap_enabled = true
 
 [node name="game" type="Node2D"]
@@ -212,60 +259,20 @@ texture = ExtResource("2_yqjtg")
 
 [node name="eye" type="Sprite2D" parent="joe"]
 visible = false
-position = Vector2(-18.5, -134)
+position = Vector2(-24, -134)
 rotation = -0.196604
-scale = Vector2(0.133257, 0.132531)
-texture = ExtResource("3_kvuet")
-
-[node name="eye" type="AnimatedSprite2D" parent="joe/eye"]
-visible = false
-sprite_frames = SubResource("SpriteFrames_ca42v")
-animation = &"crackhead"
-frame_progress = 0.742543
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_qnb83")
 
 [node name="eyeclipmask" type="Sprite2D" parent="joe/eye"]
 clip_children = 1
-texture = ExtResource("3_kvuet")
+texture = ExtResource("5_js0lu")
 
-[node name="defaultpupil" type="Sprite2D" parent="joe/eye/eyeclipmask"]
-texture = ExtResource("5_ir15t")
-
-[node name="eyeoutline" type="Sprite2D" parent="joe/eye/eyeclipmask"]
-z_index = 1
-texture = ExtResource("9_js0lu")
-
-[node name="eyegame" type="CanvasLayer" parent="joe/eye/eyeclipmask"]
-visible = false
-
-[node name="fullbar" type="ColorRect" parent="joe/eye/eyeclipmask/eyegame"]
-offset_left = 265.0
-offset_top = 581.0
-offset_right = 911.0
-offset_bottom = 642.0
-color = Color(0, 0, 0, 1)
-
-[node name="patienteye" type="Sprite2D" parent="joe/eye/eyeclipmask/eyegame"]
-position = Vector2(265, 610)
-scale = Vector2(1.23864, 1.23864)
-texture = ExtResource("5_ir15t")
-
-[node name="playerbar" type="ColorRect" parent="joe/eye/eyeclipmask/eyegame"]
-offset_left = 596.0
-offset_top = 581.0
-offset_right = 611.0
-offset_bottom = 642.0
-color = Color(1, 1, 0, 1)
-
-[node name="minigameprogress" type="ProgressBar" parent="joe/eye/eyeclipmask/eyegame"]
-offset_left = 1074.0
-offset_top = 46.0
-offset_right = 1112.0
-offset_bottom = 527.0
-theme_override_styles/background = SubResource("StyleBoxFlat_js0lu")
-theme_override_styles/fill = SubResource("StyleBoxFlat_gxtfn")
-value = 25.0
-fill_mode = 3
-show_percentage = false
+[node name="eye" type="AnimatedSprite2D" parent="joe/eye/eyeclipmask"]
+position = Vector2(2.45184, 0.488349)
+sprite_frames = SubResource("SpriteFrames_ca42v")
+animation = &"crackhead"
+frame_progress = 0.742543
 
 [node name="Sprite2D" type="Sprite2D" parent="joe/eye"]
 position = Vector2(142.223, -215.813)
@@ -279,6 +286,11 @@ rotation = 1.58039
 scale = Vector2(1.47399, 1.02812)
 color = Color(1, 1, 0.235294, 1)
 texture = ExtResource("7_ir15t")
+
+[node name="hand" type="AnimatedSprite2D" parent="joe/eye"]
+position = Vector2(71.0932, 1.4146)
+sprite_frames = SubResource("SpriteFrames_twgab")
+script = ExtResource("14_02fa5")
 
 [node name="mouth" type="Area2D" parent="joe"]
 position = Vector2(-0.5, -113)
@@ -436,13 +448,15 @@ texture = ExtResource("5_iywne")
 
 [node name="Label" type="Label" parent="deskstuff/goonerarm"]
 z_index = 7
+texture_filter = 1
 layout_mode = 0
 offset_left = -24.0
 offset_top = 39.0
 offset_right = 114.0
 offset_bottom = 86.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_fonts/font = ExtResource("41_0sl42")
+theme_override_font_sizes/font_size = 24
 text = "Checks blood pressure"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -453,6 +467,7 @@ offset_top = 721.0
 offset_right = 335.0
 offset_bottom = 821.0
 focus_mode = 0
+theme_override_fonts/font = ExtResource("41_05nbr")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_iywne")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_iywne")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_iywne")
@@ -473,13 +488,15 @@ texture = ExtResource("6_p57ef")
 
 [node name="Label" type="Label" parent="deskstuff/stetho"]
 z_index = 7
+texture_filter = 1
 layout_mode = 0
 offset_left = -24.0
 offset_top = 39.0
 offset_right = 114.0
 offset_bottom = 86.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_fonts/font = ExtResource("41_0sl42")
+theme_override_font_sizes/font_size = 24
 text = "Finds breathing patterns"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -510,13 +527,15 @@ texture = ExtResource("7_u5sy4")
 
 [node name="Label" type="Label" parent="deskstuff/thermo"]
 z_index = 7
+texture_filter = 1
 layout_mode = 0
 offset_left = -24.0
 offset_top = 39.0
 offset_right = 114.0
 offset_bottom = 86.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_fonts/font = ExtResource("41_0sl42")
+theme_override_font_sizes/font_size = 24
 text = "Checks temprature"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -547,13 +566,15 @@ texture = ExtResource("8_gee14")
 
 [node name="Label" type="Label" parent="deskstuff/popsicle"]
 z_index = 7
+texture_filter = 1
 layout_mode = 0
 offset_left = -9.0
 offset_top = 58.3271
 offset_right = 129.0
 offset_bottom = 105.327
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_fonts/font = ExtResource("41_0sl42")
+theme_override_font_sizes/font_size = 24
 text = "Salaiva diagnosis "
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -584,14 +605,54 @@ texture = ExtResource("9_0tnpc")
 
 [node name="Label" type="Label" parent="deskstuff/light"]
 z_index = 7
+texture_filter = 1
 layout_mode = 0
 offset_left = -5.0
 offset_top = 49.0
 offset_right = 133.0
 offset_bottom = 96.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 15
+theme_override_fonts/font = ExtResource("41_0sl42")
+theme_override_font_sizes/font_size = 24
 text = "Checks eyes"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ipad" type="Button" parent="deskstuff"]
+offset_left = 820.0
+offset_top = 734.0
+offset_right = 948.0
+offset_bottom = 847.0
+focus_mode = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_iywne")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_iywne")
+script = ExtResource("5_vtaks")
+
+[node name="Sprite2D" type="Sprite2D" parent="deskstuff/ipad"]
+material = SubResource("ShaderMaterial_8ool0")
+position = Vector2(43.1383, 22.2074)
+rotation = -0.590412
+texture = ExtResource("34_m4url")
+
+[node name="Label" type="Label" parent="deskstuff/ipad"]
+z_index = 7
+layout_mode = 0
+offset_left = -3.86169
+offset_top = 66.2074
+offset_right = 134.138
+offset_bottom = 113.207
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "illness dictionary"
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -617,7 +678,7 @@ texture = ExtResource("7_ir15t")
 [node name="screeneffects" type="Node2D" parent="."]
 
 [node name="ColorRect2" type="ColorRect" parent="screeneffects"]
-z_index = 6
+z_index = 3
 material = SubResource("ShaderMaterial_5newe")
 anchors_preset = 15
 anchor_right = 1.0
@@ -656,14 +717,13 @@ scale = Vector2(21.6563, 11.7813)
 texture = SubResource("GradientTexture2D_bhx41")
 
 [node name="Label" type="Label" parent="."]
-z_index = 7
 offset_left = 265.0
 offset_top = 871.0
 offset_right = 822.0
 offset_bottom = 948.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 56
-text = "Tests Info Goes Here"
+text = "Epstien Was here"
 
 [node name="sounds" type="Node2D" parent="."]
 
@@ -695,10 +755,277 @@ position = Vector2(956, 297)
 stream = ExtResource("33_v2yb1")
 max_polyphony = 2
 
+[node name="ipad" type="Node2D" parent="."]
+visible = false
+z_index = 2
+material = SubResource("ShaderMaterial_pr1ej")
+position = Vector2(599, 1447)
+
+[node name="backfing" type="Sprite2D" parent="ipad"]
+use_parent_material = true
+position = Vector2(214, 73)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("40_8ool0")
+
+[node name="ipad" type="Sprite2D" parent="ipad"]
+use_parent_material = true
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("34_m4url")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ipad"]
+z_index = 3
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -252.0
+offset_right = 177.0
+offset_bottom = 249.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_separation = 10
+theme_override_fonts/normal_font = ExtResource("41_0sl42")
+theme_override_fonts/mono_font = ExtResource("41_05nbr")
+theme_override_fonts/italics_font = ExtResource("41_05nbr")
+theme_override_fonts/bold_italics_font = ExtResource("41_05nbr")
+theme_override_fonts/bold_font = ExtResource("41_05nbr")
+theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/bold_font_size = 30
+theme_override_styles/background = SubResource("StyleBoxFlat_05nbr")
+bbcode_enabled = true
+text = "
+[b]Epstien Fuck Niggers[/b]
+
+[b]Healthy[/b]
+A patient with no detected illness or abnormal symptoms.
+Symptoms:
+• Normal temperature
+• Normal blood pressure
+• Normal breathing
+• Normal heartbeat
+• Clear saliva
+• Normal eyes
+
+
+[b]Viral Conjunctivitis[/b]
+A viral infection of the eye that causes inflammation of the conjunctiva.
+Symptoms:
+• Pink/red eyes
+• Mild fever
+• Eye irritation
+• Increased tearing
+
+
+[b]Bacterial Pneumonia[/b]
+A bacterial infection that causes inflammation and fluid buildup in the lungs.
+Symptoms:
+• High fever
+• Green saliva/mucus
+• Crackling lung sounds
+• Rapid heartbeat
+• Weakness
+
+
+[b]Endocarditis[/b]
+An infection of the inner lining of the heart that can disrupt normal heart function.
+Symptoms:
+• Fever
+• Irregular heartbeat
+• Abnormal lung sounds
+• Fatigue
+• Low energy
+
+
+[b]Myocarditis[/b]
+Inflammation of the heart muscle that can affect heartbeat and circulation.
+Symptoms:
+• Fever
+• Irregular heartbeat
+• Chest discomfort
+• Fatigue
+• Weakness
+
+
+[b]Septic Shock[/b]
+A severe infection response causing dangerous drops in blood pressure.
+Symptoms:
+• High fever
+• Very low blood pressure
+• Rapid heartbeat
+• Weakness
+• Confusion
+
+
+[b]Anaphylaxis[/b]
+A severe allergic reaction causing breathing difficulty and circulation problems.
+Symptoms:
+• Wheezing
+• Low blood pressure
+
+
+
+[b]Stimulant Overdose[/b]
+A toxic reaction caused by excessive stimulant activity in the body.
+Symptoms:
+• Bloodshot eyes
+• High blood pressure
+• Extremely fast heartbeat
+• Increased body temperature
+• Agitation
+
+
+[b]Opioid Overdose[/b]
+A dangerous reaction caused by excessive opioid effects on the nervous system.
+Symptoms:
+• Abnormal eyes
+• Slow heartbeat
+• Low blood pressure
+\\
+
+
+[b]Hypothermia[/b]
+A condition where the body temperature drops below normal levels.
+Symptoms:
+• Low body temperature
+• Slow heartbeat
+• Weakness
+• Confusion
+• Shivering
+
+
+[b]Heat Stroke[/b]
+A dangerous condition caused by extreme overheating of the body.
+Symptoms:
+• Very high temperature
+• Fast heartbeat
+• Strong heartbeat
+• Confusion
+• Weakness
+
+
+[b]Heart Failure[/b]
+A condition where the heart cannot pump blood effectively.
+Symptoms:
+• Crackling lung sounds
+• Irregular heartbeat
+• Shortness of breath
+• Fatigue
+• Weakness
+
+
+[b]Atrial Fibrillation[/b]
+An irregular heart rhythm caused by abnormal electrical activity in the heart.
+Symptoms:
+• Irregular heartbeat
+• High blood pressure
+• Rapid heartbeat
+• Dizziness
+• Fatigue
+
+
+[b]Hypertension[/b]
+A condition where blood pressure remains higher than normal.
+Symptoms:
+• High blood pressure
+• Strong heartbeat
+• Headache
+• Dizziness
+• Fatigue
+
+
+[b]Seasonal Allergies[/b]
+An immune reaction to airborne substances such as pollen.
+Symptoms:
+• Pink eyes
+• Wheezing
+• Sneezing
+• Runny nose
+• Eye irritation
+
+
+[b]Viral Bronchitis[/b]
+A viral infection causing inflammation of the airways.
+Symptoms:
+• Wheezing
+• White saliva/mucus
+• Mild fever
+• Cough
+• Chest discomfort
+
+
+[b]Bacterial Bronchitis[/b]
+A bacterial infection causing inflammation of the bronchial tubes.
+Symptoms:
+• Wheezing
+• Green saliva/mucus
+• Fever
+• Cough
+• Chest discomfort
+
+
+[b]Bronchitis[/b]
+Inflammation of the airways that affects breathing.
+Symptoms:
+• Wheezing
+• Fever
+• Cough
+• Chest discomfort
+• Fatigue
+
+
+[b]Asthma[/b]
+A condition where the airways narrow and make breathing difficult.
+Symptoms:
+• Wheezing
+• Shortness of breath
+• Chest tightness
+• Difficulty breathing
+
+
+[b]Tuberculosis[/b]
+A bacterial infection that primarily affects the lungs.
+Symptoms:
+• Crackling lung sounds
+• Green saliva/mucus
+• Fever
+• Persistent cough
+• Weakness
+
+
+[b]Allergic Conjunctivitis[/b]
+An allergic reaction causing inflammation of the eyes.
+Symptoms:
+• Pink eyes
+• Eye irritation
+• Tearing
+• Itching"
+threaded = true
+
+[node name="Panel" type="Panel" parent="ipad"]
+visible = false
+use_parent_material = true
+offset_left = -180.0
+offset_top = -252.0
+offset_right = 174.0
+offset_bottom = 230.0
+
+[node name="frontfing" type="Sprite2D" parent="ipad"]
+use_parent_material = true
+position = Vector2(293, 224)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("41_pr1ej")
+
+[node name="PointLight2D" type="PointLight2D" parent="ipad"]
+scale = Vector2(8.625, 11.375)
+energy = 0.5
+texture = SubResource("GradientTexture2D_0sl42")
+
 [connection signal="area_entered" from="gotomouse/popsicle/moutharea" to="." method="_on_moutharea_body_entered"]
 [connection signal="pressed" from="deskstuff/goonerarm" to="." method="_on_goonerarm_pressed"]
 [connection signal="pressed" from="deskstuff/stetho" to="." method="_on_stetho_pressed"]
 [connection signal="pressed" from="deskstuff/thermo" to="." method="_on_thermo_pressed"]
 [connection signal="pressed" from="deskstuff/popsicle" to="." method="_on_popsicle_pressed"]
 [connection signal="pressed" from="deskstuff/light" to="." method="_on_light_pressed"]
+[connection signal="pressed" from="deskstuff/ipad" to="." method="_on_ipad_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
