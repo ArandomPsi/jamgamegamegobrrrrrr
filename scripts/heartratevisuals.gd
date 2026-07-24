@@ -22,7 +22,6 @@ func _ready() -> void:
 		graph.add_point(Vector2(graph.max_domain, graph.min_value))
 		if not $"../../sounds/flatline".playing:
 			$"../../sounds/flatline".play()
-			print("playflatline")
 		)
 	
 

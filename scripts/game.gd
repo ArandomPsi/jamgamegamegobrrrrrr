@@ -22,6 +22,45 @@ var t : float
 var rushing : bool = false
 var usingtool : bool = false
 var stressval : float = 0.0
+var daynum : int = 1
+var patient_requirement : int = 3
+var scaling : Dictionary = {
+	1: {
+		"range": Vector2(90, 120),
+		"quota": 3,
+		"diseaseoptions": 3
+	},
+	2: {
+		"range": Vector2(90, 120),
+		"quota": 5,
+		"diseaseoptions": 4
+	},
+	3: {
+		"range": Vector2(75, 100),
+		"quota": 6,
+		"diseaseoptions": 5
+	},
+	4: {
+		"range": Vector2(75, 100),
+		"quota": 7,
+		"diseaseoptions": 7
+	},
+	5: {
+		"range": Vector2(65, 90),
+		"quota": 9,
+		"diseaseoptions": 10
+	},
+	6: {
+		"range": Vector2(50, 75),
+		"quota": 10,
+		"diseaseoptions": 14
+	},
+	7: {
+		"range": Vector2(45, 60),
+		"quota": 12,
+		"diseaseoptions": 21
+	}
+}
 
 var disease_amount : int = 3
 var disease_possibilities : Array = []
@@ -37,6 +76,8 @@ var curenum : int = 0
 func _ready() -> void:
 	$Button.text = ""
 	newpatient()
+	patient_requirement = scaling[daynum]["quota"]
+	disease_amount = scaling[daynum]["diseaseoptions"]
 	$otherui/daytimervisual.max_value = $otherui/daytimer.wait_time
 	
 
@@ -59,6 +100,7 @@ func _process(delta: float) -> void:
 		$sounds/crackle.volume_db = -80
 	
 	$otherui/daytimervisual.value = $otherui/daytimer.wait_time - $otherui/daytimer.time_left
+	$otherui/Label.text = "Day " + str(daynum)
 	
 	armstuff()
 	eyestuff(delta)
@@ -419,6 +461,7 @@ func newpatient():
 	#other stuff
 #	current_patient = Patient.new()
 	current_patient.newpatient()
+	current_patient.time_left = randi_range(scaling[daynum]["range"].x, scaling[daynum]["range"].y)
 	disease_possibilities.clear()
 	cure_possibilities.clear()
 	disease_possibilities.append(current_patient.DISEASE.keys()[current_patient.disease])
