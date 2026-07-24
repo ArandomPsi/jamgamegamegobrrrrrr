@@ -92,7 +92,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	t += delta
 	#camera movement
-	$Camera2D.offset = lerp($Camera2D.offset,(get_global_mouse_position() - $Camera2D.position)/15,0.1)
+	$Camera2D.offset = lerp($Camera2D.offset,(get_global_mouse_position() - $Camera2D.position)/15,0.1) + Vector2(randf_range(-1,1),randf_range(-1,1)) * screenshake
+	
+	screenshake -= 1
+	screenshake = clamp(screenshake,0,30)
+	
 	
 	if $gotomouse/stethoscope.visible:
 		match current_patient.whatstethohears:
@@ -306,32 +310,34 @@ func _on_magnifyingglass_pressed() -> void:
 	usingtool = true
 
 func _on_moutharea_body_entered(body: Node2D) -> void:
-	$gotomouse/popsicle/goon.restart()
-	if spitcount > 5:
-		
-		#set color of mouth
-		match current_patient.saliavacolor:
-			0:
-				$gotomouse/popsicle/goon.modulate = Color("ffffffa0")
-			_:
-				$gotomouse/popsicle/goon.modulate = Color("40ff00a0")
-			2:
-				$gotomouse/popsicle/goon.modulate = Color("ffffff")
-		
-		#make everything emmit
-		$gotomouse/popsicle/goon.emitting = true
-		$gotomouse/popsicle/goon/splats.emitting = true
-		$gotomouse/popsicle/goon.speed_scale = 1.0
-		for i in range(5):
-			await get_tree().process_frame
-		$gotomouse/popsicle/goon.speed_scale = 0.0
-	else:
-		
-		#nah
+	if $gotomouse/popsicle.visible:
 		$gotomouse/popsicle/goon.restart()
-		$gotomouse/popsicle/goon.emitting = false
-		$gotomouse/popsicle/goon/splats.emitting = false
-		spitcount += 1
+		screenshake += 8
+		if spitcount > 5:
+			
+			#set color of mouth
+			match current_patient.saliavacolor:
+				0:
+					$gotomouse/popsicle/goon.modulate = Color("ffffffa0")
+				_:
+					$gotomouse/popsicle/goon.modulate = Color("40ff00a0")
+				2:
+					$gotomouse/popsicle/goon.modulate = Color("ffffff")
+			
+			#make everything emmit
+			$gotomouse/popsicle/goon.emitting = true
+			$gotomouse/popsicle/goon/splats.emitting = true
+			$gotomouse/popsicle/goon.speed_scale = 1.0
+			for i in range(5):
+				await get_tree().process_frame
+			$gotomouse/popsicle/goon.speed_scale = 0.0
+		else:
+			
+			#nah
+			$gotomouse/popsicle/goon.restart()
+			$gotomouse/popsicle/goon.emitting = false
+			$gotomouse/popsicle/goon/splats.emitting = false
+			spitcount += 1
 
 
 func _on_ipad_pressed() -> void:
