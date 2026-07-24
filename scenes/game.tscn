@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://dgidjcry0rssj"]
+[gd_scene load_steps=105 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://tpubdbijbfxt" path="res://assets/gae/doctorwall.png" id="2_rysoc"]
@@ -23,12 +23,12 @@
 [ext_resource type="Script" uid="uid://d25n3w0qd7lqu" path="res://scripts/heartratevisuals.gd" id="10_1kice"]
 [ext_resource type="Texture2D" uid="uid://qbhkcwmec7j4" path="res://assets/eyes/maskoutline.svg" id="10_oaba0"]
 [ext_resource type="PackedScene" uid="uid://dhmkbnlc4vam3" path="res://scenes/thermometer.tscn" id="11_5newe"]
-[ext_resource type="Script" uid="uid://bhxem1rw6v0sq" path="res://scripts/gotomouse.gd" id="11_37s47"]
+[ext_resource type="Script" path="res://scripts/gotomouse.gd" id="11_37s47"]
 [ext_resource type="Texture2D" uid="uid://bmbl16m7t8ch" path="res://assets/eyes/openhand.svg" id="12_gxtfn"]
 [ext_resource type="Texture2D" uid="uid://d2dh7x2pq7dce" path="res://assets/eyes/closed hand.svg" id="12_twgab"]
 [ext_resource type="Texture2D" uid="uid://dhkjqwwrymium" path="res://assets/gae/stethoscopefp.svg" id="13_bt5mj"]
-[ext_resource type="Script" uid="uid://c475lwnj3dd61" path="res://scripts/shaker.gd" id="14_02fa5"]
-[ext_resource type="Script" uid="uid://w0lg3ng4f1vi" path="res://scripts/rope.gd" id="14_e1j6l"]
+[ext_resource type="Script" path="res://scripts/shaker.gd" id="14_02fa5"]
+[ext_resource type="Script" path="res://scripts/rope.gd" id="14_e1j6l"]
 [ext_resource type="Shader" uid="uid://dhtvw87fa1uj2" path="res://shaders/pixel.gdshader" id="16_ca42v"]
 [ext_resource type="Texture2D" uid="uid://c0bn8qqtuxgkv" path="res://assets/gae/down.svg" id="17_264po"]
 [ext_resource type="Texture2D" uid="uid://liswfvrxm566" path="res://assets/gae/normalarm.svg" id="17_h3rex"]
@@ -37,8 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://dxbvoa3uchsb" path="res://assets/gae/splat1-3.svg" id="19_suyxu"]
 [ext_resource type="Texture2D" uid="uid://0lbhrxdxt43h" path="res://assets/eyes/goondrop.svg" id="20_sgl2t"]
 [ext_resource type="Script" uid="uid://dcaiqei0nno5h" path="res://scripts/splats.gd" id="21_qouja"]
-[ext_resource type="AudioStream" uid="uid://chqvmpcwbfpcg" path="res://sounds/normalbreathing.mp3" id="32_wljb1"]
-[ext_resource type="Shader" uid="uid://uf8noj56jan7" path="res://shaders/perspectiveshader.gdshader" id="33_7025r"]
+[ext_resource type="Shader" path="res://shaders/perspectiveshader.gdshader" id="33_7025r"]
 [ext_resource type="AudioStream" uid="uid://cov4737f5x6yn" path="res://sounds/heartbeatscreen.wav" id="33_v2yb1"]
 [ext_resource type="Texture2D" uid="uid://cyxqy0vcvxwk2" path="res://assets/gae/ipad.svg" id="34_m4url"]
 [ext_resource type="Texture2D" uid="uid://b8lr2ictbv0fe" path="res://assets/gae/magnifyingglass.svg" id="36_458eo"]
@@ -48,12 +47,16 @@
 [ext_resource type="Texture2D" uid="uid://c68xmi4i1wubw" path="res://assets/clasp1.svg" id="41_pr1ej"]
 [ext_resource type="AudioStream" uid="uid://by4ynbbigngfm" path="res://sounds/music/doctorgamemusic.mp3" id="44_0sl42"]
 [ext_resource type="AudioStream" uid="uid://d1rw3yqmt51ca" path="res://sounds/sfx/Wheeze (Better).mp3" id="44_fedci"]
+[ext_resource type="AudioStream" uid="uid://b6gxn1th3bfjd" path="res://sounds/sfx/Breathing (Better).mp3" id="44_ms3bu"]
 [ext_resource type="AudioStream" uid="uid://dcdcc5fvpe2pe" path="res://sounds/sfx/Cackled Breathing (Better).mp3" id="45_8qswn"]
+[ext_resource type="Script" uid="uid://x6eua8lq01gp" path="res://scripts/ipad.gd" id="48_7ixpq"]
 [ext_resource type="FontFile" uid="uid://bwt7tm5n5knnm" path="res://shaders/AnimeAce-neP.ttf" id="50_3hbvx"]
-[ext_resource type="Script" uid="uid://cj4psvqe6xilr" path="res://scripts/clipboardthingies.gd" id="50_o8ni1"]
+[ext_resource type="Script" path="res://scripts/clipboardthingies.gd" id="50_o8ni1"]
 [ext_resource type="Texture2D" uid="uid://wt3cpymndpb2" path="res://assets/gae/checkedbox.png" id="50_pf7vy"]
 [ext_resource type="Texture2D" uid="uid://dnrxmfv2t6f01" path="res://assets/gae/clipboard.png" id="50_rm0al"]
 [ext_resource type="Texture2D" uid="uid://c0e8jdmdejclu" path="res://assets/gae/emptybox.png" id="51_o8ni1"]
+[ext_resource type="Texture2D" uid="uid://bvsf47b0wfta0" path="res://assets/gae/circletimerempty.svg" id="55_ms3bu"]
+[ext_resource type="Texture2D" uid="uid://2bgtd27cejao" path="res://assets/gae/circletimerfull.svg" id="56_7ixpq"]
 
 [sub_resource type="Gradient" id="Gradient_rysoc"]
 offsets = PackedFloat32Array(1)
@@ -118,6 +121,10 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -73.9509, -124.809, 0, 0, 0, 0, 13.8282, -31.3938, 0, 0, 0, 0, 58.319, 98.7753)
 }
 point_count = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_ms3bu"]
+font_size = 86
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Gradient" id="Gradient_e1j6l"]
 offsets = PackedFloat32Array(0.19965, 0.23993, 0.770578, 0.803853)
@@ -301,6 +308,36 @@ animations = [{
 "speed": 0.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_bk1p3"]
+font_size = 46
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ms3bu"]
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.447059)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ixpq"]
+bg_color = Color(0.788235, 0, 0.0235294, 0.74902)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ixpq"]
+font_size = 56
+font_color = Color(0, 0, 0, 1)
+
 [node name="game" type="Node2D"]
 script = ExtResource("1_yqjtg")
 
@@ -469,6 +506,18 @@ curve = SubResource("Curve2D_fedci")
 [node name="PathFollow2D" type="PathFollow2D" parent="joe/arms/leftarm/Path2D"]
 position = Vector2(-73.9509, -124.809)
 rotation = 0.816493
+
+[node name="patienttimeleft" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="patienttimeleft"]
+offset_left = 278.0
+offset_top = 29.0
+offset_right = 666.0
+offset_bottom = 147.0
+text = "Time Left"
+label_settings = SubResource("LabelSettings_ms3bu")
+
+[node name="Timer" type="Timer" parent="patienttimeleft"]
 
 [node name="screen" type="Sprite2D" parent="."]
 light_mask = 2
@@ -1000,10 +1049,11 @@ light_mask = 2
 [node name="normalbreathing" type="AudioStreamPlayer2D" parent="sounds"]
 light_mask = 2
 position = Vector2(458, 287)
-stream = ExtResource("32_wljb1")
+stream = ExtResource("44_ms3bu")
 autoplay = true
 max_distance = 250.0
-attenuation = 4.92458
+attenuation = 4.43828
+bus = &"breathing"
 
 [node name="wheezing" type="AudioStreamPlayer2D" parent="sounds"]
 light_mask = 2
@@ -1012,6 +1062,7 @@ stream = ExtResource("44_fedci")
 autoplay = true
 max_distance = 250.0
 attenuation = 4.92458
+bus = &"breathing"
 
 [node name="crackle" type="AudioStreamPlayer2D" parent="sounds"]
 light_mask = 2
@@ -1022,6 +1073,7 @@ pitch_scale = 2.0
 autoplay = true
 max_distance = 250.0
 attenuation = 4.92458
+bus = &"breathing"
 
 [node name="heartbeat" type="AudioStreamPlayer2D" parent="sounds"]
 light_mask = 2
@@ -1035,6 +1087,7 @@ light_mask = 2
 z_index = 2
 material = SubResource("ShaderMaterial_pr1ej")
 position = Vector2(599, 1447)
+script = ExtResource("48_7ixpq")
 
 [node name="backfing" type="Sprite2D" parent="ipad"]
 light_mask = 2
@@ -1084,6 +1137,7 @@ Symptoms:
 • Normal heartbeat
 • Clear saliva
 • Normal eyes
+• Normal arms
 
 
 [b]Viral Conjunctivitis[/b]
@@ -1093,6 +1147,7 @@ Symptoms:
 • Mild fever
 • Eye irritation
 • Increased tearing
+• Normal arms
 
 
 [b]Bacterial Pneumonia[/b]
@@ -1103,6 +1158,7 @@ Symptoms:
 • Crackling lung sounds
 • Rapid heartbeat
 • Weakness
+• Cold arms
 
 
 [b]Endocarditis[/b]
@@ -1113,6 +1169,7 @@ Symptoms:
 • Abnormal lung sounds
 • Fatigue
 • Low energy
+• Rashy arms
 
 
 [b]Myocarditis[/b]
@@ -1123,6 +1180,7 @@ Symptoms:
 • Chest discomfort
 • Fatigue
 • Weakness
+• Normal arms
 
 
 [b]Septic Shock[/b]
@@ -1133,6 +1191,7 @@ Symptoms:
 • Rapid heartbeat
 • Weakness
 • Confusion
+• Cold arms
 
 
 [b]Anaphylaxis[/b]
@@ -1140,6 +1199,7 @@ A severe allergic reaction causing breathing difficulty and circulation problems
 Symptoms:
 • Wheezing
 • Low blood pressure
+• Rashy arms
 
 
 
@@ -1151,6 +1211,7 @@ Symptoms:
 • Extremely fast heartbeat
 • Increased body temperature
 • Agitation
+• Burning arms
 
 
 [b]Opioid Overdose[/b]
@@ -1159,6 +1220,7 @@ Symptoms:
 • Abnormal eyes
 • Slow heartbeat
 • Low blood pressure
+• Cold arms
 \\
 
 
@@ -1170,6 +1232,7 @@ Symptoms:
 • Weakness
 • Confusion
 • Shivering
+• Cold arms
 
 
 [b]Heat Stroke[/b]
@@ -1180,6 +1243,7 @@ Symptoms:
 • Strong heartbeat
 • Confusion
 • Weakness
+• Burning arms
 
 
 [b]Heart Failure[/b]
@@ -1190,6 +1254,7 @@ Symptoms:
 • Shortness of breath
 • Fatigue
 • Weakness
+• Cold arms
 
 
 [b]Atrial Fibrillation[/b]
@@ -1200,6 +1265,7 @@ Symptoms:
 • Rapid heartbeat
 • Dizziness
 • Fatigue
+• Normal arms
 
 
 [b]Hypertension[/b]
@@ -1210,6 +1276,7 @@ Symptoms:
 • Headache
 • Dizziness
 • Fatigue
+• Hot arms
 
 
 [b]Seasonal Allergies[/b]
@@ -1220,6 +1287,7 @@ Symptoms:
 • Sneezing
 • Runny nose
 • Eye irritation
+• Rashy arms
 
 
 [b]Viral Bronchitis[/b]
@@ -1230,6 +1298,7 @@ Symptoms:
 • Mild fever
 • Cough
 • Chest discomfort
+• Cold arms
 
 
 [b]Bacterial Bronchitis[/b]
@@ -1240,6 +1309,7 @@ Symptoms:
 • Fever
 • Cough
 • Chest discomfort
+• Cold arms
 
 
 [b]Bronchitis[/b]
@@ -1250,6 +1320,7 @@ Symptoms:
 • Cough
 • Chest discomfort
 • Fatigue
+• Cold arms
 
 
 [b]Asthma[/b]
@@ -1259,6 +1330,7 @@ Symptoms:
 • Shortness of breath
 • Chest tightness
 • Difficulty breathing
+• Cold arms
 
 
 [b]Tuberculosis[/b]
@@ -1269,6 +1341,7 @@ Symptoms:
 • Fever
 • Persistent cough
 • Weakness
+• Fungal infections
 
 
 [b]Allergic Conjunctivitis[/b]
@@ -1277,7 +1350,8 @@ Symptoms:
 • Pink eyes
 • Eye irritation
 • Tearing
-• Itching"
+• Itching
+• Rashy arms"
 threaded = true
 
 [node name="Panel" type="Panel" parent="ipad"]
@@ -1534,6 +1608,51 @@ theme_override_font_sizes/font_size = 45
 text = "Correct Diagnosis"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="otherui" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Label" type="Label" parent="otherui"]
+offset_left = 901.0
+offset_top = 10.0
+offset_right = 1136.0
+offset_bottom = 128.0
+text = "Day X"
+label_settings = SubResource("LabelSettings_bk1p3")
+
+[node name="daytimervisual" type="TextureProgressBar" parent="otherui"]
+modulate = Color(1, 1, 1, 0.494118)
+offset_left = 1043.0
+offset_top = 19.0
+offset_right = 1180.0
+offset_bottom = 156.0
+scale = Vector2(0.635, 0.635)
+fill_mode = 4
+texture_under = ExtResource("55_ms3bu")
+texture_progress = ExtResource("56_7ixpq")
+
+[node name="daytimer" type="Timer" parent="otherui"]
+wait_time = 300.0
+autostart = true
+
+[node name="stressmeter" type="ProgressBar" parent="otherui"]
+offset_left = 20.0
+offset_top = 16.0
+offset_right = 41.0
+offset_bottom = 254.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ms3bu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7ixpq")
+fill_mode = 3
+show_percentage = false
+
+[node name="Label2" type="Label" parent="otherui"]
+offset_left = 114.0
+offset_top = 48.0
+offset_right = 278.0
+offset_bottom = 125.0
+rotation = 1.5708
+text = "Stress"
+label_settings = SubResource("LabelSettings_7ixpq")
 
 [connection signal="area_entered" from="gotomouse/popsicle/moutharea" to="." method="_on_moutharea_body_entered"]
 [connection signal="pressed" from="deskstuff/goonerarm" to="." method="_on_goonerarm_pressed"]

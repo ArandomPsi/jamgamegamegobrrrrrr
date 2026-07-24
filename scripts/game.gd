@@ -19,10 +19,45 @@ var eye_exam_complete : bool = false
 
 var t : float
 
+var rushing : bool = false
+var usingtool : bool = false
+var stressval : float = 0.0
+
+var disease_amount : int = 3
+var disease_possibilities : Array = []
+var cure_possibilities : Array = []
+@onready var cure_labels : Array = [
+	$clipboard/op1/Label,
+	$clipboard/op2/Label,
+	$clipboard/op3/Label,
+	$clipboard/op4/Label
+]
+var curenum : int = 0
+
 func _ready() -> void:
 	$Button.text = ""
 	current_patient.newpatient()
+	disease_possibilities.append(current_patient.DISEASE.keys()[current_patient.disease])
+	for i in range(disease_amount - 1):
+		var ops = current_patient.DISEASE.keys().duplicate()
+		for d in disease_possibilities:
+			ops.erase(d)
+		disease_possibilities.append(ops.pick_random())
+	cure_possibilities.append(current_patient.curename)
+	for i in range(3):
+		var ops = current_patient.cures.keys().duplicate()
+		for c in cure_possibilities:
+			ops.erase(c)
+		cure_possibilities.append(ops.pick_random())
+	for i in range(randi_range(0, 5)):
+		disease_possibilities.shuffle()
+		cure_possibilities.shuffle()
+	curenum = cure_possibilities.find(current_patient.curename)
+	for i in range(cure_labels.size()):
+		cure_labels[i].text = cure_possibilities[i]
+	print(disease_possibilities)
 	$joe/eye/eyeclipmask/eye.frame = current_patient.eyecondition
+	$otherui/daytimervisual.max_value = $otherui/daytimer.wait_time
 	armssetup()
 	
 
@@ -44,10 +79,23 @@ func _process(delta: float) -> void:
 		$sounds/wheezing.volume_db = -80
 		$sounds/crackle.volume_db = -80
 	
+	$otherui/daytimervisual.value = $otherui/daytimer.wait_time - $otherui/daytimer.time_left
+	
 	armstuff()
 	eyestuff(delta)
+	stress()
 	
-	
+
+func stress():
+	stressval -= 0.05
+	if rushing:
+		stressval += 0.3
+	if usingtool:
+		stressval += 0.175
+	stressval = clamp(stressval, 0.0, 100.0)
+	$otherui/stressmeter.value = stressval
+	$screeneffects/CanvasModulate.color.r = stressval * 0.002 + 0.694117647
+
 
 func armstuff():
 	if $joe/goonerarm.visible:
@@ -147,6 +195,8 @@ func resetcam():
 	down = true
 	if down: downarrow()
 	else:uparrow()
+	usingtool = false
+	rushing = false
 	
 	
 	#make everything not visible
@@ -177,24 +227,29 @@ func _on_light_pressed() -> void:
 	campostween(Vector2(410,160))
 	camzoomtween(8)
 	$joe/eye.visible = true
+	usingtool = true
 
 
 func _on_thermo_pressed() -> void:
 	campostween(Vector2(460,150))
 	camzoomtween(4)
 	$gotomouse/thermometer.visible = true
+	usingtool = true
 
 
 func _on_stetho_pressed() -> void:
 	campostween(Vector2(576,324))
 	camzoomtween(1.4)
 	$gotomouse/stethoscope.visible = true
+	usingtool = true
+	
 
 
 func _on_goonerarm_pressed() -> void:
 	campostween(Vector2(240,350))
 	camzoomtween(5)
 	$joe/goonerarm.visible = true
+	usingtool = true
 
 
 func _on_popsicle_pressed() -> void:
@@ -202,12 +257,14 @@ func _on_popsicle_pressed() -> void:
 	campostween(Vector2(460,150))
 	camzoomtween(4.5)
 	$gotomouse/popsicle.visible = true
+	usingtool = true
 
 func _on_magnifyingglass_pressed() -> void:
 	campostween(Vector2(275.0, 350.0))
 	camzoomtween(4.0)
 	$gotomouse/magnifyingglass.show()
 	$joe/arms.show()
+	usingtool = true
 
 func _on_moutharea_body_entered(body: Node2D) -> void:
 	$gotomouse/popsicle/goon.restart()
@@ -277,7 +334,7 @@ func armssetup():
 			pass
 		1: # rash
 			for arm in $joe/arms.get_children():
-				for i in range(randi_range(1, 3)):
+				for i in range(randi_range(2, 5)):
 					var rash = Sprite2D.new()
 					rash.texture = load("res://assets/gae/rashpatch.png")
 					var point = randf_range(0.0, 1.0)
@@ -286,21 +343,21 @@ func armssetup():
 					var pathf = arm.find_children("*", "PathFollow2D", true, true).front()
 					pathf.progress_ratio = point
 					rash.global_position = pathf.global_position
-					rash.scale = Vector2.ONE * min(point + 0.25, 1) * randf_range(0.35, 0.5)
+					rash.scale = Vector2.ONE * 0.16 * randf_range(0.35, 0.5) * (point + 0.1)
 					rash.use_parent_material = true
 					rash.light_mask = arm.light_mask
 					rash.z_index = 1
 					rash.modulate = Color(0.5,0.5,0.5)
 					
 		2: # cold
-			$joe/arms/leftarm/actual.modulate = Color("5baff5")
-			$joe/arms/rightarm/actual.modulate = Color("5baff5")
+			$joe/arms/leftarm/actual.modulate = Color("9301ec")
+			$joe/arms/rightarm/actual.modulate = Color("9301ec")
 		3: # hot
 			$joe/arms/leftarm/actual.modulate = Color("#c80400")
 			$joe/arms/rightarm/actual.modulate = Color("#c80400")
 		4:
 			for arm in $joe/arms.get_children():
-				for i in range(randi_range(1, 3)):
+				for i in range(randi_range(2, 5)):
 					var fungal = Sprite2D.new()
 					fungal.texture = load("res://assets/gae/fungalpatch.svg")
 					var point = randf_range(0.0, 1.0)
@@ -318,28 +375,28 @@ func armssetup():
 
 
 func _on_op_1_pressed() -> void:
-	if current_patient.cure == 0:
+	if curenum == 0:
 		correctdiagnosis()
 	else:
 		ldoctor()
 
 
 func _on_op_2_pressed() -> void:
-	if current_patient.cure == 1:
+	if curenum == 1:
 		correctdiagnosis()
 	else:
 		ldoctor()
 
 
 func _on_op_3_pressed() -> void:
-	if current_patient.cure == 2:
+	if curenum == 2:
 		correctdiagnosis()
 	else:
 		ldoctor()
 
 
 func _on_op_4_pressed() -> void:
-	if current_patient.cure == 3:
+	if curenum == 3:
 		correctdiagnosis()
 	else:
 		ldoctor()
@@ -362,6 +419,7 @@ func correctdiagnosis():
 
 func ldoctor():
 	resetcam()
+	current_patient.died.emit()
 	$results/resul.text = "L doctor \n the patient fricking died you bum"
 	$results/resul.modulate.a = 0
 	$results.visible = true
@@ -380,11 +438,10 @@ func ldoctor():
 func newpatient():
 	
 	#other stuff
-	current_patient = Patient.new()
+#	current_patient = Patient.new()
 	current_patient.newpatient()
 	$joe/eye/eyeclipmask/eye.frame = current_patient.eyecondition
 	armssetup()
-	$screen/Line2D.redraw()
 	#animations
 	var tween = create_tween()
 	tween.tween_property($results,"modulate:a",0.0,0.9)

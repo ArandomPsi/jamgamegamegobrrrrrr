@@ -8,24 +8,35 @@ var delay : bool = false
 var spike_positions: Array[float]
 var last_spike = -1
 var nextspike = 0
+var flatline : bool = false
 
 @export var beep : AudioStreamPlayer2D
 
 func _ready() -> void:
-	redraw()
+	var curpatient = get_tree().current_scene.current_patient
+	curpatient.setup_finished.connect(func(): redraw(get_tree().current_scene.current_patient))
+	curpatient.died.connect(func():
+		flatline = true
+		graph.clear_points()
+		graph.add_point(Vector2(graph.min_domain, graph.min_value))
+		graph.add_point(Vector2(graph.max_domain, graph.min_value))
+		)
 	
 
-func redraw():
+func redraw(curpatient : Patient):
 	
 	#TODO: make the graph reset and stuff when new patient
 	
 	
 	randomize()
-	var curpatient = get_tree().current_scene.current_patient
-	await curpatient.setup_finished
+	flatline = false
 	await get_tree().process_frame
 	curpatient = get_tree().current_scene.current_patient
 	heartrate = curpatient.heartrate * 1.2
+	graph.clear_points()
+	spike_positions.clear()
+	last_spike = -1
+	nextspike = 0
 	graph.min_domain = -88.5
 	graph.max_domain = 88.5
 	graph.min_value = -250.0
@@ -44,6 +55,8 @@ func redraw():
 		spike_positions.append(spike_x)
 
 func _process(delta: float) -> void:
+	
+	
 	pointnum += int(300 * delta)
 	
 	if pointnum > graph.get_domain_range():
@@ -51,7 +64,10 @@ func _process(delta: float) -> void:
 		nextspike = 0
 		last_spike = -1
 		delay = !delay
-	
+	if flatline:
+		beep.play()
+		delay = false
+		pointnum = graph.get_domain_range()
 	if !delay:
 		var graph_x = pointnum + graph.min_domain
 		

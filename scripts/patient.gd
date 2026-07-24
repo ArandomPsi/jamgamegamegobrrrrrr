@@ -2,6 +2,19 @@ extends Node
 class_name Patient
 
 signal setup_finished()
+signal died()
+
+var time_left : float = 120.0
+"""
+scaling (daylength is always 5 minutes):
+	day 1: 90-120 seconds per patient, patients required 3, 3 disease options per patient
+	day 2: 90 - 120 seconds per patient, patients required 5, 4 disease options per patient
+	day 3: 75 - 100 seconds per patient, patients required 6, 5 disease options per patient
+	day 4: 75 - 100 seconds per patient, patients required 7, 7 disease options per patient
+	day 5: 65 - 90 seconds per patient, patients required 9, 10 disease options per patient
+	day 6: 50 - 75 seconds per patient, patients required 10, 14 disease options per patient
+	day 7: 45 - 60 seconds per patient, patients required 12, all disease options per patient
+"""
 
 enum EYES {NORMAL, PINK, GOONER}
 var eyecondition : EYES = EYES.NORMAL #normal, pink, gooner eye
@@ -39,17 +52,62 @@ enum DISEASE {
 	BRONCHITIS,
 	ASTHMA,
 	TUBERCULOSIS,
-	ALLERGIC_CONJUNCTIVITIS,
-	GOONED_TOO_MUCH_LOL
+	ALLERGIC_CONJUNCTIVITIS#,
+	#GOONED_TOO_MUCH_LOL
 }
 
 var disease : DISEASE
 
 var diseasename : String
 
-var cure : int = 0 #they are just being a baby, cocaine to boost blood flow, anti bacterial stuff,
-#and a chill pill for heat stroke and hypertention and gooned etc
+var curename : String = ""
 
+var cures := {
+	"ANTIBIOTICS": [
+		DISEASE.BACTERIAL_PNEUMONIA,
+		DISEASE.BACTERIAL_BRONCHITIS,
+		DISEASE.ENDOCARDITIS,
+		DISEASE.TUBERCULOSIS
+	],
+
+	"ANTIVIRALS": [
+		DISEASE.VIRAL_CONJUNCTIVITIS,
+		DISEASE.VIRAL_BRONCHITIS,
+		DISEASE.BRONCHITIS
+	],
+
+	"ALLERGY_MEDICINE": [
+		DISEASE.SEASONAL_ALLERGIES,
+		DISEASE.ALLERGIC_CONJUNCTIVITIS,
+		DISEASE.ANAPHYLAXIS
+	],
+
+	"HEART_MEDICINE": [
+		DISEASE.MYOCARDITIS,
+		DISEASE.HEART_FAILURE,
+		DISEASE.ATRIAL_FIBRILLATION,
+		DISEASE.HYPERTENSION
+	],
+
+	"TEMPERATURE_TREATMENT": [
+		DISEASE.HYPOTHERMIA,
+		DISEASE.HEAT_STROKE
+	],
+
+	"RESPIRATORY_MEDICINE": [
+		DISEASE.ASTHMA
+	],
+
+	"EMERGENCY_MEDICINE": [
+		DISEASE.SEPTIC_SHOCK,
+		DISEASE.STIMULANT_OVERDOSE,
+		DISEASE.OPIOID_OVERDOSE
+	]#,
+
+	#"THERAPY": [
+	#	DISEASE.GOONED_TOO_MUCH_LOL
+	#]
+}
 
 #thanks chatgpt for organising this bc it was lowkey messy
 func newpatient():
@@ -171,12 +229,12 @@ func newpatient():
 			whatstethohears = 2
 			saliavacolor = 1
 			temprature = randi_range(70,90)
-			armcondition = ARMS.COLD
+			armcondition = ARMS.FUNGAL
 			
 		DISEASE.ALLERGIC_CONJUNCTIVITIS:
 			eyecondition = EYES.PINK
 			armcondition = ARMS.RASH
-			
+			"""
 		DISEASE.GOONED_TOO_MUCH_LOL:
 			eyecondition = EYES.GOONER
 			bloodpressure = randi_range(80,100)
@@ -184,6 +242,7 @@ func newpatient():
 			whatstethohears = 1
 			saliavacolor = 2
 			armcondition = ARMS.HOT
+			"""
 	
 	#clamp some stuff; more randomness
 	bloodpressure = clampi(bloodpressure + randi_range(-3, 3), 0, 100)
@@ -192,7 +251,11 @@ func newpatient():
 	
 	diseasename = DISEASE.keys()[disease].replace("_", " ").capitalize() #blah blah blah
 	
-	#I never deleted this lol
+	for c in cures:
+		if disease in cures[c]:
+			curename = c
+			break
+	
 	setup_finished.emit()
 	
 	print(diseasename)
