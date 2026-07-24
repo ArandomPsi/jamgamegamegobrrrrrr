@@ -19,11 +19,15 @@ var eye_exam_complete : bool = false
 
 var t : float
 
+var screenshake : int = 0
+
 var rushing : bool = false
 var usingtool : bool = false
 var stressval : float = 0.0
 var daynum : int = 1
 var patient_requirement : int = 3
+
+
 var scaling : Dictionary = {
 	1: {
 		"range": Vector2(90, 120),
