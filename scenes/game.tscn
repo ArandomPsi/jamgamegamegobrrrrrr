@@ -398,7 +398,7 @@ curve = SubResource("Curve2D_fedci")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="joe/arms/rightarm/Path2D"]
 position = Vector2(-73.9509, -124.809)
-rotation = 0.816495
+rotation = 0.816493
 
 [node name="leftarm" type="Sprite2D" parent="joe/arms"]
 clip_children = 1
@@ -423,7 +423,7 @@ curve = SubResource("Curve2D_fedci")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="joe/arms/leftarm/Path2D"]
 position = Vector2(-73.9509, -124.809)
-rotation = 0.816495
+rotation = 0.816493
 
 [node name="screen" type="Sprite2D" parent="."]
 light_mask = 2
@@ -515,7 +515,6 @@ texture = ExtResource("36_458eo")
 [node name="PointLight2D" type="PointLight2D" parent="gotomouse/magnifyingglass"]
 position = Vector2(-62, -54)
 scale = Vector2(1.8125, 1.6875)
-energy = 16.0
 texture = SubResource("GradientTexture2D_fedci")
 
 [node name="deskstuff" type="Node2D" parent="."]
