@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h0yq8g6yf82j"
-path="res://.godot/imported/DNA Strand.svg-8774b4aa65e7b7de350e8067e0ac4178.ctex"
+uid="uid://bx0gev861ymqf"
+path="res://.godot/imported/rashpatch.svg-dc1b79ff3ada4662e5b471c6a8b4634a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dnastrand/DNA Strand.svg"
-dest_files=["res://.godot/imported/DNA Strand.svg-8774b4aa65e7b7de350e8067e0ac4178.ctex"]
+source_file="res://assets/gae/rashpatch.svg"
+dest_files=["res://.godot/imported/rashpatch.svg-dc1b79ff3ada4662e5b471c6a8b4634a.ctex"]
 
 [params]
 

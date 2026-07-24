@@ -10,6 +10,8 @@ var bloodpressure : int = 50 #50 = normal, range from 0 - 100
 var temprature : int = 50 # 50 is normal, like 90 degree temp. 100 is very hot
 var whatstethohears : int = 0 #breathing,wheezing, crackling
 var saliavacolor : int = 0 #clear, green, white
+enum ARMS {NORMAL, RASH, COLD, HOT, FUNGAL}
+var armcondition : ARMS = ARMS.NORMAL 
 
 enum HEARTRATES {NORMAL, IRREGULAR, PUMPED}
 #Yo logan this is for the screen thingy
@@ -59,6 +61,7 @@ func newpatient():
 	saliavacolor = 0
 	heartcondition = HEARTRATES.NORMAL
 	heartrate = randi_range(18,28)
+	armcondition = ARMS.NORMAL
 	
 	match disease:
 			
@@ -74,11 +77,13 @@ func newpatient():
 			whatstethohears = 2
 			saliavacolor = 1
 			heartrate = randi_range(30,40)
+			armcondition = ARMS.COLD
 			
 		DISEASE.ENDOCARDITIS:
 			temprature = randi_range(75,95)
 			whatstethohears = 2
 			heartcondition = HEARTRATES.IRREGULAR
+			armcondition = ARMS.RASH
 			
 		DISEASE.MYOCARDITIS:
 			temprature = randi_range(75,90)
@@ -88,34 +93,41 @@ func newpatient():
 			bloodpressure = randi_range(15,30)
 			temprature = randi_range(75,95)
 			heartrate = randi_range(35,45)
+			armcondition = ARMS.COLD
 			
 		DISEASE.ANAPHYLAXIS:
 			bloodpressure = randi_range(15,30)
 			whatstethohears = 1
+			armcondition = ARMS.RASH
 			
 		DISEASE.STIMULANT_OVERDOSE:
 			eyecondition = EYES.GOONER
 			bloodpressure = randi_range(75,95)
 			heartcondition = HEARTRATES.PUMPED
 			heartrate = randi_range(38,45)
+			armcondition = ARMS.HOT
 			
 		DISEASE.OPIOID_OVERDOSE:
 			eyecondition = EYES.GOONER
 			bloodpressure = randi_range(15,30)
 			heartrate = randi_range(5,12)
+			armcondition = ARMS.COLD
 			
 		DISEASE.HYPOTHERMIA:
 			temprature = randi_range(5,25)
 			heartrate = randi_range(5,12)
+			armcondition = ARMS.COLD
 			
 		DISEASE.HEAT_STROKE:
 			temprature = randi_range(90,100)
 			heartcondition = HEARTRATES.PUMPED
 			heartrate = randi_range(35,45)
+			armcondition = ARMS.HOT
 			
 		DISEASE.HEART_FAILURE:
 			whatstethohears = 2
 			heartcondition = HEARTRATES.IRREGULAR
+			armcondition = ARMS.COLD
 			
 		DISEASE.ATRIAL_FIBRILLATION:
 			bloodpressure = randi_range(70,90)
@@ -124,35 +136,43 @@ func newpatient():
 		DISEASE.HYPERTENSION:
 			bloodpressure = randi_range(80,95)
 			heartcondition = HEARTRATES.PUMPED
+			armcondition = ARMS.HOT
 			
 		DISEASE.SEASONAL_ALLERGIES:
 			eyecondition = EYES.PINK
 			whatstethohears = 1
+			armcondition = ARMS.RASH
 			
 		DISEASE.VIRAL_BRONCHITIS:
 			whatstethohears = 1
 			saliavacolor = 2
 			temprature = randi_range(65,80)
+			armcondition = ARMS.COLD
 			
 		DISEASE.BACTERIAL_BRONCHITIS:
 			whatstethohears = 1
 			saliavacolor = 1
 			temprature = randi_range(75,90)
+			armcondition = ARMS.COLD
 			
 		DISEASE.BRONCHITIS:
 			whatstethohears = 1
 			temprature = randi_range(70,85)
+			armcondition = ARMS.COLD
 			
 		DISEASE.ASTHMA:
 			whatstethohears = 1
+			armcondition = ARMS.COLD
 			
 		DISEASE.TUBERCULOSIS:
 			whatstethohears = 2
 			saliavacolor = 1
 			temprature = randi_range(70,90)
+			armcondition = ARMS.COLD
 			
 		DISEASE.ALLERGIC_CONJUNCTIVITIS:
 			eyecondition = EYES.PINK
+			armcondition = ARMS.RASH
 			
 		DISEASE.GOONED_TOO_MUCH_LOL:
 			eyecondition = EYES.GOONER
@@ -160,6 +180,7 @@ func newpatient():
 			temprature = randi_range(95,100)
 			whatstethohears = 1
 			saliavacolor = 2
+			armcondition = ARMS.HOT
 	
 	#clamp some stuff; more randomness
 	bloodpressure = clampi(bloodpressure + randi_range(-3, 3), 0, 100)

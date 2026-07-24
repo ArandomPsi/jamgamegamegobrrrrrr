@@ -12,9 +12,6 @@ var bprelease : bool = false
 const bpbuffer : float = 13.0 * 0.925925926
 
 const eyebuffer : float = 40.3 / 646.0
-@onready var uieye: Sprite2D = $joe/eye/eyeclipmask/eyegame/patienteye
-@onready var eyegamebar: ColorRect = $joe/eye/eyeclipmask/eyegame/fullbar
-@onready var pupil: Sprite2D = $joe/eye/eyeclipmask/defaultpupil
 var playereyebarvel : float = 0.0
 const uieyebuffer : float = 23.0
 var eyeopenamount : int = 0
@@ -26,9 +23,7 @@ func _ready() -> void:
 	$Button.text = ""
 	current_patient.newpatient()
 	$joe/eye/eyeclipmask/eye.frame = current_patient.eyecondition
-	#$joe/eye/eyeclipmask/defaultpupil.self_modulate = current_patient.eye_color
-	#$joe/eye/eyeclipmask/eyegame/patienteye.self_modulate = current_patient.eye_color
-	#eye_target_x = randf_range(eyegamebar.position.x + uieyebuffer, 646.0 + eyegamebar.position.x - uieyebuffer)
+	armssetup()
 	
 
 func _process(delta: float) -> void:
@@ -159,6 +154,8 @@ func resetcam():
 	$gotomouse/stethoscope.visible = false
 	$joe/goonerarm.visible = false
 	$gotomouse/popsicle.visible = false
+	$gotomouse/magnifyingglass.hide()
+	$joe/arms.hide()
 	byebyeipad()
 	
 
@@ -204,6 +201,11 @@ func _on_popsicle_pressed() -> void:
 	camzoomtween(4.5)
 	$gotomouse/popsicle.visible = true
 
+func _on_magnifyingglass_pressed() -> void:
+	campostween(Vector2(497.0, 310.0))
+	camzoomtween(2.0)
+	$gotomouse/magnifyingglass.show()
+	$joe/arms.show()
 
 func _on_moutharea_body_entered(body: Node2D) -> void:
 	$gotomouse/popsicle/goon.restart()
@@ -247,3 +249,49 @@ func byebyeipad():
 	tween.tween_property($ipad,"position:y",1447.0,0.8).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	$ipad.visible = false
+
+func armssetup():
+	var val : int = current_patient.ARMS.values()[current_patient.armcondition]
+	match val:
+		0: # normal
+			pass
+		1: # rash
+			for arm in $joe/arms.get_children():
+				for i in range(randi_range(1, 3)):
+					var rash = Sprite2D.new()
+					rash.texture = load("res://assets/gae/rashpatch.svg")
+					var point = randf_range(0.0, 1.0)
+					arm.get_child(1).add_child(rash)
+					rash.rotation_degrees = randf_range(0.0, 360.0)
+					var pathf = arm.find_children("*", "PathFollow2D", true, true).front()
+					pathf.progress_ratio = point
+					rash.global_position = pathf.global_position
+					rash.scale = Vector2.ONE * min(point + 0.25, 1) * randf_range(0.35, 1.0)
+					rash.use_parent_material = true
+					rash.light_mask = arm.light_mask
+					rash.z_index = 1
+					rash.modulate = Color(0.1,0.1,0.1)
+					
+		2: # cold
+			$joe/arms/leftarm/actual.modulate = Color("#a401f5")
+			$joe/arms/rightarm/actual.modulate = Color("#a401f5")
+		3: # hot
+			$joe/arms/leftarm/actual.modulate = Color("#c80400")
+			$joe/arms/rightarm/actual.modulate = Color("#c80400")
+		4:
+			for arm in $joe/arms.get_children():
+				for i in range(randi_range(1, 3)):
+					var fungal = Sprite2D.new()
+					fungal.texture = load("res://assets/gae/fungalpatch.svg")
+					var point = randf_range(0.0, 1.0)
+					arm.get_child(1).add_child(fungal)
+					fungal.rotation_degrees = randf_range(0.0, 360.0)
+					var pathf = arm.find_children("*", "PathFollow2D", true, true).front()
+					pathf.progress_ratio = point
+					fungal.global_position = pathf.global_position
+					fungal.scale = Vector2.ONE * min(point + 0.25, 1)
+					fungal.use_parent_material = true
+					fungal.light_mask = arm.light_mask
+					fungal.z_index = 1
+					fungal.modulate = Color(0.1,0.1,0.1)
+	
