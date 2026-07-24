@@ -1,9 +1,10 @@
-[gd_scene load_steps=108 format=3 uid="uid://dgidjcry0rssj"]
+[gd_scene load_steps=111 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://tpubdbijbfxt" path="res://assets/gae/doctorwall.png" id="2_rysoc"]
 [ext_resource type="Texture2D" uid="uid://gqfvlhodyguv" path="res://assets/gae/patient-2.svg" id="2_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://djwabqfnmep" path="res://assets/gae/screen.svg" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://bvipvmuqfmbv2" path="res://assets/gae/patient-3mouthclosed.svg" id="4_66xif"]
 [ext_resource type="Texture2D" uid="uid://d30hd8otkxl0n" path="res://assets/gae/desk.svg" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://dmg0s3bao8opt" path="res://assets/eyes/Red Eye.svg" id="4_trtic"]
 [ext_resource type="Texture2D" uid="uid://df6h2mfasgwb5" path="res://assets/eyes/Pupil.svg" id="5_ir15t"]
@@ -23,12 +24,12 @@
 [ext_resource type="Script" uid="uid://d25n3w0qd7lqu" path="res://scripts/heartratevisuals.gd" id="10_1kice"]
 [ext_resource type="Texture2D" uid="uid://qbhkcwmec7j4" path="res://assets/eyes/maskoutline.svg" id="10_oaba0"]
 [ext_resource type="PackedScene" uid="uid://dhmkbnlc4vam3" path="res://scenes/thermometer.tscn" id="11_5newe"]
-[ext_resource type="Script" uid="uid://bhxem1rw6v0sq" path="res://scripts/gotomouse.gd" id="11_37s47"]
+[ext_resource type="Script" path="res://scripts/gotomouse.gd" id="11_37s47"]
 [ext_resource type="Texture2D" uid="uid://bmbl16m7t8ch" path="res://assets/eyes/openhand.svg" id="12_gxtfn"]
 [ext_resource type="Texture2D" uid="uid://d2dh7x2pq7dce" path="res://assets/eyes/closed hand.svg" id="12_twgab"]
 [ext_resource type="Texture2D" uid="uid://dhkjqwwrymium" path="res://assets/gae/stethoscopefp.svg" id="13_bt5mj"]
-[ext_resource type="Script" uid="uid://c475lwnj3dd61" path="res://scripts/shaker.gd" id="14_02fa5"]
-[ext_resource type="Script" uid="uid://w0lg3ng4f1vi" path="res://scripts/rope.gd" id="14_e1j6l"]
+[ext_resource type="Script" path="res://scripts/shaker.gd" id="14_02fa5"]
+[ext_resource type="Script" path="res://scripts/rope.gd" id="14_e1j6l"]
 [ext_resource type="Shader" uid="uid://dhtvw87fa1uj2" path="res://shaders/pixel.gdshader" id="16_ca42v"]
 [ext_resource type="Texture2D" uid="uid://c0bn8qqtuxgkv" path="res://assets/gae/down.svg" id="17_264po"]
 [ext_resource type="Texture2D" uid="uid://liswfvrxm566" path="res://assets/gae/normalarm.svg" id="17_h3rex"]
@@ -37,7 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://dxbvoa3uchsb" path="res://assets/gae/splat1-3.svg" id="19_suyxu"]
 [ext_resource type="Texture2D" uid="uid://0lbhrxdxt43h" path="res://assets/eyes/goondrop.svg" id="20_sgl2t"]
 [ext_resource type="Script" uid="uid://dcaiqei0nno5h" path="res://scripts/splats.gd" id="21_qouja"]
-[ext_resource type="Shader" uid="uid://uf8noj56jan7" path="res://shaders/perspectiveshader.gdshader" id="33_7025r"]
+[ext_resource type="Shader" path="res://shaders/perspectiveshader.gdshader" id="33_7025r"]
 [ext_resource type="AudioStream" uid="uid://cov4737f5x6yn" path="res://sounds/heartbeatscreen.wav" id="33_v2yb1"]
 [ext_resource type="Texture2D" uid="uid://cyxqy0vcvxwk2" path="res://assets/gae/ipad.svg" id="34_m4url"]
 [ext_resource type="Texture2D" uid="uid://b8lr2ictbv0fe" path="res://assets/gae/magnifyingglass.svg" id="36_458eo"]
@@ -52,7 +53,7 @@
 [ext_resource type="Script" uid="uid://x6eua8lq01gp" path="res://scripts/ipad.gd" id="48_7ixpq"]
 [ext_resource type="AudioStream" uid="uid://cr8mg3hkvjbs3" path="res://sounds/flatline.wav" id="48_bk1p3"]
 [ext_resource type="FontFile" uid="uid://bwt7tm5n5knnm" path="res://shaders/AnimeAce-neP.ttf" id="50_3hbvx"]
-[ext_resource type="Script" uid="uid://cj4psvqe6xilr" path="res://scripts/clipboardthingies.gd" id="50_o8ni1"]
+[ext_resource type="Script" path="res://scripts/clipboardthingies.gd" id="50_o8ni1"]
 [ext_resource type="Texture2D" uid="uid://wt3cpymndpb2" path="res://assets/gae/checkedbox.png" id="50_pf7vy"]
 [ext_resource type="Texture2D" uid="uid://dnrxmfv2t6f01" path="res://assets/gae/clipboard.png" id="50_rm0al"]
 [ext_resource type="Texture2D" uid="uid://c0e8jdmdejclu" path="res://assets/gae/emptybox.png" id="51_o8ni1"]
@@ -67,6 +68,20 @@ colors = PackedColorArray(0.298039, 0.298039, 0.298039, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ssvqc"]
 gradient = SubResource("Gradient_rysoc")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bnuda"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yqjtg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_66xif")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ca42v"]
 animations = [{
@@ -128,6 +143,8 @@ point_count = 3
 [sub_resource type="LabelSettings" id="LabelSettings_ms3bu"]
 font_size = 86
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_66xif"]
 
 [sub_resource type="Gradient" id="Gradient_e1j6l"]
 offsets = PackedFloat32Array(0.19965, 0.23993, 0.770578, 0.803853)
@@ -363,11 +380,11 @@ position = Vector2(0, 519.779)
 scale = Vector2(32.9934, 17.2431)
 texture = SubResource("GradientTexture2D_ssvqc")
 
-[node name="joe" type="Sprite2D" parent="."]
+[node name="joe" type="AnimatedSprite2D" parent="."]
 light_mask = 2
 position = Vector2(461, 444)
 scale = Vector2(2, 2)
-texture = ExtResource("2_yqjtg")
+sprite_frames = SubResource("SpriteFrames_bnuda")
 
 [node name="eye" type="Sprite2D" parent="joe"]
 visible = false
@@ -434,29 +451,6 @@ theme_override_styles/background = SubResource("StyleBoxFlat_pl11u")
 theme_override_styles/fill = SubResource("StyleBoxFlat_bhx41")
 fill_mode = 3
 show_percentage = false
-
-[node name="hitevents" type="Control" parent="joe/goonerarm/bar"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ColorRect" type="ColorRect" parent="joe/goonerarm/bar/hitevents"]
-layout_mode = 0
-offset_right = 13.0
-offset_bottom = 8.0
-color = Color(0.821115, 0.469991, 3.85046e-07, 1)
-
-[node name="ColorRect2" type="ColorRect" parent="joe/goonerarm/bar/hitevents"]
-layout_mode = 0
-offset_right = 13.0
-offset_bottom = 8.0
-color = Color(0.821115, 0.469991, 3.85046e-07, 1)
-
-[node name="ColorRect3" type="ColorRect" parent="joe/goonerarm/bar/hitevents"]
-layout_mode = 0
-offset_right = 13.0
-offset_bottom = 8.0
-color = Color(0.821115, 0.469991, 3.85046e-07, 1)
 
 [node name="arms" type="Node2D" parent="joe"]
 visible = false
@@ -535,6 +529,23 @@ width = 5.0
 default_color = Color(0, 1, 0, 1)
 script = ExtResource("10_1kice")
 beep = NodePath("../../sounds/heartbeat")
+
+[node name="ecgbutton" type="Button" parent="screen"]
+modulate = Color(0, 1, 0, 1)
+offset_left = -89.0
+offset_top = -148.0
+offset_right = 89.0
+offset_bottom = -38.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_66xif")
+
+[node name="startmark" type="Marker2D" parent="screen"]
+position = Vector2(-306.5, -103.5)
+
+[node name="endmark" type="Marker2D" parent="screen"]
+position = Vector2(-163, -8.5)
+
+[node name="visuals" type="Node2D" parent="screen"]
 
 [node name="stethorope" type="Line2D" parent="." node_paths=PackedStringArray("targetnode")]
 light_mask = 2
@@ -1596,7 +1607,7 @@ flat = true
 
 [node name="bgmusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("44_0sl42")
-volume_db = -25.0
+volume_db = -17.395
 autoplay = true
 mix_target = 1
 bus = &"breathing"
@@ -1677,7 +1688,9 @@ rotation = 1.5708
 text = "Stress"
 label_settings = SubResource("LabelSettings_7ixpq")
 
+[connection signal="pressed" from="screen/ecgbutton" to="." method="_on_ecgbutton_pressed"]
 [connection signal="area_entered" from="gotomouse/popsicle/moutharea" to="." method="_on_moutharea_body_entered"]
+[connection signal="area_exited" from="gotomouse/popsicle/moutharea" to="." method="_on_moutharea_area_exited"]
 [connection signal="pressed" from="deskstuff/goonerarm" to="." method="_on_goonerarm_pressed"]
 [connection signal="pressed" from="deskstuff/stetho" to="." method="_on_stetho_pressed"]
 [connection signal="pressed" from="deskstuff/thermo" to="." method="_on_thermo_pressed"]

@@ -58,7 +58,11 @@ func redraw(curpatient : Patient):
 
 func _process(delta: float) -> void:
 	
-	
+	if !global.heartrateshow:
+		visible = false
+		return
+	else:
+		visible = true
 	pointnum += int(300 * delta)
 	
 	if pointnum > graph.get_domain_range():

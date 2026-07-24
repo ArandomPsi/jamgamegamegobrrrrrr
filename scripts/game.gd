@@ -79,6 +79,8 @@ var curenum : int = 0
 
 @onready var daytimethingy  = $otherui/daytimervisual
 
+var circlehits : int = 0
+
 
 func _ready() -> void:
 	$Button.text = ""
@@ -86,6 +88,7 @@ func _ready() -> void:
 	patient_requirement = scaling[daynum]["quota"]
 	disease_amount = scaling[daynum]["diseaseoptions"]
 	$otherui/daytimervisual.max_value = $otherui/daytimer.wait_time
+	$screen/ecgbutton.modulate *= 2.0
 	
 	
 
@@ -119,10 +122,13 @@ func _process(delta: float) -> void:
 	
 	if current_patient.time_left < 1:
 		ldoctor()
+		
 	
 	$clock/hand.rotation = progress * TAU + PI/4
 	
 	$otherui/Label.text = "Day " + str(daynum)
+	
+	$screen/ecgbutton.disabled = global.heartrateshow
 	
 	armstuff()
 	eyestuff(delta)
@@ -138,38 +144,15 @@ func stress():
 	stressval = clamp(stressval, 0.0, 100.0)
 	$otherui/stressmeter.value = stressval
 	$screeneffects/CanvasModulate.color.r = stressval * 0.002 + 0.694117647
+	$bgmusic.pitch_scale = remap(stressval, 0.0, 100.0, 0.85, 1.0)
 
 
 func armstuff():
 	if $joe/goonerarm.visible:
 		$joe/goonerarm/bar.value = barthingy
-		barthingy -= 0.1 if !bprelease else 0.5
-		$joe/goonerarm/bar/hitevents.visible = bprelease
-		if !bprelease:
-			if Input.is_action_just_pressed("mousepress"):
-				barthingy += 5
-			if barthingy >= float(current_patient.bloodpressure) - 4.9:
-				bprelease = true
-				for i in range(3):
-					var val = remap(barthingy, 0.0, 100.0, 108.0, 0.0)
-					var timing = $joe/goonerarm/bar/hitevents.get_child(i)
-					timing.show()
-					timing.position.y = (i + 1) * randf_range(13.0, 20.0) + val * (1/0.925925926)
-					timing.position.y = clamp(timing.position.y, val * (1/0.925925926), 108.0 - bpbuffer)
-		else:
-			if Input.is_action_just_pressed("mousepress"):
-				for timing in $joe/goonerarm/bar/hitevents.get_children():
-					var val = remap(barthingy, 0.0, 100.0, 108.0, 0.0)
-					if val >= timing.position.y and val <= timing.position.y + bpbuffer:
-						timing.hide()
-			if barthingy <= 0.0:
-				for i in range(3):
-					if $joe/goonerarm/bar/hitevents.get_child(i).visible:
-						break
-					if i == 2:
-						# give player the info or something function?
-						pass
-				bprelease = false
+		barthingy -= 0.25
+		if Input.is_action_just_pressed("mousepress"):
+			barthingy += 5
 		barthingy = clamp(barthingy,0,current_patient.bloodpressure)
 		
 
@@ -240,6 +223,7 @@ func resetcam():
 	else:uparrow()
 	usingtool = false
 	rushing = false
+	circlehits = 0
 	
 	
 	#make everything not visible
@@ -250,8 +234,12 @@ func resetcam():
 	$gotomouse/popsicle.visible = false
 	$gotomouse/magnifyingglass.hide()
 	$joe/arms.hide()
+	$screen/ecgbutton.disabled = false
 	byebyeipad()
 	byebyeclipboard()
+	await get_tree().process_frame
+	for vis in $screen/visuals.get_children():
+		vis.queue_free()
 	
 
 
@@ -297,7 +285,7 @@ func _on_goonerarm_pressed() -> void:
 
 func _on_popsicle_pressed() -> void:
 	spitcount = 0
-	campostween(Vector2(460,150))
+	campostween(Vector2(460,175))
 	camzoomtween(4.5)
 	$gotomouse/popsicle.visible = true
 	usingtool = true
@@ -312,6 +300,7 @@ func _on_magnifyingglass_pressed() -> void:
 func _on_moutharea_body_entered(body: Node2D) -> void:
 	if $gotomouse/popsicle.visible:
 		$gotomouse/popsicle/goon.restart()
+
 		screenshake += 8
 		if spitcount > 5:
 			
@@ -338,7 +327,13 @@ func _on_moutharea_body_entered(body: Node2D) -> void:
 			$gotomouse/popsicle/goon.emitting = false
 			$gotomouse/popsicle/goon/splats.emitting = false
 			spitcount += 1
+		$gotomouse/popsicle/goon.emitting = false
+		$gotomouse/popsicle/goon/splats.emitting = false
+		spitcount += 1
+		$joe.frame = 1
 
+func _on_moutharea_area_exited(area : Area2D):
+	$joe.frame = 0
 
 func _on_ipad_pressed() -> void:
 	campostween(Vector2(1152/2,648/2))
@@ -516,3 +511,30 @@ func newpatient():
 	tween.tween_property($results,"modulate:a",0.0,0.9)
 	await tween.finished
 	$results.visible = false
+
+
+func _on_ecgbutton_pressed() -> void:
+	camzoomtween(1.35)
+	$screen/ecgbutton.disabled = true
+	generate_hit_circle()
+
+func generate_hit_circle():
+	var newhitcircle = preload("res://scenes/ecgcircle.tscn").instantiate()
+	$screen.add_child(newhitcircle)
+	newhitcircle.scale = Vector2.ONE * 0.32
+	newhitcircle.position.x = randf_range($screen/startmark.position.x, $screen/endmark.position.x)
+	newhitcircle.position.y = randf_range($screen/endmark.position.y, $screen/startmark.position.y)
+	newhitcircle.hit_success.connect(hit_circle_check.bind(true))
+	newhitcircle.hit_failed.connect(hit_circle_check.bind(false))
+
+func hit_circle_check(good : bool):
+	if good:
+		circlehits += 1
+		if circlehits >= 4:
+			global.heartrateshow = true
+			
+			resetcam()
+		else:
+			generate_hit_circle()
+	else:
+		resetcam()
