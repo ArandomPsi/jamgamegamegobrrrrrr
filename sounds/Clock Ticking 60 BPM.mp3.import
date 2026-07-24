@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dg05hnwpmaofa"
+path="res://.godot/imported/Clock Ticking 60 BPM.mp3-6790f3cb94c8ac086ce9cc8aecd00b33.mp3str"
+
+[deps]
+
+source_file="res://sounds/Clock Ticking 60 BPM.mp3"
+dest_files=["res://.godot/imported/Clock Ticking 60 BPM.mp3-6790f3cb94c8ac086ce9cc8aecd00b33.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
