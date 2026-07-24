@@ -279,7 +279,7 @@ func armssetup():
 					rash.use_parent_material = true
 					rash.light_mask = arm.light_mask
 					rash.z_index = 1
-					rash.modulate = Color(0.1,0.1,0.1)
+					rash.modulate = Color(0.5,0.5,0.5)
 					
 		2: # cold
 			$joe/arms/leftarm/actual.modulate = Color("5baff5")
@@ -302,5 +302,5 @@ func armssetup():
 					fungal.use_parent_material = true
 					fungal.light_mask = arm.light_mask
 					fungal.z_index = 1
-					fungal.modulate = Color(0.1,0.1,0.1)
+					fungal.modulate = Color(0.5,0.5,0.5)
 	

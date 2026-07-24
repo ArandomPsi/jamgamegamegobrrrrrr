@@ -560,7 +560,6 @@ texture = ExtResource("36_458eo")
 [node name="PointLight2D" type="PointLight2D" parent="gotomouse/magnifyingglass"]
 position = Vector2(-62, -54)
 scale = Vector2(1.8125, 1.6875)
-energy = 16.0
 texture = SubResource("GradientTexture2D_fedci")
 
 [node name="deskstuff" type="Node2D" parent="."]
