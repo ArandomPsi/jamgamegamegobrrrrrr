@@ -128,10 +128,11 @@ func cam_tween(up : bool):
 
 
 func _on_button_pressed() -> void:
-	cam_tween(not down)
-	down = not down
-	if down: downarrow()
-	else:uparrow()
+	if not $clipboard.visible and not $ipad.visible:
+		cam_tween(not down)
+		down = not down
+		if down: downarrow()
+		else:uparrow()
 
 
 func uparrow():
@@ -157,6 +158,7 @@ func resetcam():
 	$gotomouse/magnifyingglass.hide()
 	$joe/arms.hide()
 	byebyeipad()
+	byebyeclipboard()
 	
 
 
@@ -255,9 +257,18 @@ func _on_clipboard_pressed() -> void:
 	campostween(Vector2(1152/2,648/2))
 	camzoomtween(1)
 	$clipboard.visible = true
+	$clipboard.position = Vector2(-11,1180)
+	$clipboard.rotation = PI
 	var tween = create_tween()
-	#TODO finish this lowk
+	tween.tween_property($clipboard,"position",Vector2(173,750),0.4).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property($clipboard,"rotation_degrees",0,0.8).set_trans(Tween.TRANS_CUBIC)
 
+func byebyeclipboard():
+	var tween = create_tween()
+	tween.tween_property($clipboard,"position",Vector2(173,800),0.6).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property($clipboard,"rotation_degrees",180,0.6).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+	$clipboard.visible = false
 
 func armssetup():
 	var val : int = current_patient.ARMS.values()[current_patient.armcondition]
@@ -304,3 +315,78 @@ func armssetup():
 					fungal.z_index = 1
 					fungal.modulate = Color(0.5,0.5,0.5)
 	
+
+
+func _on_op_1_pressed() -> void:
+	if current_patient.cure == 0:
+		correctdiagnosis()
+	else:
+		ldoctor()
+
+
+func _on_op_2_pressed() -> void:
+	if current_patient.cure == 1:
+		correctdiagnosis()
+	else:
+		ldoctor()
+
+
+func _on_op_3_pressed() -> void:
+	if current_patient.cure == 2:
+		correctdiagnosis()
+	else:
+		ldoctor()
+
+
+func _on_op_4_pressed() -> void:
+	if current_patient.cure == 3:
+		correctdiagnosis()
+	else:
+		ldoctor()
+
+
+func correctdiagnosis():
+	resetcam()
+	$results/resul.text = "correct diagnosis \n the patient survived"
+	$results/resul.modulate.a = 0
+	$results.visible = true
+	$results.modulate.a = 0
+	var tween = create_tween()
+	tween.tween_property($results,"modulate:a",1.0,0.9)
+	tween.tween_property($results/resul,"modulate:a",0.5,0.7).set_delay(0.8)
+	tween.tween_interval(4)
+	await tween.finished
+	
+	newpatient()
+	
+
+func ldoctor():
+	resetcam()
+	$results/resul.text = "L doctor \n the patient fricking died you bum"
+	$results/resul.modulate.a = 0
+	$results.visible = true
+	$results.modulate.a = 0
+	var tween = create_tween()
+	tween.tween_property($results,"modulate:a",1.0,0.9)
+	tween.tween_property($results/resul,"modulate:a",0.5,0.7).set_delay(0.8)
+	tween.tween_interval(4)
+	await tween.finished
+	
+	newpatient()
+	
+
+
+
+func newpatient():
+	
+	#other stuff
+	current_patient = Patient.new()
+	current_patient.newpatient()
+	$joe/eye/eyeclipmask/eye.frame = current_patient.eyecondition
+	armssetup()
+	$screen/Line2D.redraw()
+	#animations
+	var tween = create_tween()
+	tween.tween_property($results,"modulate:a",0.0,0.9)
+	await tween.finished
+	$results.visible = false

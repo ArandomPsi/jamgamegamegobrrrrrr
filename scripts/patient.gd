@@ -47,6 +47,9 @@ var disease : DISEASE
 
 var diseasename : String
 
+var cure : int = 0 #they are just being a baby, cocaine to boost blood flow, anti bacterial stuff,
+#and a chill pill for heat stroke and hypertention and gooned etc
+
 
 #thanks chatgpt for organising this bc it was lowkey messy
 func newpatient():

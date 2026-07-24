@@ -12,6 +12,14 @@ var nextspike = 0
 @export var beep : AudioStreamPlayer2D
 
 func _ready() -> void:
+	redraw()
+	
+
+func redraw():
+	
+	#TODO: make the graph reset and stuff when new patient
+	
+	
 	randomize()
 	var curpatient = get_tree().current_scene.current_patient
 	await curpatient.setup_finished
@@ -34,7 +42,6 @@ func _ready() -> void:
 		
 		var spike_x = startx + 7.53
 		spike_positions.append(spike_x)
-	
 
 func _process(delta: float) -> void:
 	pointnum += int(300 * delta)

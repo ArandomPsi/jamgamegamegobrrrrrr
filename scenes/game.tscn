@@ -1303,6 +1303,7 @@ energy = 0.5
 texture = SubResource("GradientTexture2D_0sl42")
 
 [node name="clipboard" type="Node2D" parent="."]
+visible = false
 position = Vector2(-11, 1180)
 rotation = 3.14159
 
@@ -1402,7 +1403,7 @@ offset_bottom = 32.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("41_0sl42")
 theme_override_font_sizes/font_size = 32
-text = "cardiovascular job"
+text = " Cocaine"
 autowrap_mode = 3
 
 [node name="op3" type="Button" parent="clipboard"]
@@ -1439,7 +1440,7 @@ offset_bottom = 32.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("41_0sl42")
 theme_override_font_sizes/font_size = 32
-text = "anti-bacteria thingy"
+text = "anti-bacterial"
 autowrap_mode = 3
 
 [node name="op4" type="Button" parent="clipboard"]
@@ -1507,6 +1508,33 @@ autoplay = true
 mix_target = 1
 bus = &"breathing"
 
+[node name="results" type="ColorRect" parent="."]
+visible = false
+offset_left = -344.0
+offset_top = -264.0
+offset_right = 1503.0
+offset_bottom = 933.0
+color = Color(0, 0, 0, 1)
+
+[node name="resul" type="Label" parent="results"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -379.5
+offset_top = -35.5
+offset_right = 379.5
+offset_bottom = 117.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.12, 0.134666, 1)
+theme_override_font_sizes/font_size = 45
+text = "Correct Diagnosis"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="area_entered" from="gotomouse/popsicle/moutharea" to="." method="_on_moutharea_body_entered"]
 [connection signal="pressed" from="deskstuff/goonerarm" to="." method="_on_goonerarm_pressed"]
 [connection signal="pressed" from="deskstuff/stetho" to="." method="_on_stetho_pressed"]
@@ -1517,7 +1545,11 @@ bus = &"breathing"
 [connection signal="pressed" from="deskstuff/ipad" to="." method="_on_ipad_pressed"]
 [connection signal="pressed" from="deskstuff/clipboard" to="." method="_on_clipboard_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="clipboard/op1" to="." method="_on_op_1_pressed"]
 [connection signal="pressed" from="clipboard/op1" to="clipboard/op1" method="_on_pressed"]
+[connection signal="pressed" from="clipboard/op2" to="." method="_on_op_2_pressed"]
 [connection signal="pressed" from="clipboard/op2" to="clipboard/op2" method="_on_pressed"]
+[connection signal="pressed" from="clipboard/op3" to="." method="_on_op_3_pressed"]
 [connection signal="pressed" from="clipboard/op3" to="clipboard/op3" method="_on_pressed"]
+[connection signal="pressed" from="clipboard/op4" to="." method="_on_op_4_pressed"]
 [connection signal="pressed" from="clipboard/op4" to="clipboard/op4" method="_on_pressed"]
