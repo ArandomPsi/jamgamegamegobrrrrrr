@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b6gxn1th3bfjd"
+path="res://.godot/imported/Breathing (Better).mp3-037833b1ed26198ac0b5d744e7270f2a.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/Breathing (Better).mp3"
+dest_files=["res://.godot/imported/Breathing (Better).mp3-037833b1ed26198ac0b5d744e7270f2a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
