@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://befatowcqs6q5"]
+[gd_scene load_steps=3 format=3 uid="uid://bn1axveo4186v"]
 
 [ext_resource type="Script" uid="uid://bk06oy4g8j6dv" path="res://scripts/sinewave.gd" id="1_phe7d"]
 
 [sub_resource type="Gradient" id="Gradient_phe7d"]
-offsets = PackedFloat32Array(0.25, 0.5, 0.75)
-colors = PackedColorArray(1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1)
+offsets = PackedFloat32Array(0.321918, 0.5, 0.667808)
+colors = PackedColorArray(0.65, 0, 0, 1, 0, 0, 0, 0, 0.71, 0, 0, 1)
 
 [node name="sinewave" type="Control"]
 layout_mode = 3
@@ -13,5 +13,5 @@ script = ExtResource("1_phe7d")
 
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2(-110, 0)
-width = 15.0
+width = 5.0
 gradient = SubResource("Gradient_phe7d")

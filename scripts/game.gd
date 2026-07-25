@@ -90,6 +90,8 @@ func _ready() -> void:
 	$otherui/daytimervisual.max_value = $otherui/daytimer.wait_time
 	$screen/ecgbutton.modulate *= 2.0
 	
+	transitionin()
+	
 	
 
 func _process(delta: float) -> void:
@@ -332,7 +334,7 @@ func _on_moutharea_body_entered(body: Node2D) -> void:
 			$gotomouse/popsicle/goon/splats.emitting = false
 			spitcount += 1
 		$gotomouse/popsicle/goon.emitting = false
-		$gotomouse/popsicle/goon/splats.emitting = false
+		#$gotomouse/popsicle/goon/splats.emitting = false
 		spitcount += 1
 		$joe.frame = 1
 
@@ -509,6 +511,9 @@ func newpatient():
 	
 	global.heartrateshow = false
 	$joe/eye/eyeclipmask/eye.frame = current_patient.eyecondition
+	$gotomouse/popsicle/goon.restart()
+	$gotomouse/popsicle/goon.emitting = false
+	$gotomouse/popsicle/goon/splats.emitting = false
 	armssetup()
 	$ipad.regenerate(disease_possibilities)
 	for lbl in cure_labels:
@@ -533,6 +538,14 @@ func generate_hit_circle():
 	newhitcircle.position.y = randf_range($screen/endmark.position.y, $screen/startmark.position.y)
 	newhitcircle.hit_success.connect(hit_circle_check.bind(true))
 	newhitcircle.hit_failed.connect(hit_circle_check.bind(false))
+
+func transitionin():
+	var tween = create_tween()
+	$Camera2D.zoom = Vector2(1,1) * 5
+	tween.tween_property($screeneffects/fade,"modulate:a",0.0,0.8)
+	tween.parallel().tween_property($Camera2D, "zoom",Vector2(1,1),0.7).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+	$screeneffects/fade.visible = false
 
 func hit_circle_check(good : bool):
 	if good:

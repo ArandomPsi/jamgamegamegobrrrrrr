@@ -5,9 +5,11 @@ var t : float = 0.0
 
 func _process(delta: float) -> void:
 	
-	t += delta * 5
+	t += delta * 1.5
 	$Line2D.clear_points()
 	for i in range(wavelength):
 		var x = i
-		var y = sin(x * 0.005 - t) * 75
+		var y = sin(x * 0.003 - t) * 20
 		$Line2D.add_point(Vector2(x, y))
+	
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bsy3bnu7ryflr"]
+[gd_scene load_steps=25 format=3 uid="uid://bsy3bnu7ryflr"]
 
 [ext_resource type="Texture2D" uid="uid://2cr5yxyyfbnv" path="res://assets/gae/heart.svg" id="1_4ignj"]
 [ext_resource type="FontFile" uid="uid://vvjr1d332ty4" path="res://shaders/PixelMillennium-1oBZ.ttf" id="1_4rr2b"]
@@ -7,6 +7,13 @@
 [ext_resource type="Shader" uid="uid://umiibq47crqo" path="res://shaders/fog.gdshader" id="2_p6dhs"]
 [ext_resource type="Shader" uid="uid://dlyofksjdget3" path="res://shaders/tiler.gdshader" id="2_pyl7j"]
 [ext_resource type="Shader" uid="uid://dhtvw87fa1uj2" path="res://shaders/pixel.gdshader" id="2_wosw1"]
+[ext_resource type="Script" uid="uid://ckm8ad7ly7xnc" path="res://scripts/button.gd" id="3_ia1n6"]
+[ext_resource type="FontFile" uid="uid://dhq4oyk455eqd" path="res://shaders/PollygramCoolTitle-ARBwM.otf" id="6_hiwto"]
+[ext_resource type="PackedScene" uid="uid://bn1axveo4186v" path="res://scenes/sinewave.tscn" id="10_w65of"]
+
+[sub_resource type="Curve" id="Curve_ia1n6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.324324, 0), 0.0, 0.0, 0, 0, Vector2(0.551351, 1), 0.0, 0.0, 0, 0, Vector2(0.732432, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="Gradient" id="Gradient_p6dhs"]
 colors = PackedColorArray(0.66, 0.66, 0.66, 1, 0.18, 0.18, 0.18, 1)
@@ -17,17 +24,6 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 metadata/_snap_enabled = true
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yql1r"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-expand_margin_right = 5.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ia1n6"]
-shader = ExtResource("1_b3w7a")
-shader_parameter/amount = 0.0
 
 [sub_resource type="Gradient" id="Gradient_b3w7a"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
@@ -54,7 +50,35 @@ shader_parameter/g_rot_global_speed = 1.0
 shader_parameter/g_rot_min_speed = 0.1
 shader_parameter/g_rot_max_speed = 1.0
 
+[sub_resource type="Gradient" id="Gradient_hiwto"]
+colors = PackedColorArray(0.66, 0.66, 0.66, 0, 0.18, 0.18, 0.18, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w65of"]
+gradient = SubResource("Gradient_hiwto")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yql1r"]
+bg_color = Color(0.53, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.37, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+expand_margin_right = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ia1n6"]
+shader = ExtResource("1_b3w7a")
+shader_parameter/amount = 0.0
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_pyl7j"]
+noise_type = 2
+frequency = 0.0075
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b3w7a"]
 seamless = true
@@ -63,7 +87,7 @@ noise = SubResource("FastNoiseLite_pyl7j")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4rr2b"]
 shader = ExtResource("2_p6dhs")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_b3w7a")
-shader_parameter/smoke_color = Color(0.8, 1, 1, 1)
+shader_parameter/smoke_color = Color(1, 0.64, 0.64, 1)
 shader_parameter/distortion_speed = 0.2
 shader_parameter/density = 0.144
 
@@ -73,7 +97,7 @@ shader_parameter/exposure = 1.0
 shader_parameter/contrast = 1.25
 shader_parameter/saturation = 0.9
 shader_parameter/enable_pixelate = true
-shader_parameter/pixel_factor = 4.0
+shader_parameter/pixel_factor = 2.0
 shader_parameter/enable_posterize = true
 shader_parameter/color_levels = 12.0
 shader_parameter/dither_strength = 0.75
@@ -94,58 +118,124 @@ offset_bottom = -648.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yql1r")
+heartscalegraph = SubResource("Curve_ia1n6")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -1131.0
+offset_top = -1048.0
+offset_right = 2137.0
+offset_bottom = 1621.0
+color = Color(0.1, 0, 0, 1)
+
+[node name="bg" type="Sprite2D" parent="."]
 modulate = Color(0.521569, 0, 0, 1)
 position = Vector2(576, 326.5)
 scale = Vector2(19, 11.2031)
 texture = SubResource("GradientTexture2D_pyl7j")
-
-[node name="pivot" type="Node2D" parent="."]
-position = Vector2(572, 343)
-
-[node name="Button" type="Button" parent="pivot"]
-offset_top = -24.0
-offset_right = 236.0
-offset_bottom = 24.0
-focus_mode = 0
-theme_override_fonts/font = ExtResource("1_4rr2b")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_yql1r")
-text = "Play"
-alignment = 2
-
-[node name="Button2" type="Button" parent="pivot"]
-offset_top = 24.0
-offset_right = 236.0
-offset_bottom = 72.0
-rotation = 3.14159
-focus_mode = 0
-theme_override_fonts/font = ExtResource("1_4rr2b")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_yql1r")
-text = "Tutorial"
-alignment = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_ia1n6")
-position = Vector2(572, 331)
-texture = ExtResource("1_4ignj")
 
 [node name="ColorRect3" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_yql1r")
 layout_mode = 0
 offset_right = 1093.0
 offset_bottom = 646.0
+mouse_filter = 2
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="sinewave" parent="." instance=ExtResource("10_w65of")]
+offset_left = -51.0
+offset_top = 334.0
+offset_right = -51.0
+offset_bottom = 334.0
+
+[node name="bg2" type="Sprite2D" parent="."]
+modulate = Color(0.521569, 0, 0, 1)
+position = Vector2(576, 326.5)
+scale = Vector2(19, 11.2031)
+texture = SubResource("GradientTexture2D_w65of")
+
+[node name="pivot" type="Node2D" parent="."]
+position = Vector2(256, 329.82)
+
+[node name="Button" type="Button" parent="pivot"]
+offset_left = 26.0
+offset_top = -74.82
+offset_right = 386.0
+offset_bottom = 5.18002
+pivot_offset = Vector2(0, 10)
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_4rr2b")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/hover = SubResource("StyleBoxFlat_yql1r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yql1r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yql1r")
+text = "Play"
+alignment = 2
+script = ExtResource("3_ia1n6")
+
+[node name="Button2" type="Button" parent="pivot"]
+offset_left = 27.0
+offset_top = 21.36
+offset_right = 387.0
+offset_bottom = 101.36
+pivot_offset = Vector2(0, 10)
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_4rr2b")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/hover = SubResource("StyleBoxFlat_yql1r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yql1r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yql1r")
+text = "Tutorial"
+alignment = 2
+script = ExtResource("3_ia1n6")
+
+[node name="heart" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ia1n6")
+position = Vector2(256, 317.82)
+scale = Vector2(1.74, 1.74)
+texture = ExtResource("1_4ignj")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 702.0
+offset_top = 285.0
+offset_right = 1145.0
+offset_bottom = 383.0
+theme_override_colors/font_color = Color(0.75, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("6_hiwto")
+theme_override_font_sizes/font_size = 80
+text = "F l a t l i n e"
+
+[node name="fade" type="ColorRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -849.0
+offset_top = -976.0
+offset_right = 2040.0
+offset_bottom = 1477.0
+color = Color(0, 0, 0, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_4rr2b")
-layout_mode = 0
 offset_right = 1182.0
 offset_bottom = 658.0
+mouse_filter = 2
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_4ignj")
-layout_mode = 0
 offset_right = 1182.0
 offset_bottom = 658.0
+mouse_filter = 2
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.69, 0, 0, 1)
+
+[connection signal="pressed" from="pivot/Button" to="." method="_on_button_pressed"]
