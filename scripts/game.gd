@@ -539,7 +539,7 @@ func newpatient():
 	#other stuff
 #	current_patient = Patient.new()
 	stressval = 0 #cortisol
-	
+	barthingy = 0
 	#....................random disease.....................
 	daynum = global.patientscured
 	daynum = clamp(daynum,0,10)
