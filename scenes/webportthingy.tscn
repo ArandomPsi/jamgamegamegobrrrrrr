@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d07tbwxxoo0he"]
 
 [ext_resource type="Script" uid="uid://brqo1isbmjw0t" path="res://scripts/ui/webportthingy.gd" id="1_5efdi"]
-[ext_resource type="Texture2D" uid="uid://m7erd0or4qsu" path="res://assets/thingy.svg" id="1_gfqo8"]
+[ext_resource type="AudioStream" uid="uid://chqvmpcwbfpcg" path="res://sounds/normalbreathing.mp3" id="2_5efdi"]
 
 [node name="webportthingy" type="Control"]
 layout_mode = 3
@@ -23,42 +23,36 @@ color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -210.0
-offset_top = -219.0
+offset_top = 260.0
 offset_right = 210.0
-offset_bottom = -177.0
+offset_bottom = 302.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_font_sizes/font_size = 30
-text = "Please play with headphones"
+text = "Content Warning"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="."]
+[node name="Label2" type="Label" parent="Label"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 95.0
-offset_top = 179.0
-offset_right = 515.0
-offset_bottom = 266.0
+offset_left = -536.0
+offset_top = 20.0
+offset_right = 550.0
+offset_bottom = 107.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 30
-text = "Also the web port broke eyes
-and the magnifying glass :p"
+text = "This game includes depictions of stress, anxiety, patient death, and suicide"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Thingy" type="Sprite2D" parent="."]
-position = Vector2(395, 569)
-scale = Vector2(2, 2)
-texture = ExtResource("1_gfqo8")
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_5efdi")

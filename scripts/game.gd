@@ -77,6 +77,18 @@ var scaling : Dictionary = {
 	}
 }
 
+
+const causeofdeath : Array =  ["'s gut ruptured from the inside out.",
+" never made it home.",
+" died waiting for a cure.",
+"'s trust was betrayed.",
+"'s time ran out.",
+" lost his second chance.",
+"'s family was notified.",
+"' became another name in the records."]
+
+
+
 var disease_amount : int = 3
 var disease_possibilities : Array = []
 var cure_possibilities : Array = []
@@ -509,7 +521,11 @@ func ldoctor():
 	resetcam()
 	ldoctornumberthingy()
 	current_patient.died.emit()
-	$results/resul.text = "L doctor \n the patient fricking died you bum"
+	var time = Time.get_time_dict_from_system()
+	
+	var hour = time.hour
+	var minute = time.minute
+	$results/resul.text = "On August 7, " + str(hour) + ":" + str(minute) + ", " + current_patient.whatstheirname + causeofdeath.pick_random()
 	$results/resul.modulate.a = 0
 	$results.visible = true
 	$results.modulate.a = 0
@@ -535,7 +551,6 @@ func ldoctornumberthingy():#i moved it for finer control
 
 
 func newpatient():
-	
 	#other stuff
 #	current_patient = Patient.new()
 	stressval = 0 #cortisol
@@ -549,10 +564,11 @@ func newpatient():
 	disease_possibilities.clear()
 	cure_possibilities.clear()
 	disease_possibilities.append(current_patient.DISEASE.keys()[current_patient.disease])
-	
+	current_patient.whatstheirname = current_patient.patientnames[randi_range(0,current_patient.patientnames.size()-1)]
 	disease_amount = scaling[daynum]["diseaseoptions"]
 	
 	
+	$screen/name.text = current_patient.whatstheirname
 	$screeneffects/bloodoverlay.modulate.a = global.patientskilled / 4.0
 	
 	
@@ -615,7 +631,12 @@ func newpatient():
 		lbl.get_parent().get_node("check").frame = 0
 	#animations
 	var tween = create_tween()
-	tween.tween_property($results,"modulate:a",0.0,0.9)
+	
+	#YO LOGAN if you don't like this, you can remove it. My dad wanted this for some reason
+	$joe.position.x = -493.0
+	tween.tween_property($joe,"position:x",461.0,1.8).set_trans(Tween.TRANS_CUBIC)
+	
+	tween.parallel().tween_property($results,"modulate:a",0.0,0.9)
 	await tween.finished
 	$results.visible = false
 
