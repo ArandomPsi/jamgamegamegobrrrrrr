@@ -487,6 +487,7 @@ func _on_op_4_pressed() -> void:
 
 
 func correctdiagnosis():
+	$results/ldoctor.visible = false
 	global.patientscured += 1 #brother
 	resetcam()
 	$results/resul.text = "correct diagnosis \n the patient survived"
@@ -503,6 +504,7 @@ func correctdiagnosis():
 	
 
 func ldoctor():
+	$results/ldoctor.visible = true
 	global.patientskilled += 1
 	resetcam()
 	ldoctornumberthingy()
