@@ -108,7 +108,7 @@ func _process(delta: float) -> void:
 	
 	t += delta
 	if not $results.visible:
-		current_patient.time_left -= delta
+		current_patient.time_left -= delta 
 	#camera movement
 	$Camera2D.offset = lerp($Camera2D.offset,(get_global_mouse_position() - $Camera2D.position)/15,0.1) + Vector2(randf_range(-1,1),randf_range(-1,1)) * screenshake
 	
@@ -116,6 +116,7 @@ func _process(delta: float) -> void:
 	var progress = 0.0
 	if maxtimeleft > 0.0:
 		progress = (maxtimeleft - current_patient.time_left) / maxtimeleft
+	
 	
 	if current_patient.time_left > 0 and current_patient.time_left < 30:
 		screenshake = pow(progress, 2.0) * 4.0
@@ -156,18 +157,24 @@ func _process(delta: float) -> void:
 	
 	armstuff()
 	eyestuff(delta)
-	stress()
+	if not $gun.visible:
+		stress(progress)
 	
 
-func stress():
-	stressval += 0.03
+func stress(amount : float):
+	stressval = amount * 100
 	stressval = clamp(stressval, 0.0, 100.0)
 	$otherui/stressmeter.value = stressval
 	$screeneffects/CanvasModulate.color.r = stressval * 0.004 + 0.694117647
 	$bgmusic.pitch_scale = remap(stressval, 0.0, 100.0, 0.85, 1.0)
 	$sounds/ticktock.volume_db = (stressval*3/10) - 20
 	$screeneffects/CanvasLayer/blackstuff.modulate.a = 0.447 + (0.6 *(stressval/100))
-	$bgmusic2.volume_db = -5 + 10 * (stressval/100)
+	var zerotoone : float = (stressval/100)
+	$bgmusic2.volume_db = -5 + 10 * zerotoone
+	$screeneffects/CanvasLayer/radialblur.material.set_shader_parameter("bluramount",0.004 * zerotoone * sin(t))
+	
+	
+
 
 
 
@@ -505,7 +512,10 @@ func ldoctor():
 	tween.tween_interval(4)
 	await tween.finished
 	
-	newpatient()
+	if global.patientskilled > 2:
+		suicide()
+	else:
+		newpatient()
 	
 
 
@@ -633,3 +643,35 @@ func hit_circle_check(good : bool):
 			generate_hit_circle()
 	else:
 		resetcam()
+
+
+func suicide():
+	$sounds/flatline.play()
+	var tween = create_tween()
+	$gun.visible = true
+	$screeneffects/fade.visible = true
+	$screeneffects/fade.modulate.a = 0
+	$screeneffects/fade.color = Color(1,1,1)
+	stress(0.6)
+	tween.tween_property($results,"modulate:a",0.0,0.9)
+	tween.parallel().tween_property($bgmusic,"volume_db",-80.0,0.6)
+	tween.tween_property($gun,"position",Vector2(774,537),0.8).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_interval(0.4)
+	tween.tween_method(setblurparamfordeath,0.0,0.01,1.5)
+	tween.parallel().tween_method(tweenscreenshakevalthingy,0,20,1.5)
+	tween.tween_property($screeneffects/fade,"modulate:a",1.0,0.1)
+	tween.parallel().tween_method(shotplay,0,1,0.001)
+	tween.tween_property($screeneffects/fade,"color",Color(0,0,0),4).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_interval(2)
+	await tween.finished
+	get_tree().change_scene_to_file("res://scenes/title.tscn")
+	
+
+func shotplay(valloldoesntdoanything):
+	$sounds/shot.play()
+
+func setblurparamfordeath(value:float):
+	$screeneffects/CanvasLayer/radialblur.material.set_shader_parameter("bluramount",value)
+
+func tweenscreenshakevalthingy(value : float):
+	screenshake = value

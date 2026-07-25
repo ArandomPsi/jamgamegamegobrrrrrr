@@ -5,6 +5,9 @@ var shake : int = 0
 
 @export var heartscalegraph : Curve
 
+func _ready() -> void:
+	transitionin()
+
 func _process(delta: float) -> void:
 	t += delta
 	
@@ -35,6 +38,19 @@ func transition():
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
 	
 	
+
+func transitionin():
+	$fade.visible = true
+	$Camera2D.zoom = Vector2(1,1) * 0.5
+	$fade.modulate.a = 1
+	var tween = create_tween()
+	tween.tween_property($Camera2D,"zoom",Vector2(1,1),1.5).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property($fade,"modulate:a",0.0,1.5)
+	await tween.finished
+	$fade.visible = false
+	
+	
+
 
 
 func _on_button_pressed() -> void:

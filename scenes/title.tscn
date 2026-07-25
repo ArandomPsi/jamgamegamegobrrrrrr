@@ -318,6 +318,7 @@ theme_override_font_sizes/font_size = 80
 text = "F l a t l i n e"
 
 [node name="tutorialwindow" type="Panel" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1185.0
 offset_top = 47.0
@@ -343,7 +344,8 @@ theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("1_4rr2b")
 theme_override_font_sizes/font_size = 32
 text = "they give you valuable info
-to diagnose"
+to diagnose
+press esc or space to go back"
 horizontal_alignment = 1
 script = ExtResource("10_7af2g")
 attachedbutton = NodePath("../../pivot2/Button")
@@ -437,7 +439,7 @@ mix_target = 1
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_81wt4")
-volume_db = -25.0
+volume_db = -20.0
 autoplay = true
 
 [connection signal="pressed" from="pivot/Button" to="." method="_on_button_pressed"]
