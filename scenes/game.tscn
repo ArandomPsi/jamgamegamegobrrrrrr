@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=3 uid="uid://dgidjcry0rssj"]
+[gd_scene load_steps=127 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://tpubdbijbfxt" path="res://assets/gae/doctorwall.png" id="2_rysoc"]
@@ -50,7 +50,9 @@
 [ext_resource type="AudioStream" uid="uid://by4ynbbigngfm" path="res://sounds/music/doctorgamemusic.mp3" id="44_0sl42"]
 [ext_resource type="AudioStream" uid="uid://d1rw3yqmt51ca" path="res://sounds/sfx/Wheeze (Better).mp3" id="44_fedci"]
 [ext_resource type="AudioStream" uid="uid://b6gxn1th3bfjd" path="res://sounds/sfx/Breathing (Better).mp3" id="44_ms3bu"]
+[ext_resource type="Texture2D" uid="uid://c3g82h80hlh3c" path="res://assets/bloodoverlay.png" id="44_uxocx"]
 [ext_resource type="Shader" uid="uid://6mwt6p5so3ai" path="res://shaders/radialblur.gdshader" id="44_xbak0"]
+[ext_resource type="Script" uid="uid://cl2pjmhllxgt1" path="res://scripts/bloodoverlay.gd" id="45_7nv0b"]
 [ext_resource type="AudioStream" uid="uid://dcdcc5fvpe2pe" path="res://sounds/sfx/Cackled Breathing (Better).mp3" id="45_8qswn"]
 [ext_resource type="Script" uid="uid://x6eua8lq01gp" path="res://scripts/ipad.gd" id="48_7ixpq"]
 [ext_resource type="AudioStream" uid="uid://cr8mg3hkvjbs3" path="res://sounds/flatline.wav" id="48_bk1p3"]
@@ -61,6 +63,7 @@
 [ext_resource type="Texture2D" uid="uid://dnrxmfv2t6f01" path="res://assets/gae/clipboard.png" id="50_rm0al"]
 [ext_resource type="Texture2D" uid="uid://c0e8jdmdejclu" path="res://assets/gae/emptybox.png" id="51_o8ni1"]
 [ext_resource type="AudioStream" uid="uid://dapiqrvm08m3y" path="res://assets/eyes/Explosion+Ringing of the ears sound effect.wav" id="53_mmvbu"]
+[ext_resource type="AudioStream" uid="uid://d1y07clqyguao" path="res://sounds/vla.mp3" id="54_weeiq"]
 [ext_resource type="Texture2D" uid="uid://bvsf47b0wfta0" path="res://assets/gae/circletimerempty.svg" id="55_ms3bu"]
 [ext_resource type="Texture2D" uid="uid://2bgtd27cejao" path="res://assets/gae/circletimerfull.svg" id="56_7ixpq"]
 [ext_resource type="Texture2D" uid="uid://doxqvg3t24b8h" path="res://assets/gae/clockbase.svg" id="59_yd4ix"]
@@ -247,6 +250,17 @@ shader_parameter/cull_back = true
 shader_parameter/y_rot = 55.543
 shader_parameter/x_rot = 0.0
 shader_parameter/inset = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7nv0b"]
+bg_color = Color(0, 0, 0, 0.784314)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.8, 0.352, 0.352, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8oq8"]
+bg_color = Color(0, 0, 0, 0.784314)
 
 [sub_resource type="Gradient" id="Gradient_8qswn"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -1022,7 +1036,10 @@ offset_top = 559.0
 offset_right = 1323.0
 offset_bottom = 666.0
 focus_mode = 0
+theme_override_colors/icon_hover_color = Color(1, 0.59, 0.59, 1)
 theme_override_font_sizes/font_size = 57
+theme_override_styles/hover = SubResource("StyleBoxFlat_7nv0b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_o8oq8")
 text = "down"
 icon = ExtResource("17_264po")
 icon_alignment = 1
@@ -1053,6 +1070,15 @@ texture = ExtResource("43_l6q63")
 
 [node name="screeneffects" type="Node2D" parent="."]
 light_mask = 2
+
+[node name="bloodoverlay" type="Sprite2D" parent="screeneffects" node_paths=PackedStringArray("cam")]
+modulate = Color(1, 1, 1, 0)
+z_index = 6
+position = Vector2(532, 335)
+scale = Vector2(1.81333, 1.81333)
+texture = ExtResource("44_uxocx")
+script = ExtResource("45_7nv0b")
+cam = NodePath("../../Camera2D")
 
 [node name="ColorRect2" type="ColorRect" parent="screeneffects"]
 light_mask = 2
@@ -1171,6 +1197,12 @@ autoplay = true
 [node name="shot" type="AudioStreamPlayer2D" parent="sounds"]
 position = Vector2(743, 143)
 stream = ExtResource("53_mmvbu")
+
+[node name="goonsounds" type="AudioStreamPlayer2D" parent="sounds"]
+position = Vector2(437, 185)
+stream = ExtResource("54_weeiq")
+pitch_scale = 1.4
+max_polyphony = 5
 
 [node name="ipad" type="Node2D" parent="."]
 visible = false

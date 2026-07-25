@@ -32,43 +32,47 @@ var maxtimeleft : int
 
 var scaling : Dictionary = {
 	0: {
-		"range": Vector2(120, 150),
-		"quota": 3,
-		"diseaseoptions": 3
+		"range": Vector2(120, 120),
+		"diseaseoptions": 2
 	},
 	1: {
 		"range": Vector2(90, 120),
-		"quota": 3,
 		"diseaseoptions": 3
 	},
 	2: {
 		"range": Vector2(90, 120),
-		"quota": 5,
 		"diseaseoptions": 4
 	},
 	3: {
 		"range": Vector2(75, 100),
-		"quota": 6,
-		"diseaseoptions": 5
+		"diseaseoptions": 6
 	},
 	4: {
 		"range": Vector2(75, 100),
-		"quota": 7,
 		"diseaseoptions": 7
 	},
 	5: {
 		"range": Vector2(65, 90),
-		"quota": 9,
-		"diseaseoptions": 10
+		"diseaseoptions": 8
 	},
 	6: {
 		"range": Vector2(50, 75),
-		"quota": 10,
 		"diseaseoptions": 14
 	},
 	7: {
 		"range": Vector2(45, 60),
-		"quota": 12,
+		"diseaseoptions": 21
+	},
+	8: {
+		"range": Vector2(40, 50),
+		"diseaseoptions": 21
+	},
+	9: {
+		"range": Vector2(35, 45),
+		"diseaseoptions": 21
+	},
+	10: {
+		"range": Vector2(20, 30),
 		"diseaseoptions": 21
 	}
 }
@@ -131,9 +135,9 @@ func _process(delta: float) -> void:
 			0:
 				$sounds/normalbreathing.volume_db = 15.0
 			1:
-				$sounds/wheezing.volume_db = 20.0
+				$sounds/wheezing.volume_db = 25.0
 			2:
-				$sounds/crackle.volume_db = 10.0
+				$sounds/crackle.volume_db = 20.0
 	else:
 		$sounds/normalbreathing.volume_db = -80
 		$sounds/wheezing.volume_db = -80
@@ -332,7 +336,8 @@ func _on_moutharea_body_entered(body: Node2D) -> void:
 	if $gotomouse/popsicle.visible:
 		$gotomouse/popsicle/goon.restart()
 		
-
+		$sounds/goonsounds.play()
+		$sounds/goonsounds.pitch_scale = randf_range(1,1.4)
 		screenshake += 4
 		if spitcount > 5:
 			
@@ -482,6 +487,7 @@ func _on_op_4_pressed() -> void:
 
 
 func correctdiagnosis():
+	global.patientscured += 1 #brother
 	resetcam()
 	$results/resul.text = "correct diagnosis \n the patient survived"
 	$results/resul.modulate.a = 0
@@ -533,6 +539,8 @@ func newpatient():
 	stressval = 0 #cortisol
 	
 	#....................random disease.....................
+	daynum = global.patientscured
+	daynum = clamp(daynum,0,10)
 	current_patient.newpatient()
 	current_patient.time_left = randi_range(scaling[daynum]["range"].x, scaling[daynum]["range"].y)
 	maxtimeleft = current_patient.time_left
@@ -542,8 +550,8 @@ func newpatient():
 	
 	disease_amount = scaling[daynum]["diseaseoptions"]
 	
-	daynum = ceili(global.patientscured/2)
 	
+	$screeneffects/bloodoverlay.modulate.a = global.patientskilled / 4.0
 	
 	
 	
