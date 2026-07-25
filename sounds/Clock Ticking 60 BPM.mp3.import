@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Clock Ticking 60 BPM.mp3-6790f3cb94c8ac086ce9
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

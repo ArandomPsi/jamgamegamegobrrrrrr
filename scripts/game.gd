@@ -83,6 +83,8 @@ var circlehits : int = 0
 
 
 func _ready() -> void:
+	global.patientskilled = 0
+	global.patientscured = 0
 	$Button.text = ""
 	newpatient()
 	patient_requirement = scaling[daynum]["quota"]
@@ -93,14 +95,22 @@ func _ready() -> void:
 	transitionin()
 	
 	
+	
+	
 
 func _process(delta: float) -> void:
 	
 	
 	t += delta
+	current_patient.time_left -= delta
 	#camera movement
 	$Camera2D.offset = lerp($Camera2D.offset,(get_global_mouse_position() - $Camera2D.position)/15,0.1) + Vector2(randf_range(-1,1),randf_range(-1,1)) * screenshake
 	
+	
+	var progress = ($otherui/daytimer.wait_time - current_patient.time_left) / $otherui/daytimer.wait_time
+	
+	if current_patient.time_left > 0 and current_patient.time_left < 30:
+		screenshake = pow(progress, 2.0) * 4.0
 	
 	
 	screenshake -= 1
@@ -120,17 +130,17 @@ func _process(delta: float) -> void:
 		$sounds/wheezing.volume_db = -80
 		$sounds/crackle.volume_db = -80
 	
-	var progress = ($otherui/daytimer.wait_time - current_patient.time_left) / $otherui/daytimer.wait_time
+	
 	
 	#$otherui/daytimervisual.value = $otherui/daytimer.wait_time - $otherui/daytimer.time_left
 	
-	current_patient.time_left -= delta
 	
-	if current_patient.time_left < 1:
+	
+	if current_patient.time_left < 1 and not $results.visible:
 		ldoctor()
 		
 	
-	$clock/hand.rotation = progress * TAU + PI/4
+	$clock/hand.rotation = progress * 3 * TAU - PI/3
 	
 	$otherui/Label.text = "Day " + str(daynum)
 	
@@ -142,15 +152,14 @@ func _process(delta: float) -> void:
 	
 
 func stress():
-	stressval -= 0.05
-	if rushing:
-		stressval += 0.3
-	if usingtool:
-		stressval += 0.175
+	stressval += 0.02
 	stressval = clamp(stressval, 0.0, 100.0)
 	$otherui/stressmeter.value = stressval
-	$screeneffects/CanvasModulate.color.r = stressval * 0.002 + 0.694117647
+	$screeneffects/CanvasModulate.color.r = stressval * 0.004 + 0.694117647
 	$bgmusic.pitch_scale = remap(stressval, 0.0, 100.0, 0.85, 1.0)
+	$sounds/ticktock.volume_db = (stressval*3/10) - 20
+	$screeneffects/CanvasLayer/blackstuff.modulate.a = 0.447 + stressval/400
+
 
 
 func armstuff():
@@ -469,7 +478,9 @@ func correctdiagnosis():
 	
 
 func ldoctor():
+	global.patientskilled += 1
 	resetcam()
+	ldoctornumberthingy()
 	current_patient.died.emit()
 	$results/resul.text = "L doctor \n the patient fricking died you bum"
 	$results/resul.modulate.a = 0
@@ -486,11 +497,18 @@ func ldoctor():
 	
 
 
+func ldoctornumberthingy():#i moved it for finer control
+	var t1 = get_tree().create_timer(2)
+	await t1.timeout
+	screenshake = 10
+	$results/ldoctor.text = str(3 - global.patientskilled)
+
 
 func newpatient():
 	
 	#other stuff
 #	current_patient = Patient.new()
+	stressval = 0 #cortisol
 	current_patient.newpatient()
 	current_patient.time_left = randi_range(scaling[daynum]["range"].x, scaling[daynum]["range"].y)
 	disease_possibilities.clear()

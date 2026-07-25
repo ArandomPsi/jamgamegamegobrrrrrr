@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://dgidjcry0rssj"]
+[gd_scene load_steps=117 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://tpubdbijbfxt" path="res://assets/gae/doctorwall.png" id="2_rysoc"]
@@ -24,12 +24,12 @@
 [ext_resource type="Script" uid="uid://d25n3w0qd7lqu" path="res://scripts/heartratevisuals.gd" id="10_1kice"]
 [ext_resource type="Texture2D" uid="uid://qbhkcwmec7j4" path="res://assets/eyes/maskoutline.svg" id="10_oaba0"]
 [ext_resource type="PackedScene" uid="uid://dhmkbnlc4vam3" path="res://scenes/thermometer.tscn" id="11_5newe"]
-[ext_resource type="Script" path="res://scripts/gotomouse.gd" id="11_37s47"]
+[ext_resource type="Script" uid="uid://bhxem1rw6v0sq" path="res://scripts/gotomouse.gd" id="11_37s47"]
 [ext_resource type="Texture2D" uid="uid://bmbl16m7t8ch" path="res://assets/eyes/openhand.svg" id="12_gxtfn"]
 [ext_resource type="Texture2D" uid="uid://d2dh7x2pq7dce" path="res://assets/eyes/closed hand.svg" id="12_twgab"]
 [ext_resource type="Texture2D" uid="uid://dhkjqwwrymium" path="res://assets/gae/stethoscopefp.svg" id="13_bt5mj"]
-[ext_resource type="Script" path="res://scripts/shaker.gd" id="14_02fa5"]
-[ext_resource type="Script" path="res://scripts/rope.gd" id="14_e1j6l"]
+[ext_resource type="Script" uid="uid://c475lwnj3dd61" path="res://scripts/shaker.gd" id="14_02fa5"]
+[ext_resource type="Script" uid="uid://w0lg3ng4f1vi" path="res://scripts/rope.gd" id="14_e1j6l"]
 [ext_resource type="Shader" uid="uid://dhtvw87fa1uj2" path="res://shaders/pixel.gdshader" id="16_ca42v"]
 [ext_resource type="Texture2D" uid="uid://c0bn8qqtuxgkv" path="res://assets/gae/down.svg" id="17_264po"]
 [ext_resource type="Texture2D" uid="uid://liswfvrxm566" path="res://assets/gae/normalarm.svg" id="17_h3rex"]
@@ -38,7 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://dxbvoa3uchsb" path="res://assets/gae/splat1-3.svg" id="19_suyxu"]
 [ext_resource type="Texture2D" uid="uid://0lbhrxdxt43h" path="res://assets/eyes/goondrop.svg" id="20_sgl2t"]
 [ext_resource type="Script" uid="uid://dcaiqei0nno5h" path="res://scripts/splats.gd" id="21_qouja"]
-[ext_resource type="Shader" path="res://shaders/perspectiveshader.gdshader" id="33_7025r"]
+[ext_resource type="Shader" uid="uid://uf8noj56jan7" path="res://shaders/perspectiveshader.gdshader" id="33_7025r"]
 [ext_resource type="AudioStream" uid="uid://cov4737f5x6yn" path="res://sounds/heartbeatscreen.wav" id="33_v2yb1"]
 [ext_resource type="Texture2D" uid="uid://cyxqy0vcvxwk2" path="res://assets/gae/ipad.svg" id="34_m4url"]
 [ext_resource type="Texture2D" uid="uid://b8lr2ictbv0fe" path="res://assets/gae/magnifyingglass.svg" id="36_458eo"]
@@ -52,17 +52,17 @@
 [ext_resource type="AudioStream" uid="uid://dcdcc5fvpe2pe" path="res://sounds/sfx/Cackled Breathing (Better).mp3" id="45_8qswn"]
 [ext_resource type="Script" uid="uid://x6eua8lq01gp" path="res://scripts/ipad.gd" id="48_7ixpq"]
 [ext_resource type="AudioStream" uid="uid://cr8mg3hkvjbs3" path="res://sounds/flatline.wav" id="48_bk1p3"]
+[ext_resource type="AudioStream" uid="uid://dg05hnwpmaofa" path="res://sounds/Clock Ticking 60 BPM.mp3" id="50_0rmfi"]
 [ext_resource type="FontFile" uid="uid://bwt7tm5n5knnm" path="res://shaders/AnimeAce-neP.ttf" id="50_3hbvx"]
-[ext_resource type="Script" path="res://scripts/clipboardthingies.gd" id="50_o8ni1"]
+[ext_resource type="Script" uid="uid://cj4psvqe6xilr" path="res://scripts/clipboardthingies.gd" id="50_o8ni1"]
 [ext_resource type="Texture2D" uid="uid://wt3cpymndpb2" path="res://assets/gae/checkedbox.png" id="50_pf7vy"]
 [ext_resource type="Texture2D" uid="uid://dnrxmfv2t6f01" path="res://assets/gae/clipboard.png" id="50_rm0al"]
 [ext_resource type="Texture2D" uid="uid://c0e8jdmdejclu" path="res://assets/gae/emptybox.png" id="51_o8ni1"]
 [ext_resource type="Texture2D" uid="uid://bvsf47b0wfta0" path="res://assets/gae/circletimerempty.svg" id="55_ms3bu"]
 [ext_resource type="Texture2D" uid="uid://2bgtd27cejao" path="res://assets/gae/circletimerfull.svg" id="56_7ixpq"]
 [ext_resource type="Texture2D" uid="uid://doxqvg3t24b8h" path="res://assets/gae/clockbase.svg" id="59_yd4ix"]
-[ext_resource type="Script" uid="uid://qvnk4id0scuj" path="res://scripts/ldoctorhearts.gd" id="60_0rmfi"]
 [ext_resource type="Texture2D" uid="uid://cqoqh64mu2sr5" path="res://assets/gae/clockhand.svg" id="60_66xif"]
-[ext_resource type="Texture2D" uid="uid://2cr5yxyyfbnv" path="res://assets/gae/heart.svg" id="61_xbak0"]
+[ext_resource type="Shader" uid="uid://c7ikpledxmopj" path="res://shaders/squiggle.gdshader" id="60_xbak0"]
 
 [sub_resource type="Gradient" id="Gradient_rysoc"]
 offsets = PackedFloat32Array(1)
@@ -278,7 +278,7 @@ shader_parameter/pixel_factor = 4.0
 shader_parameter/enable_posterize = true
 shader_parameter/color_levels = 16.0
 shader_parameter/dither_strength = 1.0
-shader_parameter/chrom_aberration = 4.0
+shader_parameter/chrom_aberration = 2.0
 shader_parameter/vignette_strength = 1.0
 shader_parameter/grain_strength = 0.2
 shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
@@ -336,6 +336,19 @@ animations = [{
 "name": &"default",
 "speed": 0.0
 }]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3x28f"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_l6q63"]
+seamless = true
+noise = SubResource("FastNoiseLite_3x28f")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mmvbu"]
+shader = ExtResource("60_xbak0")
+shader_parameter/scale = Vector2(1, 1)
+shader_parameter/strength = 0.4
+shader_parameter/fps = 24.0
+shader_parameter/noise = SubResource("NoiseTexture2D_l6q63")
 
 [sub_resource type="LabelSettings" id="LabelSettings_bk1p3"]
 font_size = 46
@@ -1119,6 +1132,12 @@ max_polyphony = 2
 stream = ExtResource("48_bk1p3")
 volume_db = -17.802
 
+[node name="ticktock" type="AudioStreamPlayer2D" parent="sounds"]
+position = Vector2(151, 124)
+stream = ExtResource("50_0rmfi")
+volume_db = -10.0
+autoplay = true
+
 [node name="ipad" type="Node2D" parent="."]
 visible = false
 light_mask = 2
@@ -1642,6 +1661,7 @@ offset_bottom = 933.0
 color = Color(0, 0, 0, 1)
 
 [node name="resul" type="Label" parent="results"]
+material = SubResource("ShaderMaterial_mmvbu")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1661,32 +1681,19 @@ text = "Correct Diagnosis"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Timer" type="Timer" parent="results"]
-wait_time = 0.75
-autostart = true
-
-[node name="ldoctor" type="HBoxContainer" parent="results"]
-visible = false
+[node name="ldoctor" type="Label" parent="results"]
+material = SubResource("ShaderMaterial_mmvbu")
 layout_mode = 0
-offset_left = 768.0
-offset_top = 393.0
-offset_right = 2308.0
-offset_bottom = 679.0
-scale = Vector2(0.36, 0.36)
-theme_override_constants/separation = 125
-script = ExtResource("60_0rmfi")
-
-[node name="Sprite2D" type="TextureRect" parent="results/ldoctor"]
-layout_mode = 2
-texture = ExtResource("61_xbak0")
-
-[node name="Sprite2D2" type="TextureRect" parent="results/ldoctor"]
-layout_mode = 2
-texture = ExtResource("61_xbak0")
-
-[node name="Sprite2D3" type="TextureRect" parent="results/ldoctor"]
-layout_mode = 2
-texture = ExtResource("61_xbak0")
+offset_left = 356.0
+offset_top = 375.0
+offset_right = 1432.0
+offset_bottom = 513.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("41_0sl42")
+theme_override_font_sizes/font_size = 100
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="otherui" type="CanvasLayer" parent="."]
 layer = 0
@@ -1757,5 +1764,4 @@ label_settings = SubResource("LabelSettings_7ixpq")
 [connection signal="pressed" from="clipboard/op3" to="clipboard/op3" method="_on_pressed"]
 [connection signal="pressed" from="clipboard/op4" to="." method="_on_op_4_pressed"]
 [connection signal="pressed" from="clipboard/op4" to="clipboard/op4" method="_on_pressed"]
-[connection signal="timeout" from="results/Timer" to="results/ldoctor" method="_on_timer_timeout"]
 [connection signal="visibility_changed" from="results/ldoctor" to="results/ldoctor" method="_on_visibility_changed"]

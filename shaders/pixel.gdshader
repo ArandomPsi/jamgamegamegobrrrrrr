@@ -13,7 +13,7 @@ uniform bool  enable_posterize = true;
 uniform float color_levels     : hint_range(2.0, 16.0) = 12.0;
 uniform float dither_strength  : hint_range(0.0, 1.0) = 0.75;
 
-uniform float chrom_aberration : hint_range(0.0, 2.0) = 4.0;
+uniform float chrom_aberration : hint_range(0.0, 5.0) = 4.0;
 uniform float vignette_strength: hint_range(0.0, 2.0) = 1.0;
 uniform float grain_strength   : hint_range(0.0, 1.0) = 0.2;
 

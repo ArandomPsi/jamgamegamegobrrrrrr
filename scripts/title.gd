@@ -37,3 +37,32 @@ func transition():
 
 func _on_button_pressed() -> void:
 	transition()
+
+
+func _on_button_2_pressed() -> void:
+	tutorialin()
+
+func tutorialin():
+	var tween = create_tween()
+	$tutorialwindow.visible = true
+	tween.tween_property($pivot,"scale",Vector2(0.1,0.1),0.6).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property($pivot,"rotation",TAU,0.6).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property($pivot2,"scale",Vector2(1,1),0.8).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property($pivot2,"rotation",TAU,0.8).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property($tutorialwindow,"position:x",673.0,0.8).set_trans(Tween.TRANS_CUBIC)
+	
+#
+
+func _on_button_4_pressed() -> void:
+	tutorialout()
+
+
+func tutorialout():
+	var tween = create_tween()
+	tween.tween_property($pivot2,"scale",Vector2(0.1,0.1),0.6).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property($pivot2,"rotation",0,0.6).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property($pivot,"scale",Vector2(1,1),0.8).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property($pivot,"rotation",0,0.8).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property($tutorialwindow,"position:x",1185.0,0.8).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+	$tutorialwindow.visible = false
