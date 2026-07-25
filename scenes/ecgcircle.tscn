@@ -9,6 +9,7 @@ offset_left = -167.0
 offset_top = -141.0
 offset_right = 145.0
 offset_bottom = 154.0
+focus_mode = 0
 flat = true
 script = ExtResource("1_g3dy1")
 

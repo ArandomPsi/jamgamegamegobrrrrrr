@@ -93,9 +93,13 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
+	
+	
 	t += delta
 	#camera movement
 	$Camera2D.offset = lerp($Camera2D.offset,(get_global_mouse_position() - $Camera2D.position)/15,0.1) + Vector2(randf_range(-1,1),randf_range(-1,1)) * screenshake
+	
+	
 	
 	screenshake -= 1
 	screenshake = clamp(screenshake,0,30)
@@ -501,6 +505,9 @@ func newpatient():
 	curenum = cure_possibilities.find(current_patient.curename)
 	for i in range(cure_labels.size()):
 		cure_labels[i].text = cure_possibilities[i]
+	
+	
+	global.heartrateshow = false
 	$joe/eye/eyeclipmask/eye.frame = current_patient.eyecondition
 	armssetup()
 	$ipad.regenerate(disease_possibilities)

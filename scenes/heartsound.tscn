@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://db1fquc1g3q1t"]
+
+[ext_resource type="AudioStream" uid="uid://cov4737f5x6yn" path="res://sounds/heartbeatscreen.wav" id="1_8d0x4"]
+[ext_resource type="Script" uid="uid://byt1jftx5kt8i" path="res://scripts/heartsound.gd" id="2_0iorm"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_8d0x4")
+pitch_scale = 2.0
+autoplay = true
+script = ExtResource("2_0iorm")

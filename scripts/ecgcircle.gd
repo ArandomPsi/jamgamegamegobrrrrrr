@@ -20,6 +20,12 @@ func new_ecg_visual():
 	ecg_visual.modulate = Color("#b2fffe")
 	ecg_visual.light_mask = 1
 	ecg_visual.scale = scale / 2
+	
+	var b = preload("res://scenes/heartsound.tscn").instantiate()
+	get_parent().add_child(b)
+	b.global_position = global_position
+	
+	
 
 
 func _on_pressed() -> void:
