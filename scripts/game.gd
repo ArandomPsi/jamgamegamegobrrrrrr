@@ -633,8 +633,8 @@ func newpatient():
 	var tween = create_tween()
 	
 	#YO LOGAN if you don't like this, you can remove it. My dad wanted this for some reason
-	$joe.position.x = -493.0
-	tween.tween_property($joe,"position:x",461.0,1.8).set_trans(Tween.TRANS_CUBIC)
+	#$joe.position.x = -493.0
+	#tween.tween_property($joe,"position:x",461.0,1.8).set_trans(Tween.TRANS_CUBIC)
 	
 	tween.parallel().tween_property($results,"modulate:a",0.0,0.9)
 	await tween.finished
@@ -691,9 +691,8 @@ func suicide():
 	tween.tween_method(setblurparamfordeath,0.0,0.01,1.5)
 	tween.parallel().tween_method(tweenscreenshakevalthingy,0,20,1.5)
 	tween.tween_property($screeneffects/fade,"modulate:a",1.0,0.1)
-	tween.parallel().tween_method(shotplay,0,1,0.001)
-	tween.tween_property($screeneffects/fade,"color",Color(0,0,0),4).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_interval(2)
+	tween.parallel().tween_property($screeneffects/fade,"color",Color(0,0,0),0.5).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_interval(3)
 	await tween.finished
 	get_tree().change_scene_to_file("res://scenes/title.tscn")
 	
