@@ -377,8 +377,11 @@ func armssetup():
 	var val : int = current_patient.ARMS.values()[current_patient.armcondition]
 	match val:
 		0: # normal
-			pass
+			$joe/arms/leftarm/actual.modulate = Color.WHITE
+			$joe/arms/rightarm/actual.modulate = Color.WHITE
 		1: # rash
+			$joe/arms/leftarm/actual.modulate = Color.WHITE
+			$joe/arms/rightarm/actual.modulate = Color.WHITE
 			for arm in $joe/arms.get_children():
 				for i in range(randi_range(2, 5)):
 					var rash = Sprite2D.new()
@@ -402,6 +405,8 @@ func armssetup():
 			$joe/arms/leftarm/actual.modulate = Color("#c80400")
 			$joe/arms/rightarm/actual.modulate = Color("#c80400")
 		4:
+			$joe/arms/leftarm/actual.modulate = Color.WHITE
+			$joe/arms/rightarm/actual.modulate = Color.WHITE
 			for arm in $joe/arms.get_children():
 				for i in range(randi_range(2, 5)):
 					var fungal = Sprite2D.new()
@@ -470,6 +475,7 @@ func ldoctor():
 	$results/resul.modulate.a = 0
 	$results.visible = true
 	$results.modulate.a = 0
+	$results/ldoctor.visible = true
 	var tween = create_tween()
 	tween.tween_property($results,"modulate:a",1.0,0.9)
 	tween.tween_property($results/resul,"modulate:a",0.5,0.7).set_delay(0.8)
@@ -496,6 +502,13 @@ func newpatient():
 			ops.erase(d)
 		disease_possibilities.append(ops.pick_random())
 	cure_possibilities.append(current_patient.curename)
+	for d in disease_possibilities:
+		var di = current_patient.DISEASE.get(d)
+		for c in current_patient.cures:
+			if di in current_patient.cures[c]:
+				if not c in cure_possibilities:
+					cure_possibilities.append(c)
+					print(c)
 	for i in range(3):
 		var ops = current_patient.cures.keys().duplicate()
 		for c in cure_possibilities:
@@ -514,6 +527,8 @@ func newpatient():
 	$gotomouse/popsicle/goon.restart()
 	$gotomouse/popsicle/goon.emitting = false
 	$gotomouse/popsicle/goon/splats.emitting = false
+	for overlay in $joe/arms/leftarm/actual.get_children():
+		overlay.queue_free()
 	armssetup()
 	$ipad.regenerate(disease_possibilities)
 	for lbl in cure_labels:
