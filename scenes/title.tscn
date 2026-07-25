@@ -179,7 +179,7 @@ scale = Vector2(19, 11.2031)
 texture = SubResource("GradientTexture2D_w65of")
 
 [node name="pivot" type="Node2D" parent="."]
-position = Vector2(256, 329.82)
+position = Vector2(221, 329.82)
 
 [node name="Button" type="Button" parent="pivot"]
 offset_left = 26.0
@@ -218,7 +218,7 @@ alignment = 2
 script = ExtResource("3_ia1n6")
 
 [node name="pivot2" type="Node2D" parent="."]
-position = Vector2(259, 340)
+position = Vector2(224, 340)
 scale = Vector2(0.1, 0.1)
 
 [node name="Button" type="Button" parent="pivot2"]
@@ -295,7 +295,7 @@ script = ExtResource("3_ia1n6")
 
 [node name="heart" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_ia1n6")
-position = Vector2(256, 317.82)
+position = Vector2(221, 317.82)
 scale = Vector2(1.74, 1.74)
 texture = ExtResource("1_4ignj")
 
@@ -305,9 +305,9 @@ position = Vector2(576, 324)
 [node name="Label" type="Label" parent="."]
 material = SubResource("ShaderMaterial_6rcc6")
 layout_mode = 0
-offset_left = 679.0
+offset_left = 678.0
 offset_top = 285.0
-offset_right = 1139.0
+offset_right = 1138.0
 offset_bottom = 383.0
 theme_override_colors/font_color = Color(0.75, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)

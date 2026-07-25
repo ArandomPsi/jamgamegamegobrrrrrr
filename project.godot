@@ -14,6 +14,8 @@ config/name="jamgamegame"
 run/main_scene="uid://bsy3bnu7ryflr"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=60
+boot_splash/bg_color=Color(0.1, 0, 0, 1)
+boot_splash/image="uid://ur2l8ixl1sih"
 config/icon="res://icon.svg"
 
 [autoload]
