@@ -1,0 +1,113 @@
+[gd_scene load_steps=16 format=3 uid="uid://bsy3bnu7ryflr"]
+
+[ext_resource type="Texture2D" uid="uid://2cr5yxyyfbnv" path="res://assets/gae/heart.svg" id="1_4ignj"]
+[ext_resource type="Shader" uid="uid://88dm5xsq3s1" path="res://shaders/fisheye.gdshader" id="1_b3w7a"]
+[ext_resource type="Shader" uid="uid://umiibq47crqo" path="res://shaders/fog.gdshader" id="2_p6dhs"]
+[ext_resource type="Shader" uid="uid://dlyofksjdget3" path="res://shaders/tiler.gdshader" id="2_pyl7j"]
+[ext_resource type="Shader" uid="uid://dhtvw87fa1uj2" path="res://shaders/pixel.gdshader" id="2_wosw1"]
+
+[sub_resource type="Gradient" id="Gradient_p6dhs"]
+colors = PackedColorArray(0.66, 0.66, 0.66, 1, 0.18, 0.18, 0.18, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pyl7j"]
+gradient = SubResource("Gradient_p6dhs")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ia1n6"]
+shader = ExtResource("1_b3w7a")
+shader_parameter/amount = 0.0
+
+[sub_resource type="Gradient" id="Gradient_b3w7a"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4rr2b"]
+gradient = SubResource("Gradient_b3w7a")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.9, 0.1)
+metadata/_snap_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yql1r"]
+shader = ExtResource("2_pyl7j")
+shader_parameter/g_random_seed = 3.0
+shader_parameter/g_grid_size = Vector2(16, 16)
+shader_parameter/g_cell_offset = Vector2(5, 5)
+shader_parameter/g_speed = Vector2(0.6, 0.2)
+shader_parameter/g_draw_size_min = 0.0
+shader_parameter/g_draw_size_max = 0.193
+shader_parameter/tex_draw = SubResource("GradientTexture2D_4rr2b")
+shader_parameter/g_color_a = Color(1, 1, 1, 0)
+shader_parameter/g_color_b = Color(1, 1, 1, 1)
+shader_parameter/g_rot_global_speed = 1.0
+shader_parameter/g_rot_min_speed = 0.1
+shader_parameter/g_rot_max_speed = 1.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pyl7j"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b3w7a"]
+seamless = true
+noise = SubResource("FastNoiseLite_pyl7j")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4rr2b"]
+shader = ExtResource("2_p6dhs")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_b3w7a")
+shader_parameter/smoke_color = Color(0.8, 1, 1, 1)
+shader_parameter/distortion_speed = 0.2
+shader_parameter/density = 0.144
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ignj"]
+shader = ExtResource("2_wosw1")
+shader_parameter/exposure = 1.0
+shader_parameter/contrast = 1.25
+shader_parameter/saturation = 0.9
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 4.0
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 12.0
+shader_parameter/dither_strength = 0.75
+shader_parameter/chrom_aberration = 4.0
+shader_parameter/vignette_strength = 1.0
+shader_parameter/grain_strength = 0.2
+shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
+shader_parameter/tint_strength = 0.15
+shader_parameter/viewport_size_override = Vector2(0, 0)
+
+[node name="title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.521569, 0, 0, 1)
+position = Vector2(576, 326.5)
+scale = Vector2(19, 11.2031)
+texture = SubResource("GradientTexture2D_pyl7j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ia1n6")
+position = Vector2(572, 331)
+texture = ExtResource("1_4ignj")
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_yql1r")
+layout_mode = 0
+offset_right = 1093.0
+offset_bottom = 646.0
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_4rr2b")
+offset_right = 1182.0
+offset_bottom = 658.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_4ignj")
+offset_right = 1182.0
+offset_bottom = 658.0
