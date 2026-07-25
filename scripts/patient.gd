@@ -63,6 +63,8 @@ var diseasename : String
 var curename : String = ""
 
 var cures := {
+	"CRYBABY_TREATMENT":
+		[DISEASE.HEALTHY],
 	"ANTIBIOTICS": [
 		DISEASE.BACTERIAL_PNEUMONIA,
 		DISEASE.BACTERIAL_BRONCHITIS,
@@ -89,7 +91,7 @@ var cures := {
 		DISEASE.HYPERTENSION
 	],
 
-	"TEMPERATURE_TREATMENT": [
+	"CHILL_PILL": [
 		DISEASE.HYPOTHERMIA,
 		DISEASE.HEAT_STROKE
 	],

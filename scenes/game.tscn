@@ -24,12 +24,12 @@
 [ext_resource type="Script" uid="uid://d25n3w0qd7lqu" path="res://scripts/heartratevisuals.gd" id="10_1kice"]
 [ext_resource type="Texture2D" uid="uid://qbhkcwmec7j4" path="res://assets/eyes/maskoutline.svg" id="10_oaba0"]
 [ext_resource type="PackedScene" uid="uid://dhmkbnlc4vam3" path="res://scenes/thermometer.tscn" id="11_5newe"]
-[ext_resource type="Script" uid="uid://bhxem1rw6v0sq" path="res://scripts/gotomouse.gd" id="11_37s47"]
+[ext_resource type="Script" path="res://scripts/gotomouse.gd" id="11_37s47"]
 [ext_resource type="Texture2D" uid="uid://bmbl16m7t8ch" path="res://assets/eyes/openhand.svg" id="12_gxtfn"]
 [ext_resource type="Texture2D" uid="uid://d2dh7x2pq7dce" path="res://assets/eyes/closed hand.svg" id="12_twgab"]
 [ext_resource type="Texture2D" uid="uid://dhkjqwwrymium" path="res://assets/gae/stethoscopefp.svg" id="13_bt5mj"]
-[ext_resource type="Script" uid="uid://c475lwnj3dd61" path="res://scripts/shaker.gd" id="14_02fa5"]
-[ext_resource type="Script" uid="uid://w0lg3ng4f1vi" path="res://scripts/rope.gd" id="14_e1j6l"]
+[ext_resource type="Script" path="res://scripts/shaker.gd" id="14_02fa5"]
+[ext_resource type="Script" path="res://scripts/rope.gd" id="14_e1j6l"]
 [ext_resource type="Shader" uid="uid://dhtvw87fa1uj2" path="res://shaders/pixel.gdshader" id="16_ca42v"]
 [ext_resource type="Texture2D" uid="uid://c0bn8qqtuxgkv" path="res://assets/gae/down.svg" id="17_264po"]
 [ext_resource type="Texture2D" uid="uid://liswfvrxm566" path="res://assets/gae/normalarm.svg" id="17_h3rex"]
@@ -38,7 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://dxbvoa3uchsb" path="res://assets/gae/splat1-3.svg" id="19_suyxu"]
 [ext_resource type="Texture2D" uid="uid://0lbhrxdxt43h" path="res://assets/eyes/goondrop.svg" id="20_sgl2t"]
 [ext_resource type="Script" uid="uid://dcaiqei0nno5h" path="res://scripts/splats.gd" id="21_qouja"]
-[ext_resource type="Shader" uid="uid://uf8noj56jan7" path="res://shaders/perspectiveshader.gdshader" id="33_7025r"]
+[ext_resource type="Shader" path="res://shaders/perspectiveshader.gdshader" id="33_7025r"]
 [ext_resource type="AudioStream" uid="uid://cov4737f5x6yn" path="res://sounds/heartbeatscreen.wav" id="33_v2yb1"]
 [ext_resource type="Texture2D" uid="uid://cyxqy0vcvxwk2" path="res://assets/gae/ipad.svg" id="34_m4url"]
 [ext_resource type="Texture2D" uid="uid://b8lr2ictbv0fe" path="res://assets/gae/magnifyingglass.svg" id="36_458eo"]
@@ -53,7 +53,7 @@
 [ext_resource type="Script" uid="uid://x6eua8lq01gp" path="res://scripts/ipad.gd" id="48_7ixpq"]
 [ext_resource type="AudioStream" uid="uid://cr8mg3hkvjbs3" path="res://sounds/flatline.wav" id="48_bk1p3"]
 [ext_resource type="FontFile" uid="uid://bwt7tm5n5knnm" path="res://shaders/AnimeAce-neP.ttf" id="50_3hbvx"]
-[ext_resource type="Script" uid="uid://cj4psvqe6xilr" path="res://scripts/clipboardthingies.gd" id="50_o8ni1"]
+[ext_resource type="Script" path="res://scripts/clipboardthingies.gd" id="50_o8ni1"]
 [ext_resource type="Texture2D" uid="uid://wt3cpymndpb2" path="res://assets/gae/checkedbox.png" id="50_pf7vy"]
 [ext_resource type="Texture2D" uid="uid://dnrxmfv2t6f01" path="res://assets/gae/clipboard.png" id="50_rm0al"]
 [ext_resource type="Texture2D" uid="uid://c0e8jdmdejclu" path="res://assets/gae/emptybox.png" id="51_o8ni1"]
@@ -1404,13 +1404,15 @@ energy = 0.5
 texture = SubResource("GradientTexture2D_0sl42")
 
 [node name="clock" type="Node2D" parent="."]
-position = Vector2(118, 90)
+position = Vector2(146, 131)
 
 [node name="clock" type="Sprite2D" parent="clock"]
-position = Vector2(-1, 6)
+scale = Vector2(1.64634, 1.64634)
 texture = ExtResource("59_yd4ix")
 
 [node name="hand" type="Sprite2D" parent="clock"]
+position = Vector2(0, -13)
+scale = Vector2(1.646, 1.646)
 texture = ExtResource("60_66xif")
 offset = Vector2(30, 0)
 
@@ -1642,7 +1644,8 @@ offset_bottom = 117.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.12, 0.134666, 1)
-theme_override_font_sizes/font_size = 45
+theme_override_fonts/font = ExtResource("41_0sl42")
+theme_override_font_sizes/font_size = 70
 text = "Correct Diagnosis"
 horizontal_alignment = 1
 vertical_alignment = 1
