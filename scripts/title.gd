@@ -29,6 +29,8 @@ func transition():
 	var tween = create_tween()
 	tween.tween_property($Camera2D,"zoom",Vector2(0.5,0.5),0.8).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_property($fade,"modulate:a",1.0,0.5)
+	tween.parallel().tween_property($bg2,"volume_db",-80,0.3)
+	tween.parallel().tween_property($bg,"volume_db",-80,0.3)
 	await tween.finished
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bsy3bnu7ryflr"]
+[gd_scene load_steps=33 format=3 uid="uid://bsy3bnu7ryflr"]
 
 [ext_resource type="Texture2D" uid="uid://2cr5yxyyfbnv" path="res://assets/gae/heart.svg" id="1_4ignj"]
 [ext_resource type="FontFile" uid="uid://vvjr1d332ty4" path="res://shaders/PixelMillennium-1oBZ.ttf" id="1_4rr2b"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://8cesrdhnqpwu" path="res://scripts/tutorialthingy.gd" id="10_7af2g"]
 [ext_resource type="PackedScene" uid="uid://befatowcqs6q5" path="res://scenes/sinewave.tscn" id="10_w65of"]
 [ext_resource type="AudioStream" uid="uid://csq6ijl6r36jq" path="res://sounds/horror.wav" id="11_ygloa"]
+[ext_resource type="AudioStream" uid="uid://by4ynbbigngfm" path="res://sounds/music/doctorgamemusic.mp3" id="14_81wt4"]
 
 [sub_resource type="Curve" id="Curve_ia1n6"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.324324, 0), 0.0, 0.0, 0, 0, Vector2(0.551351, 1), 0.0, 0.0, 0, 0, Vector2(0.732432, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -430,9 +431,14 @@ mouse_filter = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_ygloa")
-volume_db = 20.0
+volume_db = 10.0
 autoplay = true
 mix_target = 1
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_81wt4")
+volume_db = -25.0
+autoplay = true
 
 [connection signal="pressed" from="pivot/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="pivot/Button2" to="." method="_on_button_2_pressed"]

@@ -260,4 +260,4 @@ func newpatient():
 	
 	setup_finished.emit()
 	
-	print(diseasename)
+	

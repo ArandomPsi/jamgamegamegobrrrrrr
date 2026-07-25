@@ -1,11 +1,11 @@
 extends Node2D
 
 var descs : Dictionary = {
-	"HEALTHY": "[b]Healthy[/b]\nA patient with no detected illness or abnormal symptoms.\nSymptoms:\n• Normal temperature\n• Normal blood pressure\n• Normal breathing\n• Normal heartbeat\n• Clear saliva\n• Normal eyes\n• Normal arms \n• Cure: Crybaby Treatment",
+	"HEALTHY": "[b]Healthy[/b]\nA patient with no detected illness or abnormal symptoms.\nSymptoms:\n• Normal temperature\n• Normal blood pressure\n• Normal breathing\n• Normal heartbeat\n• Clear saliva\n• Normal eyes\n• Normal arms \n• Cure: Crybaby Treatment", #ye
 
-	"VIRAL_CONJUNCTIVITIS": "[b]Viral Conjunctivitis[/b]\nA viral infection of the eye that causes inflammation of the conjunctiva.\nSymptoms:\n• Pink/red eyes\n• Mild fever\n• Eye irritation\n• Increased tearing\n• Normal arms \nCure: Antivirals",
+	"VIRAL_CONJUNCTIVITIS": "[b]Viral Conjunctivitis[/b]\nA viral infection of the eye that causes inflammation of the conjunctiva.\nSymptoms:\n• Pink/red eyes\n• Mild fever\n• Eye irritation\n• Increased tearing\n• Normal arms \nCure: Antivirals", #ye
 
-	"BACTERIAL_PNEUMONIA": "[b]Bacterial Pneumonia[/b]\nA bacterial infection that causes inflammation and fluid buildup in the lungs.\nSymptoms:\n• High fever\n• Green saliva/mucus\n• Crackling lung sounds\n• Rapid heartbeat\n• Weakness\n• Cold arms\n• Cure: Antibiotics",
+	"BACTERIAL_PNEUMONIA": "[b]Bacterial Pneumonia[/b]\nA bacterial infection that causes inflammation and fluid buildup in the lungs.\nSymptoms:\n• High fever\n• Green saliva/mucus\n• Crackling lung sounds\n• Rapid heartbeat\n• Weakness\n• Cold arms\n• Cure: Antibiotics", #Ye
 
 	"ENDOCARDITIS": "[b]Endocarditis[/b]\nAn infection of the inner lining of the heart that can disrupt normal heart function.\nSymptoms:\n• Fever\n• Irregular heartbeat\n• Abnormal lung sounds\n• Fatigue\n• Low energy\n• Rashy arms\n• Cure: Antibiotics",
 

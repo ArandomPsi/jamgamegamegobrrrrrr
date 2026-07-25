@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://dgidjcry0rssj"]
+[gd_scene load_steps=118 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://tpubdbijbfxt" path="res://assets/gae/doctorwall.png" id="2_rysoc"]
@@ -63,6 +63,7 @@
 [ext_resource type="Texture2D" uid="uid://doxqvg3t24b8h" path="res://assets/gae/clockbase.svg" id="59_yd4ix"]
 [ext_resource type="Texture2D" uid="uid://cqoqh64mu2sr5" path="res://assets/gae/clockhand.svg" id="60_66xif"]
 [ext_resource type="Shader" uid="uid://c7ikpledxmopj" path="res://shaders/squiggle.gdshader" id="60_xbak0"]
+[ext_resource type="AudioStream" uid="uid://csq6ijl6r36jq" path="res://sounds/horror.wav" id="61_xbak0"]
 
 [sub_resource type="Gradient" id="Gradient_rysoc"]
 offsets = PackedFloat32Array(1)
@@ -1651,6 +1652,11 @@ volume_db = -17.395
 autoplay = true
 mix_target = 1
 bus = &"breathing"
+
+[node name="bgmusic2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("61_xbak0")
+autoplay = true
+mix_target = 1
 
 [node name="results" type="ColorRect" parent="."]
 visible = false

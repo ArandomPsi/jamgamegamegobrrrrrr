@@ -27,8 +27,15 @@ var stressval : float = 0.0
 var daynum : int = 1
 var patient_requirement : int = 3
 
+var maxtimeleft : int
+
 
 var scaling : Dictionary = {
+	0: {
+		"range": Vector2(120, 150),
+		"quota": 3,
+		"diseaseoptions": 3
+	},
 	1: {
 		"range": Vector2(90, 120),
 		"quota": 3,
@@ -87,8 +94,6 @@ func _ready() -> void:
 	global.patientscured = 0
 	$Button.text = ""
 	newpatient()
-	patient_requirement = scaling[daynum]["quota"]
-	disease_amount = scaling[daynum]["diseaseoptions"]
 	$otherui/daytimervisual.max_value = $otherui/daytimer.wait_time
 	$screen/ecgbutton.modulate *= 2.0
 	
@@ -102,12 +107,15 @@ func _process(delta: float) -> void:
 	
 	
 	t += delta
-	current_patient.time_left -= delta
+	if not $results.visible:
+		current_patient.time_left -= delta
 	#camera movement
 	$Camera2D.offset = lerp($Camera2D.offset,(get_global_mouse_position() - $Camera2D.position)/15,0.1) + Vector2(randf_range(-1,1),randf_range(-1,1)) * screenshake
 	
 	
-	var progress = ($otherui/daytimer.wait_time - current_patient.time_left) / $otherui/daytimer.wait_time
+	var progress = 0.0
+	if maxtimeleft > 0.0:
+		progress = (maxtimeleft - current_patient.time_left) / maxtimeleft
 	
 	if current_patient.time_left > 0 and current_patient.time_left < 30:
 		screenshake = pow(progress, 2.0) * 4.0
@@ -120,7 +128,7 @@ func _process(delta: float) -> void:
 	if $gotomouse/stethoscope.visible:
 		match current_patient.whatstethohears:
 			0:
-				$sounds/normalbreathing.volume_db = 0.0
+				$sounds/normalbreathing.volume_db = 15.0
 			1:
 				$sounds/wheezing.volume_db = 20.0
 			2:
@@ -140,7 +148,7 @@ func _process(delta: float) -> void:
 		ldoctor()
 		
 	
-	$clock/hand.rotation = progress * 3 * TAU - PI/3
+	$clock/hand.rotation = progress * TAU - PI/2
 	
 	$otherui/Label.text = "Day " + str(daynum)
 	
@@ -152,13 +160,14 @@ func _process(delta: float) -> void:
 	
 
 func stress():
-	stressval += 0.02
+	stressval += 0.03
 	stressval = clamp(stressval, 0.0, 100.0)
 	$otherui/stressmeter.value = stressval
 	$screeneffects/CanvasModulate.color.r = stressval * 0.004 + 0.694117647
 	$bgmusic.pitch_scale = remap(stressval, 0.0, 100.0, 0.85, 1.0)
 	$sounds/ticktock.volume_db = (stressval*3/10) - 20
-	$screeneffects/CanvasLayer/blackstuff.modulate.a = 0.447 + stressval/400
+	$screeneffects/CanvasLayer/blackstuff.modulate.a = 0.447 + (0.6 *(stressval/100))
+	$bgmusic2.volume_db = -5 + 10 * (stressval/100)
 
 
 
@@ -315,8 +324,9 @@ func _on_magnifyingglass_pressed() -> void:
 func _on_moutharea_body_entered(body: Node2D) -> void:
 	if $gotomouse/popsicle.visible:
 		$gotomouse/popsicle/goon.restart()
+		
 
-		screenshake += 8
+		screenshake += 4
 		if spitcount > 5:
 			
 			#set color of mouth
@@ -330,6 +340,7 @@ func _on_moutharea_body_entered(body: Node2D) -> void:
 			
 			#make everything emmit
 			$gotomouse/popsicle/goon.emitting = true
+			$gotomouse/popsicle/goon.visible = true
 			$gotomouse/popsicle/goon/splats.emitting = true
 			$gotomouse/popsicle/goon.speed_scale = 1.0
 			for i in range(5):
@@ -338,8 +349,9 @@ func _on_moutharea_body_entered(body: Node2D) -> void:
 		else:
 			
 			#nah
-			$gotomouse/popsicle/goon.restart()
+			$gotomouse/popsicle/goon.visible = false
 			$gotomouse/popsicle/goon.emitting = false
+			$gotomouse/popsicle/goon.restart()
 			$gotomouse/popsicle/goon/splats.emitting = false
 			spitcount += 1
 		$gotomouse/popsicle/goon.emitting = false
@@ -509,41 +521,71 @@ func newpatient():
 	#other stuff
 #	current_patient = Patient.new()
 	stressval = 0 #cortisol
+	
+	#....................random disease.....................
 	current_patient.newpatient()
 	current_patient.time_left = randi_range(scaling[daynum]["range"].x, scaling[daynum]["range"].y)
+	maxtimeleft = current_patient.time_left
 	disease_possibilities.clear()
 	cure_possibilities.clear()
 	disease_possibilities.append(current_patient.DISEASE.keys()[current_patient.disease])
+	
+	disease_amount = scaling[daynum]["diseaseoptions"]
+	
+	daynum = ceili(global.patientscured/2)
+	
+	
+	
+	
+	
 	for i in range(disease_amount - 1):
 		var ops = current_patient.DISEASE.keys().duplicate()
 		for d in disease_possibilities:
 			ops.erase(d)
 		disease_possibilities.append(ops.pick_random())
+		
 	cure_possibilities.append(current_patient.curename)
+	
 	for d in disease_possibilities:
 		var di = current_patient.DISEASE.get(d)
 		for c in current_patient.cures:
 			if di in current_patient.cures[c]:
-				if not c in cure_possibilities:
+				if not c in cure_possibilities and cure_possibilities.size() <= 4:
 					cure_possibilities.append(c)
-					print(c)
-	for i in range(3):
+					
+		
+	
+	
+	
+	#this line is the problem child
+	while cure_possibilities.size() < 4:
 		var ops = current_patient.cures.keys().duplicate()
+		
 		for c in cure_possibilities:
 			ops.erase(c)
+		
 		cure_possibilities.append(ops.pick_random())
+		
 	for i in range(randi_range(0, 5)):
 		disease_possibilities.shuffle()
 		cure_possibilities.shuffle()
+	
+	
 	curenum = cure_possibilities.find(current_patient.curename)
+	
 	for i in range(cure_labels.size()):
-		cure_labels[i].text = cure_possibilities[i]
+		cure_labels[i].text = cure_possibilities[i].replace("_", " ").capitalize()
+	
+	#....................random disease.....................
 	
 	
+	#diseasename = DISEASE.keys()[disease].replace("_", " ").capitalize() #blah blah blah
+	
+	
+	#reset some stuff
 	global.heartrateshow = false
 	$joe/eye/eyeclipmask/eye.frame = current_patient.eyecondition
-	$gotomouse/popsicle/goon.restart()
-	$gotomouse/popsicle/goon.emitting = false
+	$gotomouse/popsicle/goon.visible = false
 	$gotomouse/popsicle/goon/splats.emitting = false
 	for overlay in $joe/arms/leftarm/actual.get_children():
 		overlay.queue_free()
