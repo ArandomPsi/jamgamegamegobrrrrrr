@@ -1088,7 +1088,7 @@ texture = ExtResource("7_ir15t")
 script = ExtResource("45_7gkqi")
 
 [node name="Timer" type="Timer" parent="PointLight2D"]
-wait_time = 5.0
+wait_time = 45.0
 autostart = true
 
 [node name="buzz" type="AudioStreamPlayer" parent="PointLight2D"]
