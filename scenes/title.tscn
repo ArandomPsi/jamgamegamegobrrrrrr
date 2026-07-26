@@ -1,16 +1,16 @@
-[gd_scene load_steps=33 format=3 uid="uid://rymgq27ukb0k"]
+[gd_scene load_steps=33 format=3 uid="uid://bsy3bnu7ryflr"]
 
 [ext_resource type="Texture2D" uid="uid://2cr5yxyyfbnv" path="res://assets/gae/heart.svg" id="1_4ignj"]
 [ext_resource type="FontFile" uid="uid://vvjr1d332ty4" path="res://shaders/PixelMillennium-1oBZ.ttf" id="1_4rr2b"]
-[ext_resource type="Shader" path="res://shaders/fisheye.gdshader" id="1_b3w7a"]
+[ext_resource type="Shader" uid="uid://88dm5xsq3s1" path="res://shaders/fisheye.gdshader" id="1_b3w7a"]
 [ext_resource type="Script" uid="uid://dykhfae62uqn0" path="res://scripts/title.gd" id="1_yql1r"]
 [ext_resource type="Shader" uid="uid://umiibq47crqo" path="res://shaders/fog.gdshader" id="2_p6dhs"]
-[ext_resource type="Shader" path="res://shaders/tiler.gdshader" id="2_pyl7j"]
+[ext_resource type="Shader" uid="uid://dlyofksjdget3" path="res://shaders/tiler.gdshader" id="2_pyl7j"]
 [ext_resource type="Shader" uid="uid://dhtvw87fa1uj2" path="res://shaders/pixel.gdshader" id="2_wosw1"]
-[ext_resource type="Script" path="res://scripts/button.gd" id="3_ia1n6"]
-[ext_resource type="Shader" path="res://shaders/squiggle.gdshader" id="8_7af2g"]
+[ext_resource type="Script" uid="uid://ckm8ad7ly7xnc" path="res://scripts/button.gd" id="3_ia1n6"]
+[ext_resource type="Shader" uid="uid://c7ikpledxmopj" path="res://shaders/squiggle.gdshader" id="8_7af2g"]
 [ext_resource type="Texture2D" uid="uid://c8l3s7swrjjjw" path="res://assets/eyes/alltools.png" id="9_6civk"]
-[ext_resource type="Script" path="res://scripts/tutorialthingy.gd" id="10_7af2g"]
+[ext_resource type="Script" uid="uid://8cesrdhnqpwu" path="res://scripts/tutorialthingy.gd" id="10_7af2g"]
 [ext_resource type="PackedScene" uid="uid://befatowcqs6q5" path="res://scenes/sinewave.tscn" id="10_w65of"]
 [ext_resource type="AudioStream" uid="uid://csq6ijl6r36jq" path="res://sounds/horror.wav" id="11_ygloa"]
 [ext_resource type="AudioStream" uid="uid://by4ynbbigngfm" path="res://sounds/music/doctorgamemusic.mp3" id="14_81wt4"]
@@ -436,14 +436,12 @@ stream = ExtResource("11_ygloa")
 pitch_scale = 0.71
 autoplay = true
 mix_target = 1
-bus = &"mainmenu"
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_81wt4")
 volume_db = -20.0
 pitch_scale = 1.2
 autoplay = true
-bus = &"mainmenu"
 
 [connection signal="pressed" from="pivot/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="pivot/Button2" to="." method="_on_button_2_pressed"]

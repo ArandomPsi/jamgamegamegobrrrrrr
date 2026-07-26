@@ -1099,6 +1099,36 @@ position = Vector2(1287, 1450)
 scale = Vector2(2, 2)
 texture = ExtResource("43_l6q63")
 
+[node name="blackscreen" type="ColorRect" parent="."]
+visible = false
+z_index = 6
+offset_left = -185.0
+offset_top = -134.0
+offset_right = 1362.0
+offset_bottom = 779.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="blackscreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -425.5
+offset_top = -33.5
+offset_right = 425.5
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.27, 0.27, 1)
+theme_override_fonts/font = ExtResource("50_3hbvx")
+theme_override_font_sizes/font_size = 60
+text = "faf"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
 [node name="screeneffects" type="Node2D" parent="."]
 light_mask = 2
 
@@ -1170,7 +1200,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="fade" type="ColorRect" parent="screeneffects"]
-visible = false
 z_index = 3
 offset_left = -136.0
 offset_top = -95.0
@@ -1215,19 +1244,20 @@ light_mask = 2
 position = Vector2(956, 297)
 stream = ExtResource("33_v2yb1")
 max_polyphony = 2
-bus = &"Master2"
+bus = &"tickyticky"
 
 [node name="flatline" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("48_bk1p3")
 volume_db = -17.802
-bus = &"Master2"
+bus = &"tickyticky"
 
 [node name="ticktock" type="AudioStreamPlayer2D" parent="sounds"]
-position = Vector2(151, 124)
+position = Vector2(252, 151)
 stream = ExtResource("50_0rmfi")
-volume_db = -10.0
+volume_db = -5.0
 autoplay = true
-bus = &"Master2"
+max_distance = 3000.0
+bus = &"tickyticky"
 
 [node name="shot" type="AudioStreamPlayer2D" parent="sounds"]
 position = Vector2(743, 143)
@@ -1238,7 +1268,7 @@ position = Vector2(437, 185)
 stream = ExtResource("54_weeiq")
 pitch_scale = 1.4
 max_polyphony = 5
-bus = &"Master2"
+bus = &"tickyticky"
 
 [node name="ipad" type="Node2D" parent="."]
 visible = false
@@ -1765,6 +1795,7 @@ flip_h = true
 
 [node name="phoneaudio" type="AudioStreamPlayer2D" parent="phone"]
 stream = ExtResource("69_sxt1d")
+volume_db = -10.0
 
 [node name="results" type="ColorRect" parent="."]
 visible = false

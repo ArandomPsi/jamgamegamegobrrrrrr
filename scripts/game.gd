@@ -28,6 +28,7 @@ var daynum : int = 1
 var patient_requirement : int = 3
 
 var maxtimeleft : int
+var brah : bool = false
 
 
 var scaling : Dictionary = {
@@ -124,6 +125,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	
+	if Input.is_action_just_pressed("kys"):
+		suicide()
+	
 	
 	t += delta
 	if not $results.visible:
@@ -176,11 +180,12 @@ func _process(delta: float) -> void:
 	
 	armstuff()
 	eyestuff(delta)
-	if not $gun.visible:
+	if not brah:
 		stress(progress)
 	
 
 func stress(amount : float):
+	
 	stressval = amount * 100
 	stressval = clamp(stressval, 0.0, 100.0)
 	$otherui/stressmeter.value = stressval
@@ -684,25 +689,61 @@ func hit_circle_check(good : bool):
 
 
 func suicide():
+	
+	resetcam()
+	brah
+	
 	$sounds/flatline.play()
 	var tween = create_tween()
-	$gun.visible = true
+
 	$screeneffects/fade.visible = true
 	$screeneffects/fade.modulate.a = 0
 	$screeneffects/fade.color = Color(1,1,1)
 	stress(0.6)
+	blackscreenappearanddissapear(2)
 	tween.tween_property($results,"modulate:a",0.0,0.9)
 	tween.parallel().tween_property($bgmusic,"volume_db",-80.0,0.6)
-	tween.tween_property($gun,"position",Vector2(774,537),0.8).set_trans(Tween.TRANS_CUBIC)
+	#tween.tween_property($gun,"position",Vector2(774,537),0.8).set_trans(Tween.TRANS_CUBIC)
+	
 	tween.tween_interval(0.4)
-	tween.tween_method(setblurparamfordeath,0.0,0.01,1.5)
-	tween.parallel().tween_method(tweenscreenshakevalthingy,0,20,1.5)
+	tween.tween_method(setblurparamfordeath,0.0,0.01,7.2)
+	tween.parallel().tween_method(tweenscreenshakevalthingy,0,30,7.2)
 	tween.tween_property($screeneffects/fade,"modulate:a",1.0,0.1)
 	tween.parallel().tween_property($screeneffects/fade,"color",Color(0,0,0),0.5).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_interval(3)
+	tween.tween_interval(5)
 	await tween.finished
 	get_tree().change_scene_to_file("res://scenes/title.tscn")
 	
+
+func blackscreenappearanddissapear(val):
+	await get_tree().create_timer(1.9).timeout
+	var messages : Array = ["The're dead...", "Well done failing to save children you idiot", "They had so much time left", "And you had to ruin it all","They had so much time left"]
+	
+	var twingo = create_tween()
+	twingo.tween_property($bgmusic2,"volume_db",10,7.2)
+	twingo.tween_property($bgmusic2,"volume_db",-80,0.8)
+	
+	#flash next message
+	for i in range(4):
+		$blackscreen/Label.text = messages[i]
+		$blackscreen.visible = true
+		stress(0.6 + (i * 0.15)) #add more stress effect each time
+		await get_tree().create_timer(1.2).timeout
+		$blackscreen.visible = false
+		await get_tree().create_timer(0.5).timeout
+	var tween = create_tween()
+	$blackscreen.visible = true
+	$blackscreen.modulate.a = 0
+	$blackscreen/Label.text = "they could have had more time"
+	tween.tween_property($blackscreen,"modulate:a",1,1.8).set_delay(1)
+	tween.tween_property($blackscreen,"modulate:a",0,0.6).set_delay(1)
+	
+	
+	
+	
+	
+
+
 
 func shotplay(valloldoesntdoanything):
 	$sounds/shot.play()
