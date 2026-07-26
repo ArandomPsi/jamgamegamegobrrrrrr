@@ -5,6 +5,6 @@ You're basically a fake doctor. The real doctor left for Disneyland and now it's
 Controls: mouse to do basically everything, Space or Esc to put your tool away.
 
 Play it here: https://riamo.itch.io/flatline
-Just click Run game, the web version works fine, no need to download anything.
+Just click Run game, the web version works fine for the most part, no need to really download anything unless you want the best possible experience.
 
 Made by ArandomPsi, Kosmo-o and Krxzy101 for GMTK Jam 2026.
