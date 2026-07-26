@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 	var amount = heartscalegraph.sample(x)
 	if amount > 0.8:
 		shake = 4
+		$heartbeat.play(4.4)
 	
 	$heart.material.set_shader_parameter("amount",amount * 20)
 	

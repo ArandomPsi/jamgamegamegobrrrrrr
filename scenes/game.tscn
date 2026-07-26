@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=3 uid="uid://dgidjcry0rssj"]
+[gd_scene load_steps=131 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://tpubdbijbfxt" path="res://assets/gae/doctorwall.png" id="2_rysoc"]
@@ -24,12 +24,12 @@
 [ext_resource type="Script" uid="uid://d25n3w0qd7lqu" path="res://scripts/heartratevisuals.gd" id="10_1kice"]
 [ext_resource type="Texture2D" uid="uid://qbhkcwmec7j4" path="res://assets/eyes/maskoutline.svg" id="10_oaba0"]
 [ext_resource type="PackedScene" uid="uid://dhmkbnlc4vam3" path="res://scenes/thermometer.tscn" id="11_5newe"]
-[ext_resource type="Script" uid="uid://bhxem1rw6v0sq" path="res://scripts/gotomouse.gd" id="11_37s47"]
+[ext_resource type="Script" path="res://scripts/gotomouse.gd" id="11_37s47"]
 [ext_resource type="Texture2D" uid="uid://bmbl16m7t8ch" path="res://assets/eyes/openhand.svg" id="12_gxtfn"]
 [ext_resource type="Texture2D" uid="uid://d2dh7x2pq7dce" path="res://assets/eyes/closed hand.svg" id="12_twgab"]
 [ext_resource type="Texture2D" uid="uid://dhkjqwwrymium" path="res://assets/gae/stethoscopefp.svg" id="13_bt5mj"]
-[ext_resource type="Script" uid="uid://c475lwnj3dd61" path="res://scripts/shaker.gd" id="14_02fa5"]
-[ext_resource type="Script" uid="uid://w0lg3ng4f1vi" path="res://scripts/rope.gd" id="14_e1j6l"]
+[ext_resource type="Script" path="res://scripts/shaker.gd" id="14_02fa5"]
+[ext_resource type="Script" path="res://scripts/rope.gd" id="14_e1j6l"]
 [ext_resource type="Shader" uid="uid://dhtvw87fa1uj2" path="res://shaders/pixel.gdshader" id="16_ca42v"]
 [ext_resource type="Texture2D" uid="uid://c0bn8qqtuxgkv" path="res://assets/gae/down.svg" id="17_264po"]
 [ext_resource type="Texture2D" uid="uid://liswfvrxm566" path="res://assets/gae/normalarm.svg" id="17_h3rex"]
@@ -38,7 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://dxbvoa3uchsb" path="res://assets/gae/splat1-3.svg" id="19_suyxu"]
 [ext_resource type="Texture2D" uid="uid://0lbhrxdxt43h" path="res://assets/eyes/goondrop.svg" id="20_sgl2t"]
 [ext_resource type="Script" uid="uid://dcaiqei0nno5h" path="res://scripts/splats.gd" id="21_qouja"]
-[ext_resource type="Shader" uid="uid://uf8noj56jan7" path="res://shaders/perspectiveshader.gdshader" id="33_7025r"]
+[ext_resource type="Shader" path="res://shaders/perspectiveshader.gdshader" id="33_7025r"]
 [ext_resource type="AudioStream" uid="uid://cov4737f5x6yn" path="res://sounds/heartbeatscreen.wav" id="33_v2yb1"]
 [ext_resource type="Texture2D" uid="uid://cyxqy0vcvxwk2" path="res://assets/gae/ipad.svg" id="34_m4url"]
 [ext_resource type="Texture2D" uid="uid://b8lr2ictbv0fe" path="res://assets/gae/magnifyingglass.svg" id="36_458eo"]
@@ -51,14 +51,16 @@
 [ext_resource type="AudioStream" uid="uid://d1rw3yqmt51ca" path="res://sounds/sfx/Wheeze (Better).mp3" id="44_fedci"]
 [ext_resource type="AudioStream" uid="uid://b6gxn1th3bfjd" path="res://sounds/sfx/Breathing (Better).mp3" id="44_ms3bu"]
 [ext_resource type="Texture2D" uid="uid://c3g82h80hlh3c" path="res://assets/bloodoverlay.png" id="44_uxocx"]
-[ext_resource type="Shader" uid="uid://6mwt6p5so3ai" path="res://shaders/radialblur.gdshader" id="44_xbak0"]
-[ext_resource type="Script" uid="uid://cl2pjmhllxgt1" path="res://scripts/bloodoverlay.gd" id="45_7nv0b"]
+[ext_resource type="Shader" path="res://shaders/radialblur.gdshader" id="44_xbak0"]
+[ext_resource type="Script" uid="uid://cmeqxjwab4cm" path="res://scripts/lightflicker.gd" id="45_7gkqi"]
+[ext_resource type="Script" path="res://scripts/bloodoverlay.gd" id="45_7nv0b"]
 [ext_resource type="AudioStream" uid="uid://dcdcc5fvpe2pe" path="res://sounds/sfx/Cackled Breathing (Better).mp3" id="45_8qswn"]
+[ext_resource type="AudioStream" uid="uid://coqx832r244a4" path="res://sounds/lights.mp3" id="46_753oq"]
 [ext_resource type="Script" uid="uid://x6eua8lq01gp" path="res://scripts/ipad.gd" id="48_7ixpq"]
 [ext_resource type="AudioStream" uid="uid://cr8mg3hkvjbs3" path="res://sounds/flatline.wav" id="48_bk1p3"]
 [ext_resource type="AudioStream" uid="uid://dg05hnwpmaofa" path="res://sounds/Clock Ticking 60 BPM.mp3" id="50_0rmfi"]
 [ext_resource type="FontFile" uid="uid://bwt7tm5n5knnm" path="res://shaders/AnimeAce-neP.ttf" id="50_3hbvx"]
-[ext_resource type="Script" uid="uid://cj4psvqe6xilr" path="res://scripts/clipboardthingies.gd" id="50_o8ni1"]
+[ext_resource type="Script" path="res://scripts/clipboardthingies.gd" id="50_o8ni1"]
 [ext_resource type="Texture2D" uid="uid://wt3cpymndpb2" path="res://assets/gae/checkedbox.png" id="50_pf7vy"]
 [ext_resource type="Texture2D" uid="uid://dnrxmfv2t6f01" path="res://assets/gae/clipboard.png" id="50_rm0al"]
 [ext_resource type="Texture2D" uid="uid://c0e8jdmdejclu" path="res://assets/gae/emptybox.png" id="51_o8ni1"]
@@ -68,7 +70,7 @@
 [ext_resource type="Texture2D" uid="uid://2bgtd27cejao" path="res://assets/gae/circletimerfull.svg" id="56_7ixpq"]
 [ext_resource type="Texture2D" uid="uid://doxqvg3t24b8h" path="res://assets/gae/clockbase.svg" id="59_yd4ix"]
 [ext_resource type="Texture2D" uid="uid://cqoqh64mu2sr5" path="res://assets/gae/clockhand.svg" id="60_66xif"]
-[ext_resource type="Shader" uid="uid://c7ikpledxmopj" path="res://shaders/squiggle.gdshader" id="60_xbak0"]
+[ext_resource type="Shader" path="res://shaders/squiggle.gdshader" id="60_xbak0"]
 [ext_resource type="AudioStream" uid="uid://csq6ijl6r36jq" path="res://sounds/horror.wav" id="61_xbak0"]
 [ext_resource type="Texture2D" uid="uid://coc0g5p3t2660" path="res://assets/gae/phone.svg" id="68_o8oq8"]
 [ext_resource type="AudioStream" uid="uid://d2ttc7v3wl7as" path="res://sounds/fnafahh.mp3" id="69_sxt1d"]
@@ -1083,6 +1085,16 @@ scale = Vector2(10.3338, 16.1412)
 energy = 0.5
 range_item_cull_mask = 2
 texture = ExtResource("7_ir15t")
+script = ExtResource("45_7gkqi")
+
+[node name="Timer" type="Timer" parent="PointLight2D"]
+wait_time = 5.0
+autostart = true
+
+[node name="buzz" type="AudioStreamPlayer" parent="PointLight2D"]
+stream = ExtResource("46_753oq")
+volume_db = -10.0
+autoplay = true
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
 light_mask = 2
@@ -1244,12 +1256,10 @@ light_mask = 2
 position = Vector2(956, 297)
 stream = ExtResource("33_v2yb1")
 max_polyphony = 2
-bus = &"tickyticky"
 
 [node name="flatline" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("48_bk1p3")
 volume_db = -17.802
-bus = &"tickyticky"
 
 [node name="ticktock" type="AudioStreamPlayer2D" parent="sounds"]
 position = Vector2(252, 151)
@@ -1257,7 +1267,6 @@ stream = ExtResource("50_0rmfi")
 volume_db = -5.0
 autoplay = true
 max_distance = 3000.0
-bus = &"tickyticky"
 
 [node name="shot" type="AudioStreamPlayer2D" parent="sounds"]
 position = Vector2(743, 143)
@@ -1268,7 +1277,6 @@ position = Vector2(437, 185)
 stream = ExtResource("54_weeiq")
 pitch_scale = 1.4
 max_polyphony = 5
-bus = &"tickyticky"
 
 [node name="ipad" type="Node2D" parent="."]
 visible = false
@@ -1902,6 +1910,7 @@ label_settings = SubResource("LabelSettings_7ixpq")
 [connection signal="pressed" from="deskstuff/ipad" to="." method="_on_ipad_pressed"]
 [connection signal="pressed" from="deskstuff/clipboard" to="." method="_on_clipboard_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="PointLight2D/Timer" to="PointLight2D" method="_on_timer_timeout"]
 [connection signal="pressed" from="clipboard/op1" to="." method="_on_op_1_pressed"]
 [connection signal="pressed" from="clipboard/op1" to="clipboard/op1" method="_on_pressed"]
 [connection signal="pressed" from="clipboard/op2" to="." method="_on_op_2_pressed"]
