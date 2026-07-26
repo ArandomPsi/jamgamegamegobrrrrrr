@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=3 uid="uid://dgidjcry0rssj"]
+[gd_scene load_steps=129 format=3 uid="uid://dgidjcry0rssj"]
 
 [ext_resource type="Script" uid="uid://cgjq5um2t1ncc" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://tpubdbijbfxt" path="res://assets/gae/doctorwall.png" id="2_rysoc"]
@@ -70,6 +70,8 @@
 [ext_resource type="Texture2D" uid="uid://cqoqh64mu2sr5" path="res://assets/gae/clockhand.svg" id="60_66xif"]
 [ext_resource type="Shader" uid="uid://c7ikpledxmopj" path="res://shaders/squiggle.gdshader" id="60_xbak0"]
 [ext_resource type="AudioStream" uid="uid://csq6ijl6r36jq" path="res://sounds/horror.wav" id="61_xbak0"]
+[ext_resource type="Texture2D" uid="uid://coc0g5p3t2660" path="res://assets/gae/phone.svg" id="68_o8oq8"]
+[ext_resource type="AudioStream" uid="uid://d2ttc7v3wl7as" path="res://sounds/fnafahh.mp3" id="69_sxt1d"]
 
 [sub_resource type="Gradient" id="Gradient_rysoc"]
 offsets = PackedFloat32Array(1)
@@ -1213,16 +1215,19 @@ light_mask = 2
 position = Vector2(956, 297)
 stream = ExtResource("33_v2yb1")
 max_polyphony = 2
+bus = &"Master2"
 
 [node name="flatline" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("48_bk1p3")
 volume_db = -17.802
+bus = &"Master2"
 
 [node name="ticktock" type="AudioStreamPlayer2D" parent="sounds"]
 position = Vector2(151, 124)
 stream = ExtResource("50_0rmfi")
 volume_db = -10.0
 autoplay = true
+bus = &"Master2"
 
 [node name="shot" type="AudioStreamPlayer2D" parent="sounds"]
 position = Vector2(743, 143)
@@ -1233,6 +1238,7 @@ position = Vector2(437, 185)
 stream = ExtResource("54_weeiq")
 pitch_scale = 1.4
 max_polyphony = 5
+bus = &"Master2"
 
 [node name="ipad" type="Node2D" parent="."]
 visible = false
@@ -1739,6 +1745,26 @@ bus = &"breathing"
 stream = ExtResource("61_xbak0")
 autoplay = true
 mix_target = 1
+
+[node name="phone" type="Sprite2D" parent="."]
+position = Vector2(83, 382)
+rotation = 0.301591
+scale = Vector2(2, 2)
+texture = ExtResource("68_o8oq8")
+
+[node name="Sprite2D" type="Sprite2D" parent="phone"]
+position = Vector2(-50, 113.5)
+texture = ExtResource("41_pr1ej")
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="phone"]
+show_behind_parent = true
+position = Vector2(-16.5, 51.5)
+texture = ExtResource("40_8ool0")
+flip_h = true
+
+[node name="phoneaudio" type="AudioStreamPlayer2D" parent="phone"]
+stream = ExtResource("69_sxt1d")
 
 [node name="results" type="ColorRect" parent="."]
 visible = false

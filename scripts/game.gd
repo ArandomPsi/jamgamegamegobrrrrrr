@@ -106,6 +106,9 @@ var circlehits : int = 0
 
 
 func _ready() -> void:
+	
+	phonestuff()
+	
 	global.patientskilled = 0
 	global.patientscured = 0
 	$Button.text = ""
@@ -499,6 +502,8 @@ func _on_op_4_pressed() -> void:
 
 
 func correctdiagnosis():
+	$phone/phoneaudio.stop()
+	phonebyebye()
 	$results/ldoctor.visible = false
 	global.patientscured += 1 #brother
 	resetcam()
@@ -516,6 +521,8 @@ func correctdiagnosis():
 	
 
 func ldoctor():
+	$phone/phoneaudio.stop()
+	phonebyebye()
 	$results/ldoctor.visible = true
 	global.patientskilled += 1
 	resetcam()
@@ -568,7 +575,7 @@ func newpatient():
 	disease_amount = scaling[daynum]["diseaseoptions"]
 	
 	
-	$screen/name.text = current_patient.whatstheirname
+	$screen/name.text = current_patient.whatstheirname + " - " + str(randi_range(3,9))
 	$screeneffects/bloodoverlay.modulate.a = global.patientskilled / 4.0
 	
 	
@@ -705,3 +712,20 @@ func setblurparamfordeath(value:float):
 
 func tweenscreenshakevalthingy(value : float):
 	screenshake = value
+
+
+func phonestuff() -> void:
+	if not global.tutorialgiven:
+		$phone.visible = true
+		$phone.position = Vector2(83,382)
+		$phone/phoneaudio.play()
+		await $phone/phoneaudio.finished
+		phonebyebye()
+
+func phonebyebye():
+	global.tutorialgiven = true
+	var tween = create_tween()
+	tween.tween_property($phone,"position",Vector2(-241.0,597.0),0.8).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property($phone,"rotation_degrees",48.5,0.8).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+	$phone.visible = false
